@@ -19,7 +19,7 @@
 <meta property="og:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善    嵌入式开发中，务必注意不同硬件体系架构之间数据类型的差异：  123456789101112131415161">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/Car.jpg">
-<meta property="og:updated_time" content="2019-09-20T09:02:33.448Z">
+<meta property="og:updated_time" content="2019-09-20T10:00:37.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言开发标准（微控制器）">
 <meta name="twitter:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善    嵌入式开发中，务必注意不同硬件体系架构之间数据类型的差异：  123456789101112131415161">
@@ -226,24 +226,24 @@
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* comment */</span></span><br><span class="line"></span><br><span class="line">或在内容较多需要换行时：</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">当前时钟频率: SYSCLK = HCLK = PCLK2(APB2) = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">因为 TIM_ClockDivision = TIM_CKD_DIV1，所以 CLK_Freq 为 PCLK2 的一分频，所以 CLK_Freq = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>3.关 于缩进：一律采用“<strong>==空格==</strong>”缩进，缩进 <strong>==4==</strong> 个空格。</p>
+<p>3.关 于缩进：一律采用“<strong>空格</strong>”缩进，缩进 <strong>4</strong> 个空格。</p>
 <hr>
 <p>4.宏 函数和内联函数，一般情况下不建议使用宏函数，而更建议使用内联函数，易于调试同时兼具性能。同时，在使用内联函数时需要注意函数体不能太过庞大复杂，否则仍旧会被编译器作为普通函数处理，例如，当对另一个函数进行别名封装时，可以使用内联函数：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">inline</span> status_t <span class="hljs-title">PINS_DRV_Deinit</span><span class="hljs-params">(<span class="hljs-keyword">uint32_t</span> pinCount, <span class="hljs-keyword">const</span> <span class="hljs-keyword">pin_settings_config_t</span> config[])</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> PINS_DRV_Init(pinCount, config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>5.针 对“<strong>==宏==</strong>”的一些骚操作需要确保正确，因为宏不易调试，正常情况下，应以让代码更易于阅读和维护，同时又兼顾性能的原则来使用宏，因为花了很多时间想出来的“高效又高深的宏”同样可能需要让别人甚至自己花很多时间去理解，这样无形之中就增加了软件维护成本，特别在项目交接或者不同项目之间代码复用时，矛盾尤为突出，故编程时应在高大上和可维护性之间找到一个平衡点，做出合适的取舍。</p>
+<p>5.针 对“<strong>宏</strong>”的一些骚操作需要确保正确，因为宏不易调试，正常情况下，应以让代码更易于阅读和维护，同时又兼顾性能的原则来使用宏，因为花了很多时间想出来的“高效又高深的宏”同样可能需要让别人甚至自己花很多时间去理解，这样无形之中就增加了软件维护成本，特别在项目交接或者不同项目之间代码复用时，矛盾尤为突出，故编程时应在高大上和可维护性之间找到一个平衡点，做出合适的取舍。</p>
 <hr>
 <p>6.对 于规律性的常量型定义，例如有相关性的从n开始递增的多个常量数据定义，建议使用enum枚举型而尽量不用宏定义，因为宏定义不易于调试，而枚举类型易于调试。</p>
 <hr>
 <p>7.尽 量不要在条件判断语句中使用赋值语句，例如</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (a = b) &#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>==如果有意为之，务必加上注释进行必要说明，明确此写法用意。==</p>
+<p>如果有意为之，务必加上注释进行必要说明，明确此写法用意。</p>
 <hr>
-<p>8.合 理结合使用“联合体 union”和“结构体 struct”和“位域”，对于特定情形下，可以精简代码量，减少内存占用，提高代码可重用性。例如基于某个通讯外设（I2C、SPI……）上发送的数据帧，包含不同类型的数据情况下，可用此法，<strong>==但是必须注意字节对齐问题==</strong>。</p>
+<p>8.合 理结合使用“联合体 union”和“结构体 struct”和“位域”，对于特定情形下，可以精简代码量，减少内存占用，提高代码可重用性。例如基于某个通讯外设（I2C、SPI……）上发送的数据帧，包含不同类型的数据情况下，可用此法，<strong>但是必须注意字节对齐问题</strong>。</p>
 <hr>
-<p>9.同 样是 <strong>==字节对齐问题==</strong>，为了保证字节对齐，同时更节省内存空间，提高MCU执行效率（缩短程序执行时间），结构体中的数据类型请按从小到大的顺序依次排列 ++(8位-&gt;16位-&gt;32位-&gt;单精度浮点-&gt;双精度浮点)++。例如以下代码片段：</p>
+<p>9.同 样是 <strong>字节对齐问题</strong>，为了保证字节对齐，同时更节省内存空间，提高MCU执行效率（缩短程序执行时间），结构体中的数据类型请按从小到大的顺序依次排列 ++(8位-&gt;16位-&gt;32位-&gt;单精度浮点-&gt;双精度浮点)++。例如以下代码片段：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  DMA_TC_Flag;                        <span class="hljs-comment">/* DMA 传输完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  FilterComplete_Flag;                <span class="hljs-comment">/* ADC 滤波完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> SamplingValue[ADC1_DMA_ARRAY_SIZE]; <span class="hljs-comment">/* ADC 转换值 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> FilterValue;                        <span class="hljs-comment">/* ADC 二阶滤波值 */</span></span><br><span class="line">    <span class="hljs-keyword">float</span>    Voltage;                            <span class="hljs-comment">/* ADC 电压值 */</span></span><br><span class="line">&#125; ADC1_VarGroup_TypeDef;</span><br></pre></td></tr></table></figure>
 
 <p>另外，如若要通过指针访问结构体，则需要注意字节对齐，可用以下方法自定义对齐：</p>
@@ -269,7 +269,7 @@
 </ol>
 <hr>
 <ol start="14">
-<li>对于全局变量，一般情况下只允许一个修改者，可依据实际情况存在多个读取者。若有多个修改者，则务必给全局变量加上<strong>互斥信号量（互斥锁）</strong>进行保护。</li>
+<li>对于全局变量，一般情况下只允许一个修改者，可依据实际情况存在多个读取者。若有多个修改者，则务必给全局变量加上 <strong>互斥信号量（互斥锁）</strong> 进行保护。</li>
 </ol>
 <hr>
 <ol start="15">
@@ -286,7 +286,7 @@
 <li>尽量不要使用除法运算，使用<strong>乘法、位移</strong>来替代除法运算。</li>
 <li>定义位域时，注意不同硬件平台的<strong>大小端</strong>问题。</li>
 <li><strong>定义结构体时，注意字节对齐！</strong>按数据类型从小到大的顺序依次排列，可使<strong>内存占用更少</strong>，同时字节对齐，降低指针操作结构体成员时指向非法地址的可能性。</li>
-<li>对于变量、函数、宏、枚举等的命名，若存在多个针对某一特定实例对象的定义，==可把不同的文字置于名称末尾==，方便IDE中编辑时的 <strong>==自动联想==</strong> 功能（Eclipse系的IDE使用 <strong>==Alt + /==</strong> 进行联想），例如：</li>
+<li>对于变量、函数、宏、枚举等的命名，若存在多个针对某一特定实例对象的定义，可把不同的文字置于名称末尾，方便IDE中编辑时的 <strong>自动联想</strong> 功能（Eclipse系的IDE使用 <strong>Alt + /</strong> 进行联想），例如：</li>
 </ol>
 <blockquote>
 <p><strong>变量：</strong></p>
@@ -315,9 +315,9 @@
 <p>逻辑左移 = 算数左移</p>
 </blockquote>
 <blockquote>
-<p>==逻辑右移==就是不考虑符号位，右移一位，左边补零即可。==算术右移==需要考虑符号位，右移一位，若符号位为1，就在左边补1；否则，就补0。所以算术右移也可以进行有符号位的除法，右移 ==N== 位就等于除以2的n次方。</p>
+<p>逻辑右移就是不考虑符号位，右移一位，左边补零即可。算术右移需要考虑符号位，右移一位，若符号位为1，就在左边补1；否则，就补0。所以算术右移也可以进行有符号位的除法，右移 N 位就等于除以2的n次方。</p>
 </blockquote>
-<p>例如，8位二进制数 ==11001101== 分别右移一位。</p>
+<p>例如，8位二进制数 11001101 分别右移一位。</p>
 <table>
 <thead>
 <tr>
@@ -338,7 +338,7 @@
 
 <hr>
 <ol start="28">
-<li><strong>尽量显式初始化全局变量</strong>，未初始化的全局变量是“<strong>==弱符号==</strong>”，有潜在风险。举例：当使用一些外部静态库或动态库时，若库中存在同名且初始化的全局变量，则自己的全局变量会被覆盖，会造成莫明其妙的问题且难以追踪。</li>
+<li><strong>尽量显式初始化全局变量</strong>，未初始化的全局变量是“<strong>弱符号</strong>”，有潜在风险。举例：当使用一些外部静态库或动态库时，若库中存在同名且初始化的全局变量，则自己的全局变量会被覆盖，会造成莫明其妙的问题且难以追踪。</li>
 <li>弱符号妙用之一：在项目的Release和Debug阶段，通过弱函数和强函数，可将Debug阶段的函数覆盖，以使其在Release阶段不产生效用。例如printf函数。</li>
 <li>尽量只让一个函数实现一个单独的功能，而不是一个函数实现多个功能。</li>
 <li>尽量控制单个函数的行数，一般情况下不要超过80行。</li>
