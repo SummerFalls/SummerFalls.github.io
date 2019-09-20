@@ -10,19 +10,19 @@
 <title>MISRA-C 2004 规则解读 - Tomy Stark&#39;s Blog</title>
 
 
-    <meta name="description" content="1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。 3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。 4 S：Procedure exceeds N reformatt">
+    <meta name="description" content="MISRA-C 2004 规则解读 Ver 1.0.0  Collected By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！   1 S ~ 20 S1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label">
 <meta name="keywords" content="C,Standard,Coding Style">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MISRA-C 2004 规则解读">
 <meta property="og:url" content="https://apex.linn.top/2019/09/20/MISRA-C-2004-规则解读/index.html">
 <meta property="og:site_name" content="Tomy Stark&#39;s Blog">
-<meta property="og:description" content="1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。 3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。 4 S：Procedure exceeds N reformatt">
+<meta property="og:description" content="MISRA-C 2004 规则解读 Ver 1.0.0  Collected By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！   1 S ~ 20 S1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/IMG_6274.JPG">
-<meta property="og:updated_time" content="2019-09-20T09:01:51.926Z">
+<meta property="og:updated_time" content="2019-09-20T12:29:30.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MISRA-C 2004 规则解读">
-<meta name="twitter:description" content="1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。 3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。 4 S：Procedure exceeds N reformatt">
+<meta name="twitter:description" content="MISRA-C 2004 规则解读 Ver 1.0.0  Collected By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！   1 S ~ 20 S1 S：Procedure name reused.函数名与变量名称重复。 2 S：Label">
 <meta name="twitter:image" content="https://apex.linn.top/images/IMG_6274.JPG">
 
 
@@ -173,7 +173,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7649 个字)
+                    1 小时 读完 (大约 7741 个字)
                 </span>
                 
                 
@@ -191,7 +191,14 @@
             
         </h1>
         <div class="content">
-            <p>1 S：Procedure name reused.函数名与变量名称重复。</p>
+            <blockquote>
+<p>MISRA-C 2004 规则解读 Ver 1.0.0</p>
+<blockquote>
+<p>Collected By Tomy Stark.<br>E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
+<p>Note: <strong>本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！</strong></p>
+</blockquote>
+</blockquote>
+<h1 id="1-S-20-S"><a href="#1-S-20-S" class="headerlink" title="1 S ~ 20 S"></a>1 S ~ 20 S</h1><p>1 S：Procedure name reused.函数名与变量名称重复。</p>
 <p>2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。</p>
 <p>3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。</p>
 <p>4 S：Procedure exceeds N reformatted lines.规定单个函数的代码行数不能超过N，N值可配置。</p>
@@ -225,7 +232,7 @@
 <p>18 S：More than N parameters in procedure. 规定单个函数入参个数不能超过N，N值可配置。</p>
 <p>19 S：Procedural para used in an uncalled procedure. 避免函数作为参数的情况，即使该函数未被调用，同【14S】。</p>
 <p>20 S：Parameter not declared explicitly. 避免入参无变量类型，大多数编译器是编译不通过的。</p>
-<p>21 S：Number of parameters does not match. 函数定义的入参的个数与使用时传入的入参个数不一致。</p>
+<h1 id="21-S-40-S"><a href="#21-S-40-S" class="headerlink" title="21 S ~ 40 S"></a>21 S ~ 40 S</h1><p>21 S：Number of parameters does not match. 函数定义的入参的个数与使用时传入的入参个数不一致。</p>
 <p>22 S：Use of obsolete language feature ( use = - ). 不应当使用早期C语言中存在的语法规则，如=- =* =+等运算符。</p>
 <p>23 S：Procedure is not called in text analysed. 在main函数的源文件中，如果某个函数不被本文件调用，该函数放在其他的源文件中比较合适。</p>
 <p>24 S：Use of Noanalysis annotation. 使用标记某段源代码，这段代码不会被进行静态规则检查。</p>
@@ -259,7 +266,7 @@
 <p>40 S：Loop index is not declared locally. 避免控制循环条件的变量不在本函数内声明，有可能引起循环判断的条件失控：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">INT32_t <span class="hljs-title">loop_standards</span> <span class="hljs-params">(INT32_t p_1)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    INT32_t r = <span class="hljs-number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> (global_f = <span class="hljs-number">0</span>; global_f &lt; <span class="hljs-number">10</span>; global_f = global_f + <span class="hljs-number">1</span>) <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    &#123;</span><br><span class="line">        r--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>41 S：Ellipsis used in procedure parameter list. 函数入参中使用省略符号，省略符号允许不确定的入参个数，建议避免该编程方式的使用。</p>
+<h1 id="41-S-60-S"><a href="#41-S-60-S" class="headerlink" title="41 S ~ 60 S"></a>41 S ~ 60 S</h1><p>41 S：Ellipsis used in procedure parameter list. 函数入参中使用省略符号，省略符号允许不确定的入参个数，建议避免该编程方式的使用。</p>
 <p>42 S：Use of bit field in structure declaration. 避免在结构体声明中使用位字段</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">bitfield1</span> &#123;</span>INT_32_t  x:<span class="hljs-number">1</span>;&#125;;  <span class="hljs-comment">/* not compliant */</span></span><br></pre></td></tr></table></figure>
 
@@ -289,7 +296,7 @@
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_59</span> <span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    UINT32_t x = <span class="hljs-number">1u</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> ( x == <span class="hljs-number">1u</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-comment">/* ... */</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( x == <span class="hljs-number">5u</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-comment">/* ... */</span> ;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>60 S：Empty switch statement. 避免出现空switch(无case的情况)语句。</p>
-<p>61 S：Switch contains default only. 避免switch语句只有default分支而没有case分支。</p>
+<h1 id="61-S-80-S"><a href="#61-S-80-S" class="headerlink" title="61 S ~ 80 S"></a>61 S ~ 80 S</h1><p>61 S：Switch contains default only. 避免switch语句只有default分支而没有case分支。</p>
 <p>62 S：Switch case not terminated with break. 建议每个case分支都有break语句。</p>
 <p>63 S：Empty parameter list to procedure/function. 函数无入参时，建议增加void修饰：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_63</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> <span class="hljs-comment">/* compliant */</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-comment">/* ... */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -329,7 +336,7 @@
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* not compliant */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> t void</span></span><br></pre></td></tr></table></figure>
 
 <p>80 S：Pointer indirection exceeds 2 levels. 避免使用二级指针。</p>
-<p>81 S：Use of trigraphs. C语言不允许使用三字母词，编译不能通过：</p>
+<h1 id="81-S-100-S"><a href="#81-S-100-S" class="headerlink" title="81 S ~ 100 S"></a>81 S ~ 100 S</h1><p>81 S：Use of trigraphs. C语言不允许使用三字母词，编译不能通过：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_81</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line">??&lt;   /* not compliant */</span><br><span class="line">    <span class="hljs-comment">/* ... */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>82 S：Use of wide string literal. 避免使用宽字符类型：</p>
@@ -379,7 +386,7 @@
 <p>100 S：#include filename is non conformant. include语句中禁止使用 字符’ \ /*。</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;\ctype.h&gt; /* not compliant */</span></span></span><br></pre></td></tr></table></figure>
 
-<p>101 S：Function return type inconsistent. 函数的实际返回值类型与定义的返回值类型不同：</p>
+<h1 id="101-S-120-S"><a href="#101-S-120-S" class="headerlink" title="101 S ~ 120 S"></a>101 S ~ 120 S</h1><p>101 S：Function return type inconsistent. 函数的实际返回值类型与定义的返回值类型不同：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">UINT32_t <span class="hljs-title">static_101</span><span class="hljs-params">( UINT32_t par_1)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">switch</span> (par_1)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> (<span class="hljs-number">-1</span>);     <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">        <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> (<span class="hljs-number">1U</span>);</span><br><span class="line">        <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> (<span class="hljs-number">1L</span>);    <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">        <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:</span><br><span class="line">        <span class="hljs-keyword">return</span> (<span class="hljs-number">1.0f</span>);  <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">        <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">default</span>:</span><br><span class="line">        <span class="hljs-keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>102 S：Function and prototype return inconsistent (MR). 函数声明时的返回值类型与实际使用时的返回值类型不同:</p>
@@ -431,7 +438,7 @@
 <p>120 S：Use of bit operator on signed type. 避免对有符号类型进行位运算：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_120</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    SINT32_t b = <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">    b = b | <span class="hljs-number">1</span>; <span class="hljs-comment">/* not compliant */</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* ... */</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>121 S：Use of boolean expression in switch. 避免在switch case语句中使用BOOL类型：</p>
+<h1 id="121-S-140-S"><a href="#121-S-140-S" class="headerlink" title="121 S ~ 140 S"></a>121 S ~ 140 S</h1><p>121 S：Use of boolean expression in switch. 避免在switch case语句中使用BOOL类型：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_121</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    BOOL flag = FALSE;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">switch</span> (flag)  <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-keyword">case</span> TRUE:</span><br><span class="line">            <span class="hljs-keyword">break</span>;</span><br><span class="line">        <span class="hljs-keyword">case</span> FALSE:</span><br><span class="line">            <span class="hljs-keyword">break</span>;</span><br><span class="line">        <span class="hljs-keyword">default</span>:</span><br><span class="line">            <span class="hljs-keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>122 S：Use of abort, exit, etc. 避免使用语法abort, exit, etc:</p>
@@ -471,7 +478,7 @@
 <p>140 S：Infeasible loop condition found. 避免在循环中出现恒真或恒假的条件：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> defval 0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/********************************************************</span></span><br><span class="line"><span class="hljs-comment"> * Standard 140 S : Infeasible loop condition found.</span></span><br><span class="line"><span class="hljs-comment"> ********************************************************/</span> </span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">static_140</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)          <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">        &#123; <span class="hljs-comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span>(defval)   <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">        &#123; <span class="hljs-comment">/* ... */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>141 S：Incomplete structure or class declaration. 结构体或者类声明不完整：</p>
+<h1 id="141-S-160-S"><a href="#141-S-160-S" class="headerlink" title="141 S ~ 160 S"></a>141 S ~ 160 S</h1><p>141 S：Incomplete structure or class declaration. 结构体或者类声明不完整：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">atagname</span>;</span> <span class="hljs-comment">/* not compliant */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">atagname</span></span></span><br><span class="line"><span class="hljs-class">&#123;</span></span><br><span class="line">    UINT32_t A;</span><br><span class="line">    UINT32_t B;</span><br><span class="line">&#125;; <span class="hljs-comment">/*compliant */</span></span><br></pre></td></tr></table></figure>
 
 <p>142 S：Parameter list declarations are inconsistent. 函数某些参数缺少类型或者名称:</p>
@@ -531,7 +538,7 @@
 <p>160 S：Loop in macro expansion. 避免在宏定义中出现循环，下面的写法除了增加代码行数外是无意义的：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> A B</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> B A</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> C D</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> D E</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> E C</span></span><br></pre></td></tr></table></figure>
 
-<p>161 S：Declaration in for statement. 避免在for循环中定义变量：</p>
+<h1 id="161-S-180-S"><a href="#161-S-180-S" class="headerlink" title="161 S ~ 180 S"></a>161 S ~ 180 S</h1><p>161 S：Declaration in for statement. 避免在for循环中定义变量：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">STATIC_161</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    UINT32_t x, y=<span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">unsigned</span> x(<span class="hljs-number">0</span>);x &lt;<span class="hljs-number">3</span>;x++) <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    &#123;</span><br><span class="line">        y++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>162 S：Method defined within class declaration. 除了成员函数，不要在类申明中定义函数。</p>
@@ -579,7 +586,7 @@
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"c_standards.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Static_179.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/********************************************************</span></span><br><span class="line"><span class="hljs-comment"> * Standard 179 S : Extern not at start of header file.</span></span><br><span class="line"><span class="hljs-comment"> ********************************************************/</span> </span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">static_179</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"> * Copyright (c) 2001 Liverpool Data Research Associates</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line">Static_179.h</span><br><span class="line">INT32_t var;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">extern</span> INT32_t ex; <span class="hljs-comment">/* not compliant */</span></span><br></pre></td></tr></table></figure>
 
 <p>180 S：No space between * or &amp; and name in declaration. * 或者 &amp;与变量名之间应当有空格。</p>
-<p>181 S：No space between if, while, for and expresn. (if, switch, while, for)关键字后请跟上一个空格：</p>
+<h1 id="181-S-200-S"><a href="#181-S-200-S" class="headerlink" title="181 S ~ 200 S"></a>181 S ~ 200 S</h1><p>181 S：No space between if, while, for and expresn. (if, switch, while, for)关键字后请跟上一个空格：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">INT_t32_t <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    INT_t32_t i=<span class="hljs-number">3</span>;</span><br><span class="line">    <span class="hljs-keyword">if</span>( <span class="hljs-number">1</span>==<span class="hljs-number">2</span> ) &#123;<span class="hljs-number">2</span>;&#125;       <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    <span class="hljs-keyword">switch</span>(i)&#123;            <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">switch</span> (i)&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">while</span>(i==<span class="hljs-number">0</span>)&#123;<span class="hljs-number">2</span>;&#125;      <span class="hljs-comment">/* not compliant */</span>  </span><br><span class="line">    <span class="hljs-keyword">do</span>&#123;<span class="hljs-number">2</span>;&#125;<span class="hljs-keyword">while</span>(i==<span class="hljs-number">0</span>);   <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&gt;<span class="hljs-number">2</span>;i++)&#123;<span class="hljs-number">2</span>;&#125; <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>182 S：No space after semi colon in for expression. for循环表达式中分号后打一个空格，看上去更整洁：</p>
@@ -619,7 +626,7 @@
 <p>198 S：Use of privacy statement in struct.结构体中成员不应当修饰为privacy类型。</p>
 <p>199 S：Use of anonymous namespace. 避免使用匿名命名空间。</p>
 <p>200 S：Define used for numeric constant. C++中建议const代替宏定义常量，C中建议使用宏代替const定义常量。</p>
-<p>201 S：Use of numeric literal in expression. 该条规则建议使用宏或者枚举代替具体的数字，以提高代码的可维护性。</p>
+<h1 id="201-S-220-S"><a href="#201-S-220-S" class="headerlink" title="201 S ~ 220 S"></a>201 S ~ 220 S</h1><p>201 S：Use of numeric literal in expression. 该条规则建议使用宏或者枚举代替具体的数字，以提高代码的可维护性。</p>
 <p>202 S：Class data is not explicitly private. 建议类中的成员变量为私有。</p>
 <p>203 S：Cast on a constant value. 避免对常量进行强制类型转换：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> INT16_t con = <span class="hljs-number">19</span>;</span><br><span class="line"><span class="hljs-keyword">const</span> INT16_t * pcon;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">static_203</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    INT16_t x;</span><br><span class="line">    INT16_t *p;</span><br><span class="line">    x = (INT16_t)con;      <span class="hljs-comment">/* not compliant if modifier = 0 */</span></span><br><span class="line">    p = (INT16_t *)pcon;   <span class="hljs-comment">/* not compliant */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -649,7 +656,7 @@
 <p>218 S：Name is used in standard libraries.命名时避免与C/C++标准库中的名称重复。</p>
 <p>219 S：User name starts with underscore. 避免以下划线开始命名变量。</p>
 <p>220 S：No prefix for global type. 建议全局变量名称后缀该变量的类型以增加可读性。</p>
-<p>221 S：Start of class/struct/union/enum lower case. 建议结构体和联合体命名以大写字符开头。</p>
+<h1 id="221-S-241-S"><a href="#221-S-241-S" class="headerlink" title="221 S ~ 241 S"></a>221 S ~ 241 S</h1><p>221 S：Start of class/struct/union/enum lower case. 建议结构体和联合体命名以大写字符开头。</p>
 <p>222 S：Start of variable is upper case. 建议变量名以小写字符开头。</p>
 <p>223 S：No prefix for global function. 作用域为全局的函数名建议以_func结尾以增加代码的可读性。</p>
 <p>224 S：Start of enumeration is upper case. 建议常量和枚举类型的变量以小写字符开头。</p>
@@ -1268,7 +1275,55 @@
             <h3 class="menu-label">
                 目录
             </h3>
-            
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-S-20-S">
+        <span class="has-mr-6">1</span>
+        <span>1 S ~ 20 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#21-S-40-S">
+        <span class="has-mr-6">2</span>
+        <span>21 S ~ 40 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#41-S-60-S">
+        <span class="has-mr-6">3</span>
+        <span>41 S ~ 60 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#61-S-80-S">
+        <span class="has-mr-6">4</span>
+        <span>61 S ~ 80 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#81-S-100-S">
+        <span class="has-mr-6">5</span>
+        <span>81 S ~ 100 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#101-S-120-S">
+        <span class="has-mr-6">6</span>
+        <span>101 S ~ 120 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#121-S-140-S">
+        <span class="has-mr-6">7</span>
+        <span>121 S ~ 140 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#141-S-160-S">
+        <span class="has-mr-6">8</span>
+        <span>141 S ~ 160 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#161-S-180-S">
+        <span class="has-mr-6">9</span>
+        <span>161 S ~ 180 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#181-S-200-S">
+        <span class="has-mr-6">10</span>
+        <span>181 S ~ 200 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#201-S-220-S">
+        <span class="has-mr-6">11</span>
+        <span>201 S ~ 220 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#221-S-241-S">
+        <span class="has-mr-6">12</span>
+        <span>221 S ~ 241 S</span>
+        </a></li></ul>
         </div>
     </div>
 </div>
@@ -1463,7 +1518,55 @@
             <h3 class="menu-label">
                 目录
             </h3>
-            
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-S-20-S">
+        <span class="has-mr-6">1</span>
+        <span>1 S ~ 20 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#21-S-40-S">
+        <span class="has-mr-6">2</span>
+        <span>21 S ~ 40 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#41-S-60-S">
+        <span class="has-mr-6">3</span>
+        <span>41 S ~ 60 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#61-S-80-S">
+        <span class="has-mr-6">4</span>
+        <span>61 S ~ 80 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#81-S-100-S">
+        <span class="has-mr-6">5</span>
+        <span>81 S ~ 100 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#101-S-120-S">
+        <span class="has-mr-6">6</span>
+        <span>101 S ~ 120 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#121-S-140-S">
+        <span class="has-mr-6">7</span>
+        <span>121 S ~ 140 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#141-S-160-S">
+        <span class="has-mr-6">8</span>
+        <span>141 S ~ 160 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#161-S-180-S">
+        <span class="has-mr-6">9</span>
+        <span>161 S ~ 180 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#181-S-200-S">
+        <span class="has-mr-6">10</span>
+        <span>181 S ~ 200 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#201-S-220-S">
+        <span class="has-mr-6">11</span>
+        <span>201 S ~ 220 S</span>
+        </a></li><li>
+        <a class="is-flex" href="#221-S-241-S">
+        <span class="has-mr-6">12</span>
+        <span>221 S ~ 241 S</span>
+        </a></li></ul>
         </div>
     </div>
 </div>

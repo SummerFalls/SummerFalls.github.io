@@ -244,10 +244,7 @@
             
         </h1>
         <div class="content">
-            <blockquote>
-<p><strong>快捷注释所有 printf() 调用语句</strong></p>
-</blockquote>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内</span></span><br><span class="line"><span class="hljs-comment"> * 进行调试信息打印时，可分别调用各自的printf宏定义别名，</span></span><br><span class="line"><span class="hljs-comment"> * 这么做可以在程序调试期间方便对某一模块的调试信息功能启用和关闭 </span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+            <h1 id="快捷注释所有-printf-调用语句"><a href="#快捷注释所有-printf-调用语句" class="headerlink" title="快捷注释所有 printf() 调用语句"></a>快捷注释所有 printf() 调用语句</h1><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内</span></span><br><span class="line"><span class="hljs-comment"> * 进行调试信息打印时，可分别调用各自的printf宏定义别名，</span></span><br><span class="line"><span class="hljs-comment"> * 这么做可以在程序调试期间方便对某一模块的调试信息功能启用和关闭 </span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -350,7 +347,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7649 个字)
+                    1 小时 读完 (大约 7741 个字)
                 </span>
                 
                 
@@ -363,7 +360,14 @@
             
         </h1>
         <div class="content">
-            <p>1 S：Procedure name reused.函数名与变量名称重复。</p>
+            <blockquote>
+<p>MISRA-C 2004 规则解读 Ver 1.0.0</p>
+<blockquote>
+<p>Collected By Tomy Stark.<br>E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
+<p>Note: <strong>本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！</strong></p>
+</blockquote>
+</blockquote>
+<h1 id="1-S-20-S"><a href="#1-S-20-S" class="headerlink" title="1 S ~ 20 S"></a>1 S ~ 20 S</h1><p>1 S：Procedure name reused.函数名与变量名称重复。</p>
 <p>2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。</p>
 <p>3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。</p>
 <p>4 S：Procedure exceeds N reformatted lines.规定单个函数的代码行数不能超过N，N值可配置。</p>
