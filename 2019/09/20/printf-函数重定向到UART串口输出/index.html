@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>printf 函数重定向到UART串口输出 - Tomy Stark&#39;s Blog</title>
+
+
+    <meta name="description" content="快捷注释所有 printf() 调用语句  123456789101112131415161718192021#if 1    #define PRINTF printf#else    #define PRINTF(...)#endif/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内 * 进行调试信息打印时，可分别调用各自的printf宏定义别名， * 这么做可以在程序调">
+<meta name="keywords" content="C,debug,UART">
+<meta property="og:type" content="article">
+<meta property="og:title" content="printf 函数重定向到UART串口输出">
+<meta property="og:url" content="https://apex.linn.top/2019/09/20/printf-函数重定向到UART串口输出/index.html">
+<meta property="og:site_name" content="Tomy Stark&#39;s Blog">
+<meta property="og:description" content="快捷注释所有 printf() 调用语句  123456789101112131415161718192021#if 1    #define PRINTF printf#else    #define PRINTF(...)#endif/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内 * 进行调试信息打印时，可分别调用各自的printf宏定义别名， * 这么做可以在程序调">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://apex.linn.top/images/deer.jpg">
+<meta property="og:updated_time" content="2019-09-20T09:27:27.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="printf 函数重定向到UART串口输出">
+<meta name="twitter:description" content="快捷注释所有 printf() 调用语句  123456789101112131415161718192021#if 1    #define PRINTF printf#else    #define PRINTF(...)#endif/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内 * 进行调试信息打印时，可分别调用各自的printf宏定义别名， * 这么做可以在程序调">
+<meta name="twitter:image" content="https://apex.linn.top/images/deer.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="printf 函数重定向到UART串口输出" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="GitHub" href="https://github.com/SummerFalls">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/deer.jpg" alt="printf 函数重定向到UART串口输出">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T09:22:02.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/debug/">debug</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1183 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                printf 函数重定向到UART串口输出
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p><strong>快捷注释所有 printf() 调用语句</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内</span></span><br><span class="line"><span class="hljs-comment"> * 进行调试信息打印时，可分别调用各自的printf宏定义别名，</span></span><br><span class="line"><span class="hljs-comment"> * 这么做可以在程序调试期间方便对某一模块的调试信息功能启用和关闭 </span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<blockquote>
+<p><strong>printf 动态打印已知长度字符串</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* 动态打印已知长度的字符串 */</span></span><br><span class="line"><span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.*s\r\n"</span>, length, str);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 动态打印已知长度的字符串，totalLen指最终打印字符串的长度，strLen指打印str的多少个字符 */</span></span><br><span class="line"><span class="hljs-built_in">printf</span>(<span class="hljs-string">"%*.*s\r\n"</span>, totalLen, strLen, str);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Keil MDK, GCC ( True Studio / NXP S32 Design Studio / … )</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __GNUC__</span></span><br><span class="line"><span class="hljs-comment">/* 若需打印浮点数 则需要在</span></span><br><span class="line"><span class="hljs-comment"> * 工程属性-&gt;C/C++ Build-&gt;Settings-&gt;C Linker-&gt;Miscellaneous-&gt;Other options中添加 -u _printf_float</span></span><br><span class="line"><span class="hljs-comment"> * 以使能浮点打印功能，此外，使能浮点打印功能，编译后会明显增加RAM和FLASH占用</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-comment">/* With GCC/RAISONANCE, small printf (option LD Linker-&gt;Libraries-&gt;Small printf</span></span><br><span class="line"><span class="hljs-comment">   set to 'Yes') calls __io_putchar() */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PUTCHAR_PROTOTYPE int __io_putchar(int ch)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> __MICROLIB</span></span><br><span class="line"><span class="hljs-comment">/* 加入以下代码，支持printf函数，而不需要选择use MicroLIB */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> import(__use_no_semihosting)</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 标准库需要的支持函数 */</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> __<span class="hljs-title">FILE</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">int</span> handle;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* FILE 定义在 stdio.h */</span></span><br><span class="line">FILE __stdout;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 定义_sys_exit()以避免使用半主机模式 */</span></span><br><span class="line"><span class="hljs-keyword">void</span> _sys_exit(<span class="hljs-keyword">int</span> x)</span><br><span class="line">&#123;</span><br><span class="line">    x = x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* __GNUC__ */</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//#define USE_REG_FOR_PRINTF</span></span><br><span class="line"></span><br><span class="line">PUTCHAR_PROTOTYPE &#123;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(USE_REG_FOR_PRINTF)</span></span><br><span class="line">    <span class="hljs-comment">/* 寄存器方式 */</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* MM32 */</span></span><br><span class="line"><span class="hljs-comment">//    while ((UART2-&gt;CSR &amp; UART_FLAG_TXEMPTY) == RESET);</span></span><br><span class="line"><span class="hljs-comment">//    UART2-&gt;TDR = (ch &amp; (uint16_t)0x00FF);</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* STM32 不同型号的寄存器及相关FLAG定义有所不同，按需选择 */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 0</span></span><br><span class="line">    <span class="hljs-keyword">while</span> ((USART2-&gt;SR &amp; USART_FLAG_TXE) == RESET);</span><br><span class="line">    USART2-&gt;DR = (<span class="hljs-keyword">uint8_t</span>)ch;</span><br><span class="line">    <span class="hljs-keyword">while</span> ((USART2-&gt;SR &amp; USART_FLAG_TC) == RESET);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-keyword">while</span> ((USART2-&gt;ISR &amp; USART_ISR_TXE) == RESET);</span><br><span class="line">    USART2-&gt;TDR = (<span class="hljs-keyword">uint8_t</span>)ch;</span><br><span class="line">    <span class="hljs-keyword">while</span> ((USART2-&gt;ISR &amp; USART_ISR_TC) == RESET);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(USE_STDPERIPH_DRIVER)</span></span><br><span class="line">    <span class="hljs-comment">/* SPL标准库方式 */</span></span><br><span class="line">    <span class="hljs-keyword">while</span> (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);</span><br><span class="line">    USART_SendData(USART2, (<span class="hljs-keyword">uint8_t</span>)ch);</span><br><span class="line">    <span class="hljs-keyword">while</span> (USART_GetFlagStatus(USART2, USART_FLAG_TC) == RESET);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(USE_FULL_LL_DRIVER)</span></span><br><span class="line">    <span class="hljs-comment">/* LL库方式 */</span></span><br><span class="line">    <span class="hljs-keyword">while</span> (LL_USART_IsActiveFlag_TXE(USART2) == RESET);</span><br><span class="line">    LL_USART_TransmitData8(USART2, ch);</span><br><span class="line">    <span class="hljs-keyword">while</span> (LL_USART_IsActiveFlag_TC(USART2) == RESET);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* USE_FULL_LL_DRIVER */</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> defined(USE_HAL_DRIVER)</span></span><br><span class="line">    <span class="hljs-comment">/* HAL库方式 */</span></span><br><span class="line">    HAL_UART_Transmit(&amp;huart2, (<span class="hljs-keyword">uint8_t</span> *)&amp;ch, <span class="hljs-number">1</span>, HAL_MAX_DELAY);</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* USE_HAL_DRIVER */</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* USE_REG_FOR_PRINTF */</span></span></span><br><span class="line">    <span class="hljs-keyword">return</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>自定义一个可传不定量参数的printf函数</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SCI_printf</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *format, ...)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">char</span> TX_Buffer[<span class="hljs-number">256</span>];</span><br><span class="line">    va_list args;</span><br><span class="line"></span><br><span class="line">    va_start(args, format);</span><br><span class="line"><span class="hljs-comment">//    va_starttop(args, format);</span></span><br><span class="line">    <span class="hljs-built_in">vsprintf</span>(TX_Buffer, format, args);</span><br><span class="line">    va_end(args);</span><br><span class="line"></span><br><span class="line">    LPUART_DRV_SendDataBlocking(INST_LPUART1, (<span class="hljs-keyword">const</span> <span class="hljs-keyword">uint8_t</span> *)TX_Buffer, <span class="hljs-built_in">strlen</span>((<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)TX_Buffer), <span class="hljs-number">50U</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Segger J-Link RTT</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* SEGGER J-Link RTT Viewer PC客户端快捷方式参数设置 */</span></span><br><span class="line"><span class="hljs-comment">/* 长参数: */</span></span><br><span class="line"> -device STM32F031K6 -connection usb -interface swd -speed <span class="hljs-number">4000</span> -autoconnect</span><br><span class="line"><span class="hljs-comment">/* 短参数: */</span></span><br><span class="line"> -d STM32F031K6 -ct usb -<span class="hljs-keyword">if</span> swd -s <span class="hljs-number">4000</span> -a</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 建议使用短参数，长参数可能不生效。 */</span></span><br><span class="line"><span class="hljs-comment">/* 示例，如下设置 "目标" 项: */</span></span><br><span class="line"><span class="hljs-string">"C:\Program Files (x86)\SEGGER\JLink_V644g\JLinkRTTViewer.exe"</span> -d STM32F031K6 -ct usb -<span class="hljs-keyword">if</span> swd -s <span class="hljs-number">4000</span> -a</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">RTT软件包一般都在Segger J-Link驱动的安装目录下：</span></span><br><span class="line"><span class="hljs-comment">C:\Program Files (x86)\SEGGER\JLink_V644g\Samples\RTT</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">将压缩包内最关键的RTT目录内的几个源文件添加到工程中，并在</span></span><br><span class="line"><span class="hljs-comment">SEGGER_RTT_Conf.h 内配置相关Buffer的大小即可开始使用，</span></span><br><span class="line"><span class="hljs-comment">若需重定向 printf() 函数，则需要根据 IDE 所使用的工具链，</span></span><br><span class="line"><span class="hljs-comment">添加 Syscalls 文件夹内的对应源文件，进行重定向。</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF SEGGER_RTT_printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">SEGGER_RTT_Init();</span><br><span class="line"></span><br><span class="line">SEGGER_RTT_ConfigUpBuffer(<span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* <span class="hljs-doctag">TODO:</span> J-Link RTT 使用示例 */</span></span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sCounter: %s%s%u%s  "</span>, RTT_CTRL_RESET, RTT_CTRL_BG_BRIGHT_RED, RTT_CTRL_TEXT_BRIGHT_WHITE, cnt++, RTT_CTRL_RESET);</span><br><span class="line">SEGGER_RTT_WriteString(<span class="hljs-number">0</span>, <span class="hljs-string">"SEGGER Real-Time-Terminal Sample\r\n"</span>);</span><br><span class="line">SEGGER_RTT_WriteString(<span class="hljs-number">0</span>, <span class="hljs-string">"###### Testing SEGGER_printf() ######\r\n"</span>);</span><br><span class="line"></span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"printf Test: %%s,       \"RTT\" : %s.\r\n"</span>, <span class="hljs-string">"RTT"</span>);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%u,       12345 : %u.%s\r\n"</span>, RTT_CTRL_TEXT_WHITE, RTT_CTRL_TEXT_BRIGHT_RED, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%+u,      12345 : %+u.%s\r\n"</span>, RTT_CTRL_TEXT_BRIGHT_WHITE, RTT_CTRL_TEXT_BRIGHT_GREEN, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%.3u,     12345 : %.3u.%s\r\n"</span>, RTT_CTRL_TEXT_WHITE, RTT_CTRL_TEXT_BRIGHT_YELLOW, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%.6u,     12345 : %.6u.%s\r\n"</span>, RTT_CTRL_TEXT_BRIGHT_WHITE, RTT_CTRL_TEXT_BRIGHT_BLUE, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%6.3u,    12345 : %6.3u.%s\r\n"</span>, RTT_CTRL_TEXT_WHITE, RTT_CTRL_TEXT_BRIGHT_MAGENTA, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%8.6u,    12345 : %8.6u.%s\r\n"</span>, RTT_CTRL_TEXT_BRIGHT_WHITE, RTT_CTRL_TEXT_BRIGHT_CYAN, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"%sprintf Test: %s%%08u,     12345 : %08u.%s\r\n"</span>, RTT_CTRL_TEXT_WHITE, RTT_CTRL_TEXT_BRIGHT_WHITE, <span class="hljs-number">12345</span>, RTT_CTRL_RESET);</span><br><span class="line">PRINTF(<span class="hljs-number">0</span>, <span class="hljs-string">"printf Test: %%p,       &amp;_Cnt : %p.\r\n"</span>, &amp;_Cnt);</span><br><span class="line"></span><br><span class="line">SEGGER_RTT_WriteString(<span class="hljs-number">0</span>,</span><br><span class="line">        RTT_CTRL_RESET<span class="hljs-string">"Red: "</span> \</span><br><span class="line">        RTT_CTRL_TEXT_BRIGHT_RED<span class="hljs-string">"This text is red. "</span> \</span><br><span class="line">        RTT_CTRL_TEXT_BLACK<span class="hljs-string">""</span> \</span><br><span class="line">        RTT_CTRL_BG_BRIGHT_RED<span class="hljs-string">"This background is red. "</span> \</span><br><span class="line">        RTT_CTRL_RESET<span class="hljs-string">"Normal text again.\r\n"</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">SEGGER_RTT_WriteString(<span class="hljs-number">0</span>, <span class="hljs-string">"###### SEGGER_printf() Tests done. ######\r\n\r\n"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 在Terminal 1输出信息 */</span></span><br><span class="line">SEGGER_RTT_TerminalOut(<span class="hljs-number">1</span>, RTT_CTRL_TEXT_BRIGHT_RED<span class="hljs-string">"Counter overflow!\r\n"</span>RTT_CTRL_RESET);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 清空 J-Link RTT Viewer 的输出显示 */</span></span><br><span class="line"><span class="hljs-comment">//SEGGER_RTT_WriteString(0, RTT_CTRL_CLEAR);</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/C/">C</a>, <a class="has-link-grey -link" href="/tags/UART/">UART</a>, <a class="has-link-grey -link" href="/tags/debug/">debug</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/Wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/20/C-源文件模板/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">C 源文件模板</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/20/Astyle-参数设置/">
+                <span class="level-item">Astyle 参数设置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/avatar.jpg" alt="Tomy Stark">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Tomy Stark
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        四海茫茫
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System.</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        7
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/SummerFalls" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/SummerFalls">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.mr-wu.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 吴川斌</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mr-wu.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.mazirong.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 芯跳不止</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mazirong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.strongerhuang.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - strongerHuang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.strongerhuang.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://jiaodi.tech/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 焦迪 Nemo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">jiaodi.tech</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://lc-soft.io/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - Liu Chao</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">lc-soft.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.zhangruipeng.me/hexo-theme-icarus/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - icarus</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.zhangruipeng.me</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.muselab-tech.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">工作室 - Muse Lab</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.muselab-tech.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.wujique.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">工作室 - 屋脊雀</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.wujique.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://chuangzaoshi.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">创造狮导航</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">chuangzaoshi.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.toolfk.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ToolFK</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.toolfk.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://mdnice.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown Nice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">mdnice.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://mdp.tylingsoft.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Markdown Plus</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">mdp.tylingsoft.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://unbug.github.io/codelf/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">代码命名查找 CodeLF</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">unbug.github.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.bigzhong.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">大中社</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.bigzhong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://remixicon.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Remix Icon</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">remixicon.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://colorpicker.crea-th.at/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">取色器</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">colorpicker.crea-th.at</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://fontba.se" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">FontBase</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">fontba.se</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.gridzzly.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">绘图网格制作</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.gridzzly.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://patorjk.com/software/taag/#p=display&f=Isometric3&t=QWERTYUIO%0APASDFGHJK%0ALZXCVBNM" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ASCII Art Generator</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">patorjk.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.yougetsignal.com/tools/open-ports/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">开放端口检测</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.yougetsignal.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://ping.pe/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">ping.pe</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">ping.pe</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.submarinecablemap.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">海底光缆地图</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.submarinecablemap.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://bench.sh/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">服务器跑分</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">bench.sh</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://seaside-station.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">海の見える駅</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">seaside-station.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.jianshu.com/c/b43035671ca0" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">TouchGFX 专题</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.jianshu.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/C-源文件模板/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/IMG_0703.JPG" alt="C 源文件模板">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:29:55.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/C-源文件模板/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C 源文件模板</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/printf-函数重定向到UART串口输出/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/deer.jpg" alt="printf 函数重定向到UART串口输出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:22:02.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/printf-函数重定向到UART串口输出/" class="title has-link-black-ter is-size-6 has-text-weight-normal">printf 函数重定向到UART串口输出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/debug/">debug</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/Astyle-参数设置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Match.png" alt="Astyle 参数设置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T08:59:18.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/Astyle-参数设置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Astyle 参数设置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/MISRA-C-2004-规则解读/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/IMG_6274.JPG" alt="MISRA-C 2004 规则解读">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T07:51:15.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/MISRA-C-2004-规则解读/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MISRA-C 2004 规则解读</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/C语言开发标准（微控制器）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Car.jpg" alt="C语言开发标准（微控制器）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T07:29:30.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/C语言开发标准（微控制器）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C语言开发标准（微控制器）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            
+        </div>
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/C/debug/">
+            <span class="level-start">
+                <span class="level-item">debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Coding-Style/" style="font-size: 15px;">Coding Style</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 12.5px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/Standard/" style="font-size: 17.5px;">Standard</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/debug/">
+                        <span class="tag">debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/C/debug/">
+            <span class="level-start">
+                <span class="level-item">debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Coding-Style/" style="font-size: 15px;">Coding Style</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 12.5px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/Standard/" style="font-size: 17.5px;">Standard</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/debug/">
+                        <span class="tag">debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="printf 函数重定向到UART串口输出" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Tomy&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

@@ -150,6 +150,319 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/20/C-源文件模板/" class="image is-7by1">
+            <img class="thumbnail" src="/images/IMG_0703.JPG" alt="C 源文件模板">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T09:29:55.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 183 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/20/C-源文件模板/">C 源文件模板</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Eclipse-系-IDE-自动化"><a href="#Eclipse-系-IDE-自动化" class="headerlink" title="Eclipse 系 IDE 自动化"></a>Eclipse 系 IDE 自动化</h1><h2 id="1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments"><a href="#1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments" class="headerlink" title="1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments"></a>1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments</h2><ul>
+<li>Window -&gt; Preference -&gt; C/C++ -&gt; Code Style -&gt; Code Templates -&gt; Comments -&gt; Files<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"> *         _____          ___           ___           ___           ___                       ___           ___     </span></span><br><span class="line"><span class="hljs-comment"> *        /  /::\        /  /\         /  /\         /  /\         /__/\          ___        /  /\         /__/|    </span></span><br><span class="line"><span class="hljs-comment"> *       /  /:/\:\      /  /::\       /  /:/_       /  /::\        \  \:\        /  /\      /  /:/_       |  |:|    </span></span><br><span class="line"><span class="hljs-comment"> *      /  /:/  \:\    /  /:/\:\     /  /:/ /\     /  /:/\:\        \  \:\      /  /:/     /  /:/ /\      |  |:|    </span></span><br><span class="line"><span class="hljs-comment"> *     /__/:/ \__\:|  /  /:/  \:\   /  /:/ /::\   /  /:/  \:\   _____\__\:\    /  /:/     /  /:/ /:/_   __|  |:|    </span></span><br><span class="line"><span class="hljs-comment"> *     \  \:\ /  /:/ /__/:/ \__\:\ /__/:/ /:/\:\ /__/:/ \__\:\ /__/::::::::\  /  /::\    /__/:/ /:/ /\ /__/\_|:|____</span></span><br><span class="line"><span class="hljs-comment"> *      \  \:\  /:/  \  \:\ /  /:/ \  \:\/:/~/:/ \  \:\ /  /:/ \  \:\~~\~~\/ /__/:/\:\   \  \:\/:/ /:/ \  \:\/:::::/</span></span><br><span class="line"><span class="hljs-comment"> *       \  \:\/:/    \  \:\  /:/   \  \::/ /:/   \  \:\  /:/   \  \:\  ~~~  \__\/  \:\   \  \::/ /:/   \  \::/~~~~ </span></span><br><span class="line"><span class="hljs-comment"> *        \  \::/      \  \:\/:/     \__\/ /:/     \  \:\/:/     \  \:\           \  \:\   \  \:\/:/     \  \:\</span></span><br><span class="line"><span class="hljs-comment"> *         \__\/        \  \::/        /__/:/       \  \::/       \  \:\           \__\/    \  \::/       \  \:\</span></span><br><span class="line"><span class="hljs-comment"> *                       \__\/         \__\/         \__\/         \__\/                     \__\/         \__\/</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * @ 名称: $&#123;file_name&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 作者: $&#123;user&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 日期: $&#123;date&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 版本: V1.0</span></span><br><span class="line"><span class="hljs-comment"> * @ 描述:</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * Copyright (c) 2019 DosonTek Electronics Co., Ltd. All rights reserved.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/20/C-源文件模板/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/20/printf-函数重定向到UART串口输出/" class="image is-7by1">
+            <img class="thumbnail" src="/images/deer.jpg" alt="printf 函数重定向到UART串口输出">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T09:22:02.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/debug/">debug</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1183 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/20/printf-函数重定向到UART串口输出/">printf 函数重定向到UART串口输出</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p><strong>快捷注释所有 printf() 调用语句</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 或者分模块注释printf，方便调试，例如ADC和TIM1模块内</span></span><br><span class="line"><span class="hljs-comment"> * 进行调试信息打印时，可分别调用各自的printf宏定义别名，</span></span><br><span class="line"><span class="hljs-comment"> * 这么做可以在程序调试期间方便对某一模块的调试信息功能启用和关闭 </span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ADC_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1</span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF printf</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span></span><br><span class="line">    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TIM1_PRINTF(...)</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/20/printf-函数重定向到UART串口输出/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/20/Astyle-参数设置/" class="image is-7by1">
+            <img class="thumbnail" src="/images/Match.png" alt="Astyle 参数设置">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T08:59:18.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 649 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/20/Astyle-参数设置/">Astyle 参数设置</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="A-bat批处理文件调用Astyle进行代码格式化-KR风格"><a href="#A-bat批处理文件调用Astyle进行代码格式化-KR风格" class="headerlink" title="A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]"></a>A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]</h2><h3 id="1-一键格式化所有代码-包括子目录-完整参数版"><a href="#1-一键格式化所有代码-包括子目录-完整参数版" class="headerlink" title="1. 一键格式化所有代码(包括子目录)_完整参数版"></a>1. <strong>一键格式化所有代码(包括子目录)_完整参数版</strong></h3><figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-title">for</span> /<span class="hljs-type">R</span> %%f <span class="hljs-keyword">in</span> (*.c;*.h) <span class="hljs-keyword">do</span> <span class="hljs-type">AStyle</span>.exe <span class="hljs-comment">--style=kr --indent=spaces=4 --attach-closing-while --indent-switches --indent-preproc-define --indent-col1-comments --max-continuation-indent=60 --break-blocks --pad-oper --pad-comma --pad-header --align-pointer=name --align-reference=name --break-one-line-headers --add-braces --attach-return-type --attach-return-type-decl --convert-tabs --max-code-length=200 --suffix=none --verbose %%f</span></span><br><span class="line"><span class="hljs-title">pause</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/20/Astyle-参数设置/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/20/MISRA-C-2004-规则解读/" class="image is-7by1">
+            <img class="thumbnail" src="/images/IMG_6274.JPG" alt="MISRA-C 2004 规则解读">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T07:51:15.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 7649 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/20/MISRA-C-2004-规则解读/">MISRA-C 2004 规则解读</a>
+            
+        </h1>
+        <div class="content">
+            <p>1 S：Procedure name reused.函数名与变量名称重复。</p>
+<p>2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。</p>
+<p>3 S：More than N executable reformatted lines in file.规定单个文件代码行数不能超过N，N值可配置。</p>
+<p>4 S：Procedure exceeds N reformatted lines.规定单个函数的代码行数不能超过N，N值可配置。</p>
+<p>5 S：Empty then clause.空语句有可能是开发人员忘记实现某个功能而留下的坑。所以在确实是空的地方这样写比较合适：</p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UINT_32 value_x = <span class="hljs-number">1u</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> (value_x == <span class="hljs-number">0u</span>) &#123;</span><br><span class="line">    value_x = value_x + <span class="hljs-number">1u</span>;</span><br><span class="line">&#125; <span class="hljs-keyword">else</span>｛</span><br><span class="line">    <span class="hljs-comment">/*do nothing*/</span></span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/20/MISRA-C-2004-规则解读/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/09/20/C语言开发标准（微控制器）/" class="image is-7by1">
+            <img class="thumbnail" src="/images/Car.jpg" alt="C语言开发标准（微控制器）">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-20T07:29:30.000Z">2019-09-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/C/">C</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21 分钟 读完 (大约 3159 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/20/C语言开发标准（微控制器）/">C语言开发标准（微控制器）</a>
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>C语言开发标准（微控制器）Ver 1.0.0</p>
+<blockquote>
+<p>Written By Tomy Stark.<br>E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
+<p>Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。</p>
+<p><strong>本标准会不定期迭代完善</strong></p>
+</blockquote>
+</blockquote>
+<ol>
+<li>嵌入式开发中，<strong>务必注意不同硬件体系架构之间数据类型的差异</strong>：</li>
+</ol>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* 为保证健壮性和可移植性，一般情况下，一律使用以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">uint8_t</span></span><br><span class="line"><span class="hljs-keyword">uint16_t</span></span><br><span class="line"><span class="hljs-keyword">uint32_t</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">int8_t</span></span><br><span class="line"><span class="hljs-keyword">int16_t</span></span><br><span class="line"><span class="hljs-keyword">int32_t</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 而不使用（尽量少用）以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/09/20/C语言开发标准（微控制器）/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/09/20/Markdown-Plus/" class="image is-7by1">
             <img class="thumbnail" src="/images/desert.jpg" alt="Markdown Plus">
         </a>
@@ -311,7 +624,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        2
+                        7
                     </p>
                 </div>
             </div>
@@ -321,7 +634,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        1
+                        4
                     </p>
                 </div>
             </div>
@@ -331,7 +644,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        11
                     </p>
                 </div>
             </div>
@@ -668,18 +981,18 @@
         
         <article class="media">
             
-            <a href="/2019/09/20/Markdown-Plus/" class="media-left">
+            <a href="/2019/09/20/C-源文件模板/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/desert.jpg" alt="Markdown Plus">
+                    <img class="thumbnail" src="/images/IMG_0703.JPG" alt="C 源文件模板">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T03:07:54.000Z">2019-09-20</time></div>
-                    <a href="/2019/09/20/Markdown-Plus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Markdown Plus</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:29:55.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/C-源文件模板/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C 源文件模板</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Markdown/">Markdown</a>
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
                     </p>
                 </div>
             </div>
@@ -687,18 +1000,75 @@
         
         <article class="media">
             
-            <a href="/2019/09/19/Hexo-Markdown-小技巧/" class="media-left">
+            <a href="/2019/09/20/printf-函数重定向到UART串口输出/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/flower.jpg" alt="Hexo Markdown 小技巧">
+                    <img class="thumbnail" src="/images/deer.jpg" alt="printf 函数重定向到UART串口输出">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-19T11:43:12.000Z">2019-09-19</time></div>
-                    <a href="/2019/09/19/Hexo-Markdown-小技巧/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexo Markdown 小技巧</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:22:02.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/printf-函数重定向到UART串口输出/" class="title has-link-black-ter is-size-6 has-text-weight-normal">printf 函数重定向到UART串口输出</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Markdown/">Markdown</a>
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/debug/">debug</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/Astyle-参数设置/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Match.png" alt="Astyle 参数设置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T08:59:18.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/Astyle-参数设置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Astyle 参数设置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/MISRA-C-2004-规则解读/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/IMG_6274.JPG" alt="MISRA-C 2004 规则解读">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T07:51:15.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/MISRA-C-2004-规则解读/" class="title has-link-black-ter is-size-6 has-text-weight-normal">MISRA-C 2004 规则解读</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/20/C语言开发标准（微控制器）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Car.jpg" alt="C语言开发标准（微控制器）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T07:29:30.000Z">2019-09-20</time></div>
+                    <a href="/2019/09/20/C语言开发标准（微控制器）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">C语言开发标准（微控制器）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
                     </p>
                 </div>
             </div>
@@ -722,6 +1092,30 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/C/debug/">
+            <span class="level-start">
+                <span class="level-item">debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Markdown/">
             <span class="level-start">
                 <span class="level-item">Markdown</span>
@@ -741,7 +1135,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 20px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Coding-Style/" style="font-size: 15px;">Coding Style</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 12.5px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/Standard/" style="font-size: 17.5px;">Standard</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a>
     </div>
 </div>
 
@@ -760,7 +1154,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -777,6 +1171,27 @@
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hello/">
@@ -802,6 +1217,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Markdown-Plus/">
                         <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/debug/">
+                        <span class="tag">debug</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -833,6 +1276,30 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/C/debug/">
+            <span class="level-start">
+                <span class="level-item">debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Markdown/">
             <span class="level-start">
                 <span class="level-item">Markdown</span>
@@ -852,7 +1319,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 20px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Coding-Style/" style="font-size: 15px;">Coding Style</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 12.5px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/Standard/" style="font-size: 17.5px;">Standard</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/debug/" style="font-size: 10px;">debug</a>
     </div>
 </div>
 
@@ -871,7 +1338,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -888,6 +1355,27 @@
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hello/">
@@ -913,6 +1401,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Markdown-Plus/">
                         <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/debug/">
+                        <span class="tag">debug</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
