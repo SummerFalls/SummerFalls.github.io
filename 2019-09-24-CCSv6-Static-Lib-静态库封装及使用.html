@@ -7,23 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>链接 Links - Tomy Stark&#39;s Blog</title>
+<title>CCSv6 Static Lib 静态库封装及使用 - Tomy Stark&#39;s Blog</title>
 
 
-    <meta name="description" content="友链 Embedded Development 嵌入式开发 吴川斌: https://www.mr-wu.cn 芯跳不止: http://www.mazirong.com strongerHuang: https://www.strongerhuang.com 焦迪 Nemo: http://jiaodi.tech Muse Lab: https://www.muselab-tech.com">
-<meta name="keywords" content="C, C++">
-<meta property="og:type" content="website">
-<meta property="og:title" content="链接 Links">
-<meta property="og:url" content="https://apex.linn.top/links/index.html">
+    <meta name="description" content="1. 工程环境 注意： 默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027 Connection: Texas Instru">
+<meta name="keywords" content="IDE,Code Composer Studio,Static Lib">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCSv6 Static Lib 静态库封装及使用">
+<meta property="og:url" content="https://apex.linn.top/2019-09-24-CCSv6-Static-Lib-静态库封装及使用.html">
 <meta property="og:site_name" content="Tomy Stark&#39;s Blog">
-<meta property="og:description" content="友链 Embedded Development 嵌入式开发 吴川斌: https://www.mr-wu.cn 芯跳不止: http://www.mazirong.com strongerHuang: https://www.strongerhuang.com 焦迪 Nemo: http://jiaodi.tech Muse Lab: https://www.muselab-tech.com">
+<meta property="og:description" content="1. 工程环境 注意： 默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027 Connection: Texas Instru">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://apex.linn.top/images/IMG_6273.JPG">
-<meta property="og:updated_time" content="2019-09-23T12:14:07.600Z">
+<meta property="og:image" content="https://apex.linn.top/images/flower.jpg">
+<meta property="og:updated_time" content="2019-09-24T13:34:38.464Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链接 Links">
-<meta name="twitter:description" content="友链 Embedded Development 嵌入式开发 吴川斌: https://www.mr-wu.cn 芯跳不止: http://www.mazirong.com strongerHuang: https://www.strongerhuang.com 焦迪 Nemo: http://jiaodi.tech Muse Lab: https://www.muselab-tech.com">
-<meta name="twitter:image" content="https://apex.linn.top/images/IMG_6273.JPG">
+<meta name="twitter:title" content="CCSv6 Static Lib 静态库封装及使用">
+<meta name="twitter:description" content="1. 工程环境 注意： 默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027 Connection: Texas Instru">
+<meta name="twitter:image" content="https://apex.linn.top/images/flower.jpg">
 
 
 
@@ -88,7 +88,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="链接 Links" height="28">
+                <img src="/images/logo.svg" alt="CCSv6 Static Lib 静态库封装及使用" height="28">
             
             </a>
         </div>
@@ -111,7 +111,7 @@
                 <a class="navbar-item"
                 href="/list">清单</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/links">链接</a>
                 
                 <a class="navbar-item"
@@ -152,88 +152,105 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="/images/IMG_6273.JPG" alt="链接 Links">
+            <img class="thumbnail" src="/images/flower.jpg" alt="CCSv6 Static Lib 静态库封装及使用">
         </span>
     </div>
     
     <div class="card-content article ">
         
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-24T07:05:11.000Z">2019-09-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/IDE/">IDE</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/IDE/Code-Composer-Studio/">Code Composer Studio</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 295 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                链接 Links
+                CCSv6 Static Lib 静态库封装及使用
             
         </h1>
         <div class="content">
-            <hr>
-<h1 id="友链"><a href="#友链" class="headerlink" title=" 友链"></a><i class="fas fa-link"></i> 友链</h1><h2 id="Embedded-Development-嵌入式开发"><a href="#Embedded-Development-嵌入式开发" class="headerlink" title=" Embedded Development 嵌入式开发"></a><i class="fab fa-codepen"></i> Embedded Development 嵌入式开发</h2><ul>
-<li>吴川斌: <a href="https://www.mr-wu.cn" target="_blank" rel="noopener">https://www.mr-wu.cn</a></li>
-<li>芯跳不止: <a href="http://www.mazirong.com" target="_blank" rel="noopener">http://www.mazirong.com</a></li>
-<li>strongerHuang: <a href="https://www.strongerhuang.com" target="_blank" rel="noopener">https://www.strongerhuang.com</a></li>
-<li>焦迪 Nemo: <a href="http://jiaodi.tech" target="_blank" rel="noopener">http://jiaodi.tech</a></li>
-<li>Muse Lab: <a href="https://www.muselab-tech.com" target="_blank" rel="noopener">https://www.muselab-tech.com</a></li>
-<li>屋脊雀: <a href="http://www.wujique.com" target="_blank" rel="noopener">http://www.wujique.com</a></li>
+            <h1 id="1-工程环境"><a href="#1-工程环境" class="headerlink" title="1. 工程环境"></a>1. 工程环境</h1><ul>
+<li><code>注意： 默认已将 controlSUITE 安装在 &quot;C:\ti\&quot; 目录下。</code></li>
+<li><code>Code Composer Studio Version: 9.0.1.00004</code></li>
 </ul>
-<h2 id="Front-end-amp-Back-end-Development-前后端开发"><a href="#Front-end-amp-Back-end-Development-前后端开发" class="headerlink" title=" Front-end &amp; Back-end Development 前后端开发"></a><i class="fab fa-slack-hash"></i> Front-end &amp; Back-end Development 前后端开发</h2><h3 id="Front-end-前端"><a href="#Front-end-前端" class="headerlink" title="Front-end 前端"></a>Front-end 前端</h3><ul>
-<li>Icarus: <a href="https://blog.zhangruipeng.me/hexo-theme-icarus" target="_blank" rel="noopener">https://blog.zhangruipeng.me/hexo-theme-icarus</a></li>
-<li>Liu Chao: <a href="https://lc-soft.io" target="_blank" rel="noopener">https://lc-soft.io</a></li>
-<li>子弈: <a href="http://www.ziyi2.cn" target="_blank" rel="noopener">http://www.ziyi2.cn</a></li>
-<li>zoomdong: <a href="http://zoomdong.cn" target="_blank" rel="noopener">http://zoomdong.cn</a></li>
-<li>Jrain: <a href="https://jrainlau.github.io" target="_blank" rel="noopener">https://jrainlau.github.io</a></li>
-<li>这砖烫手: <a href="http://blog.lollipop.work" target="_blank" rel="noopener">http://blog.lollipop.work</a></li>
-<li>leekiwi: <a href="https://leekiwi.github.io" target="_blank" rel="noopener">https://leekiwi.github.io</a></li>
-<li>令狐洋葱: <a href="http://shuaizhang.top" target="_blank" rel="noopener">http://shuaizhang.top</a></li>
+<p>通过 Project -&gt; New CCS Project 分别创建两个工程：</p>
+<h2 id="工程1-应用工程"><a href="#工程1-应用工程" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h2><ul>
+<li>Target: TMS320F28027</li>
+<li>Connection: Texas Instruments XDS100v3 USB Debug Probe</li>
+<li>Project Name: <code>A_F28027_TestCase</code></li>
+<li>Tool-chain: <ul>
+<li>Output type: <code>Executable</code></li>
+<li>Output format: <code>legacy COFF</code></li>
+<li>Linker command file: <code>C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_common\cmd\F28027.cmd</code></li>
+<li>Runtime support library: &lt;automatic&gt;</li>
 </ul>
-<h3 id="Back-end-后端"><a href="#Back-end-后端" class="headerlink" title="Back-end 后端"></a>Back-end 后端</h3><ul>
-<li>hangz007: <a href="https://hangz007.gitee.io" target="_blank" rel="noopener">https://hangz007.gitee.io</a> (<a href="https://codingshenzx.cn/" target="_blank" rel="noopener">https://codingshenzx.cn/</a>)</li>
-<li>码酱 Waldeinsamkeit: <a href="http://luokangyuan.com" target="_blank" rel="noopener">http://luokangyuan.com</a></li>
+</li>
+<li>Project templates and examples:<ul>
+<li>Empty Project (with main.c)</li>
 </ul>
-<hr>
-<h1 id="工具站"><a href="#工具站" class="headerlink" title=" 工具站"></a><i class="fas fa-link"></i> 工具站</h1><h3 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h3><ul>
-<li>SnapEDA: <a href="https://www.snapeda.com/altium-libraries" target="_blank" rel="noopener">https://www.snapeda.com/altium-libraries</a></li>
-<li>Datasheets: <a href="https://www.datasheets.com/zh-cn" target="_blank" rel="noopener">https://www.datasheets.com/zh-cn</a></li>
-<li>ALLDATASHEET: <a href="https://www.alldatasheetcn.com" target="_blank" rel="noopener">https://www.alldatasheetcn.com</a></li>
-<li>半导小芯: <a href="https://www.semiee.com" target="_blank" rel="noopener">https://www.semiee.com</a></li>
-<li>Ultra Librarian: <a href="https://www.ultralibrarian.com" target="_blank" rel="noopener">https://www.ultralibrarian.com</a></li>
-<li><strong>3D CONTENT</strong>CENTRAL: <a href="https://www.3dcontentcentral.cn" target="_blank" rel="noopener">https://www.3dcontentcentral.cn</a></li>
-<li>Engineering Design Utilities: <a href="http://sim.okawa-denshi.jp/en" target="_blank" rel="noopener">http://sim.okawa-denshi.jp/en</a></li>
-<li>Hackaday: <a href="https://hackaday.io/projects" target="_blank" rel="noopener">https://hackaday.io/projects</a></li>
+</li>
 </ul>
-<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><ul>
-<li><strong>代码规范命名查找 CodeLF</strong>: <a href="https://unbug.github.io/codelf" target="_blank" rel="noopener">https://unbug.github.io/codelf</a></li>
+<h2 id="工程2-静态库工程"><a href="#工程2-静态库工程" class="headerlink" title="工程2 - 静态库工程"></a>工程2 - 静态库工程</h2><ul>
+<li>Target: TMS320F28027</li>
+<li>Connection: Texas Instruments XDS100v3 USB Debug Probe</li>
+<li>Project Name: <code>A_F28027_TestCase_Lib</code></li>
+<li>Tool-chain: <ul>
+<li>Output type: <code>Static Library</code></li>
+<li>Output format: <code>legacy COFF</code></li>
 </ul>
-<h3 id="Navigation"><a href="#Navigation" class="headerlink" title="Navigation"></a>Navigation</h3><ul>
-<li>ToolFK: <a href="https://www.toolfk.com" target="_blank" rel="noopener">https://www.toolfk.com</a></li>
-<li>创造狮导航: <a href="http://chuangzaoshi.com" target="_blank" rel="noopener">http://chuangzaoshi.com</a></li>
+</li>
+<li>Project templates and examples:<ul>
+<li>Empty Project</li>
 </ul>
-<h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><ul>
-<li>Markdown Nice: <a href="https://mdnice.com" target="_blank" rel="noopener">https://mdnice.com</a></li>
-<li>Markdown Plus: <a href="http://mdp.tylingsoft.com" target="_blank" rel="noopener">http://mdp.tylingsoft.com</a></li>
+</li>
 </ul>
-<h3 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h3><ul>
-<li>大中社: <a href="https://www.bigzhong.com" target="_blank" rel="noopener">https://www.bigzhong.com</a></li>
-<li>Remix Icon: <a href="https://remixicon.com" target="_blank" rel="noopener">https://remixicon.com</a></li>
-<li>FontBase: <a href="https://fontba.se" target="_blank" rel="noopener">https://fontba.se</a></li>
-<li>取色器: <a href="https://colorpicker.crea-th.at" target="_blank" rel="noopener">https://colorpicker.crea-th.at</a></li>
+<h1 id="2-工程设置"><a href="#2-工程设置" class="headerlink" title="2. 工程设置"></a>2. 工程设置</h1><h2 id="工程1-应用工程-1"><a href="#工程1-应用工程-1" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h2><ul>
+<li>添加 <code>C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_headers\cmd</code> 目录下的链接文件 <code>F2802x_Headers_nonBIOS.cmd</code> 到工程目录下，该链接文件用于将外设寄存器映射到正确的内存地址。</li>
+<li>Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)<ul>
+<li>${PROJECT_ROOT}</li>
+<li>${CG_TOOL_ROOT}/include</li>
+<li>${TI_PRODUCTS_DIR}/controlSUITE/development_kits/~SupportFiles/F2802x_headers</li>
+<li>${TI_PRODUCTS_DIR}/controlSUITE/device_support/f2802x/v230/f2802x_common/include</li>
+<li>${TI_PRODUCTS_DIR}/controlSUITE/device_support/f2802x/v230/f2802x_headers/include</li>
 </ul>
-<h3 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h3><ul>
-<li>海底光缆地图: <a href="https://www.submarinecablemap.com" target="_blank" rel="noopener">https://www.submarinecablemap.com</a></li>
-<li>开放端口检测: <a href="https://www.yougetsignal.com/tools/open-ports" target="_blank" rel="noopener">https://www.yougetsignal.com/tools/open-ports</a></li>
-<li><code>ping.pe</code>: <a href="http://ping.pe" target="_blank" rel="noopener">http://ping.pe</a></li>
-<li>服务器跑分: <a href="https://bench.sh" target="_blank" rel="noopener">https://bench.sh</a></li>
+</li>
+<li>Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Predefined Symbols -&gt; Pre-define NAME(–define, -D)<ul>
+<li>“_DEBUG”</li>
+<li>“LARGE_MODEL”</li>
+<li>“FLASH”</li>
 </ul>
-<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><ul>
-<li>Hexo: <a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a></li>
-<li>打印纸网格制作: <a href="http://www.gridzzly.com" target="_blank" rel="noopener">http://www.gridzzly.com</a></li>
-<li>ASCII Art Generator: <a href="http://patorjk.com/software/taag/#p=display&f=Isometric3&t=QWERTYUIO%0APASDFGHJK%0ALZXCVBNM" target="_blank" rel="noopener">http://patorjk.com</a></li>
-<li>Remix 3D: <a href="https://www.remix3d.com/discover" target="_blank" rel="noopener">https://www.remix3d.com/discover</a></li>
-<li>数字移民: <a href="https://blog.shuziyimin.org" target="_blank" rel="noopener">https://blog.shuziyimin.org</a></li>
+</li>
 </ul>
-<hr>
-<h1 id="趣站"><a href="#趣站" class="headerlink" title=" 趣站"></a><i class="fas fa-link"></i> 趣站</h1><ul>
-<li>海の見える駅: <a href="https://seaside-station.com" target="_blank" rel="noopener">https://seaside-station.com</a></li>
-<li><strong>RTINGS</strong>.com: <a href="https://www.rtings.com" target="_blank" rel="noopener">https://www.rtings.com</a></li>
-</ul>
+<h2 id="工程2-静态库工程-1"><a href="#工程2-静态库工程-1" class="headerlink" title="工程2 - 静态库工程"></a>工程2 - 静态库工程</h2><p><code>未完待续</code></p>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Code-Composer-Studio/">Code Composer Studio</a>, <a class="has-link-grey -link" href="/tags/IDE/">IDE</a>, <a class="has-link-grey -link" href="/tags/Static-Lib/">Static Lib</a>
+                </div>
+            </div>
         </div>
         
         
@@ -273,6 +290,27 @@
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019-09-24-CCS-工程配置.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">CCS 工程配置</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-09-20-C-源文件模板.html">
+                <span class="level-item">C 源文件模板</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -578,62 +616,30 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#友链">
+        <a class="is-flex" href="#1-工程环境">
         <span class="has-mr-6">1</span>
-        <span> 友链</span>
+        <span>1. 工程环境</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Embedded-Development-嵌入式开发">
+        <a class="is-flex" href="#工程1-应用工程">
         <span class="has-mr-6">1.1</span>
-        <span> Embedded Development 嵌入式开发</span>
+        <span>工程1 - 应用工程</span>
         </a></li><li>
-        <a class="is-flex" href="#Front-end-amp-Back-end-Development-前后端开发">
+        <a class="is-flex" href="#工程2-静态库工程">
         <span class="has-mr-6">1.2</span>
-        <span> Front-end &amp; Back-end Development 前后端开发</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Front-end-前端">
-        <span class="has-mr-6">1.2.1</span>
-        <span>Front-end 前端</span>
-        </a></li><li>
-        <a class="is-flex" href="#Back-end-后端">
-        <span class="has-mr-6">1.2.2</span>
-        <span>Back-end 后端</span>
-        </a></li></ul></li></ul></li><li>
-        <a class="is-flex" href="#工具站">
+        <span>工程2 - 静态库工程</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-工程设置">
         <span class="has-mr-6">2</span>
-        <span> 工具站</span>
-        </a><ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#PCB">
-        <span class="has-mr-6">2.1.1</span>
-        <span>PCB</span>
+        <span>2. 工程设置</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#工程1-应用工程-1">
+        <span class="has-mr-6">2.1</span>
+        <span>工程1 - 应用工程</span>
         </a></li><li>
-        <a class="is-flex" href="#Code">
-        <span class="has-mr-6">2.1.2</span>
-        <span>Code</span>
-        </a></li><li>
-        <a class="is-flex" href="#Navigation">
-        <span class="has-mr-6">2.1.3</span>
-        <span>Navigation</span>
-        </a></li><li>
-        <a class="is-flex" href="#Markdown">
-        <span class="has-mr-6">2.1.4</span>
-        <span>Markdown</span>
-        </a></li><li>
-        <a class="is-flex" href="#Design">
-        <span class="has-mr-6">2.1.5</span>
-        <span>Design</span>
-        </a></li><li>
-        <a class="is-flex" href="#Server">
-        <span class="has-mr-6">2.1.6</span>
-        <span>Server</span>
-        </a></li><li>
-        <a class="is-flex" href="#Others">
-        <span class="has-mr-6">2.1.7</span>
-        <span>Others</span>
-        </a></li></ul></ul></li><li>
-        <a class="is-flex" href="#趣站">
-        <span class="has-mr-6">3</span>
-        <span> 趣站</span>
-        </a></li></ul>
+        <a class="is-flex" href="#工程2-静态库工程-1">
+        <span class="has-mr-6">2.2</span>
+        <span>工程2 - 静态库工程</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
@@ -881,62 +887,30 @@
                 目录
             </h3>
             <ul class="menu-list"><li>
-        <a class="is-flex" href="#友链">
+        <a class="is-flex" href="#1-工程环境">
         <span class="has-mr-6">1</span>
-        <span> 友链</span>
+        <span>1. 工程环境</span>
         </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Embedded-Development-嵌入式开发">
+        <a class="is-flex" href="#工程1-应用工程">
         <span class="has-mr-6">1.1</span>
-        <span> Embedded Development 嵌入式开发</span>
+        <span>工程1 - 应用工程</span>
         </a></li><li>
-        <a class="is-flex" href="#Front-end-amp-Back-end-Development-前后端开发">
+        <a class="is-flex" href="#工程2-静态库工程">
         <span class="has-mr-6">1.2</span>
-        <span> Front-end &amp; Back-end Development 前后端开发</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#Front-end-前端">
-        <span class="has-mr-6">1.2.1</span>
-        <span>Front-end 前端</span>
-        </a></li><li>
-        <a class="is-flex" href="#Back-end-后端">
-        <span class="has-mr-6">1.2.2</span>
-        <span>Back-end 后端</span>
-        </a></li></ul></li></ul></li><li>
-        <a class="is-flex" href="#工具站">
+        <span>工程2 - 静态库工程</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-工程设置">
         <span class="has-mr-6">2</span>
-        <span> 工具站</span>
-        </a><ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#PCB">
-        <span class="has-mr-6">2.1.1</span>
-        <span>PCB</span>
+        <span>2. 工程设置</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#工程1-应用工程-1">
+        <span class="has-mr-6">2.1</span>
+        <span>工程1 - 应用工程</span>
         </a></li><li>
-        <a class="is-flex" href="#Code">
-        <span class="has-mr-6">2.1.2</span>
-        <span>Code</span>
-        </a></li><li>
-        <a class="is-flex" href="#Navigation">
-        <span class="has-mr-6">2.1.3</span>
-        <span>Navigation</span>
-        </a></li><li>
-        <a class="is-flex" href="#Markdown">
-        <span class="has-mr-6">2.1.4</span>
-        <span>Markdown</span>
-        </a></li><li>
-        <a class="is-flex" href="#Design">
-        <span class="has-mr-6">2.1.5</span>
-        <span>Design</span>
-        </a></li><li>
-        <a class="is-flex" href="#Server">
-        <span class="has-mr-6">2.1.6</span>
-        <span>Server</span>
-        </a></li><li>
-        <a class="is-flex" href="#Others">
-        <span class="has-mr-6">2.1.7</span>
-        <span>Others</span>
-        </a></li></ul></ul></li><li>
-        <a class="is-flex" href="#趣站">
-        <span class="has-mr-6">3</span>
-        <span> 趣站</span>
-        </a></li></ul>
+        <a class="is-flex" href="#工程2-静态库工程-1">
+        <span class="has-mr-6">2.2</span>
+        <span>工程2 - 静态库工程</span>
+        </a></li></ul></li></ul>
         </div>
     </div>
 </div>
@@ -1177,7 +1151,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="链接 Links" height="28">
+                    <img src="/images/logo.svg" alt="CCSv6 Static Lib 静态库封装及使用" height="28">
                 
                 </a>
                 <p class="is-size-7">
