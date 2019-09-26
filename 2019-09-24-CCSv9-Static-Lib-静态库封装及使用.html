@@ -19,7 +19,7 @@
 <meta property="og:description" content="1. 创建工程 注意：默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027  Connection: Texas Instru">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/flower.jpg">
-<meta property="og:updated_time" content="2019-09-25T13:46:56.591Z">
+<meta property="og:updated_time" content="2019-09-26T02:08:09.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCSv9 Static Lib 静态库封装及使用">
 <meta name="twitter:description" content="1. 创建工程 注意：默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027  Connection: Texas Instru">
@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/monokai-sublime.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/vs2015.css">
 
 
     
@@ -232,7 +232,7 @@
 
 </li>
 </ul>
-<p><img src="/images/BlogPics/01CCS-01.jpg" alt="添加 Linker File"></p>
+<p><img src="../images/BlogPics/01CCS-01.jpg" alt="添加 Linker File"></p>
 <ul>
 <li><h3 id="添加-controlSUITE-库源文件-asm-c"><a href="#添加-controlSUITE-库源文件-asm-c" class="headerlink" title="添加 controlSUITE 库源文件(*.asm, *.c)"></a>添加 controlSUITE 库源文件(*.asm, *.c)</h3><p>  分别将以下目录下的文件添加到工程当中<code>(相对路径添加法)</code>。</p>
   <figure class="highlight bat hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">C:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_common</span>\<span class="hljs-title">source</span>\</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">C</span>:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_headers</span>\<span class="hljs-title">source</span>\</span></span><br></pre></td></tr></table></figure>
@@ -320,7 +320,7 @@
 <li><h3 id="复制库文件"><a href="#复制库文件" class="headerlink" title="复制库文件"></a>复制库文件</h3><p>  将 <code>A_F28027_TestCase_Lib.lib</code> 和 <code>LIB_MathFuncs.h</code> 复制到应用工程下，如图：</p>
   <div align="center">
 
-<p>  <img src="/images/BlogPics/01CCS-02.jpg" alt="复制库文件"></p>
+<p>  <img src="../images/BlogPics/01CCS-02.jpg" alt="复制库文件"></p>
   </div>
 </li>
 <li><h3 id="添加-A-F28027-TestCase-Lib-库头文件-h"><a href="#添加-A-F28027-TestCase-Lib-库头文件-h" class="headerlink" title="添加 A_F28027_TestCase_Lib 库头文件(*.h)"></a>添加 A_F28027_TestCase_Lib 库头文件(*.h)</h3><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</p>
@@ -340,7 +340,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="4-调试"><a href="#4-调试" class="headerlink" title="4. 调试"></a>4. 调试</h1><h4 id="进入调试模式验证-静态库-函数是否能够被正常调用并执行"><a href="#进入调试模式验证-静态库-函数是否能够被正常调用并执行" class="headerlink" title="进入调试模式验证 静态库 函数是否能够被正常调用并执行"></a>进入调试模式验证 <code>静态库</code> 函数是否能够被正常调用并执行</h4><p><img src="/images/BlogPics/01CCS-03.jpg" alt="调试验证"></p>
+<h1 id="4-调试"><a href="#4-调试" class="headerlink" title="4. 调试"></a>4. 调试</h1><h4 id="进入调试模式验证-静态库-函数是否能够被正常调用并执行"><a href="#进入调试模式验证-静态库-函数是否能够被正常调用并执行" class="headerlink" title="进入调试模式验证 静态库 函数是否能够被正常调用并执行"></a>进入调试模式验证 <code>静态库</code> 函数是否能够被正常调用并执行</h4><p><img src="../images/BlogPics/01CCS-03.jpg" alt="调试验证"></p>
 
         </div>
         
