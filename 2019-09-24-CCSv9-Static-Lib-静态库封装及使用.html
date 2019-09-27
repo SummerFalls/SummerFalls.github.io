@@ -19,7 +19,7 @@
 <meta property="og:description" content="1. 创建工程 注意：默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027  Connection: Texas Instru">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/flower.jpg">
-<meta property="og:updated_time" content="2019-09-26T02:08:09.829Z">
+<meta property="og:updated_time" content="2019-09-27T07:23:15.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCSv9 Static Lib 静态库封装及使用">
 <meta name="twitter:description" content="1. 创建工程 注意：默认已将 controlSUITE 安装在 &amp;quot;C:\ti\&amp;quot; 目录下。 Code Composer Studio Version: 9.0.1.00004  通过 Project -&amp;gt; New CCS Project 分别创建两个工程： 工程1 - 应用工程 Target: TMS320F28027  Connection: Texas Instru">
@@ -166,7 +166,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 1106 个字)
+                    7 分钟 读完 (大约 1100 个字)
                 </span>
                 
                 
@@ -184,26 +184,26 @@
             
         </h1>
         <div class="content">
-            <h1 id="1-创建工程"><a href="#1-创建工程" class="headerlink" title="1. 创建工程"></a>1. 创建工程</h1><ul>
+            <h2 id="1-创建工程"><a href="#1-创建工程" class="headerlink" title="1. 创建工程"></a>1. 创建工程</h2><ul>
 <li><code>注意：默认已将 controlSUITE 安装在 &quot;C:\ti\&quot; 目录下。</code></li>
 <li><code>Code Composer Studio Version: 9.0.1.00004</code></li>
 </ul>
 <p>通过 Project -&gt; New CCS Project 分别创建两个工程：</p>
-<h2 id="工程1-应用工程"><a href="#工程1-应用工程" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h2><ul>
+<h3 id="工程1-应用工程"><a href="#工程1-应用工程" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h3><ul>
 <li><p>Target: TMS320F28027</p>
 </li>
 <li><p>Connection: Texas Instruments XDS100v3 USB Debug Probe<a id="more"></a></p>
 </li>
 <li><p>Project Name: <code>A_F28027_TestCase</code></p>
 </li>
-<li><p>Tool-chain: </p>
+<li><p>Tool-chain:</p>
 <ul>
 <li><p>Output type: <code>Executable</code></p>
 </li>
 <li><p>Output format: <code>legacy COFF</code></p>
 </li>
-<li><p>Linker command file: </p>
-  <figure class="highlight bat hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">C:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_common</span>\<span class="hljs-title">cmd</span>\<span class="hljs-title">F28027.cmd</span></span></span><br></pre></td></tr></table></figure>
+<li><p>Linker command file:</p>
+<figure class="highlight bat hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">C:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_common</span>\<span class="hljs-title">cmd</span>\<span class="hljs-title">F28027.cmd</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Runtime support library: &lt;automatic&gt;</p>
 </li>
@@ -216,11 +216,11 @@
 </li>
 </ul>
 <hr>
-<h2 id="工程2-静态库工程"><a href="#工程2-静态库工程" class="headerlink" title="工程2 - 静态库工程"></a>工程2 - 静态库工程</h2><ul>
+<h3 id="工程2-静态库工程"><a href="#工程2-静态库工程" class="headerlink" title="工程2 - 静态库工程"></a>工程2 - 静态库工程</h3><ul>
 <li>Target: TMS320F28027</li>
 <li>Connection: Texas Instruments XDS100v3 USB Debug Probe</li>
 <li>Project Name: <code>A_F28027_TestCase_Lib</code></li>
-<li>Tool-chain: <ul>
+<li>Tool-chain:<ul>
 <li>Output type: <code>Static Library</code></li>
 <li>Output format: <code>legacy COFF</code></li>
 </ul>
@@ -231,63 +231,49 @@
 </li>
 </ul>
 <hr>
-<h1 id="2-工程设置"><a href="#2-工程设置" class="headerlink" title="2. 工程设置"></a>2. 工程设置</h1><h2 id="工程1-应用工程-1"><a href="#工程1-应用工程-1" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h2><ul>
-<li><h3 id="添加-Linker-File-cmd"><a href="#添加-Linker-File-cmd" class="headerlink" title="添加 Linker File(*.cmd)"></a>添加 Linker File(*.cmd)</h3><p>  如下图所示，将以下目录下的链接文件 <code>F2802x_Headers_nonBIOS.cmd</code> <strong>拖动</strong>到工程目录下，此时弹出对话框 <code>File Operation</code>，选择 <code>Link to files</code>，之后下拉列表框内选择 <code>TI_PRODUCTS_DIR</code>，接着单击 <code>OK</code> 即可。该链接文件用于将外设寄存器映射到正确的内存地址。</p>
+<h2 id="2-工程设置"><a href="#2-工程设置" class="headerlink" title="2. 工程设置"></a>2. 工程设置</h2><h3 id="工程1-应用工程-1"><a href="#工程1-应用工程-1" class="headerlink" title="工程1 - 应用工程"></a>工程1 - 应用工程</h3><ul>
+<li><h4 id="添加-Linker-File-cmd"><a href="#添加-Linker-File-cmd" class="headerlink" title="添加 Linker File(*.cmd)"></a>添加 Linker File(*.cmd)</h4><p>  如下图所示，将以下目录下的链接文件 <code>F2802x_Headers_nonBIOS.cmd</code> <strong>拖动</strong>到工程目录下，此时弹出对话框 <code>File Operation</code>，选择 <code>Link to files</code>，之后下拉列表框内选择 <code>TI_PRODUCTS_DIR</code>，接着单击 <code>OK</code> 即可。该链接文件用于将外设寄存器映射到正确的内存地址。</p>
   <figure class="highlight bat hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">C:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_headers</span>\<span class="hljs-title">cmd</span></span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <p><img src="../images/BlogPics/01CCS-01.jpg" alt="添加 Linker File"></p>
 <ul>
-<li><h3 id="添加-controlSUITE-库源文件-asm-c"><a href="#添加-controlSUITE-库源文件-asm-c" class="headerlink" title="添加 controlSUITE 库源文件(*.asm, *.c)"></a>添加 controlSUITE 库源文件(*.asm, *.c)</h3><p>  分别将以下目录下的文件添加到工程当中<code>(相对路径添加法)</code>。</p>
+<li><h4 id="添加-controlSUITE-库源文件-asm-c"><a href="#添加-controlSUITE-库源文件-asm-c" class="headerlink" title="添加 controlSUITE 库源文件(*.asm, *.c)"></a>添加 controlSUITE 库源文件(*.asm, *.c)</h4><p>  分别将以下目录下的文件添加到工程当中<code>(相对路径添加法)</code>。</p>
   <figure class="highlight bat hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function">C:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_common</span>\<span class="hljs-title">source</span>\</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-title">C</span>:\<span class="hljs-title">ti</span>\<span class="hljs-title">controlSUITE</span>\<span class="hljs-title">device_support</span>\<span class="hljs-title">f2802x</span>\<span class="hljs-title">v230</span>\<span class="hljs-title">f2802x_headers</span>\<span class="hljs-title">source</span>\</span></span><br></pre></td></tr></table></figure>
 
-<hr>
-<h4 id="1-具体步骤-Step-by-Step："><a href="#1-具体步骤-Step-by-Step：" class="headerlink" title="1. 具体步骤 Step by Step："></a>1. 具体步骤 Step by Step：</h4><p>  右键单击工程名 -&gt; New -&gt; Folder：</p>
-<ul>
-<li><ol>
-<li>选择本工程: A_F28027_TestCase</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>Folder name: F2802x_Common</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>单击 Advanced</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>选择 Link to alternate location (Linked Folder)</li>
-</ol>
-</li>
-<li><ol start="5">
-<li><ol>
-<li>方法一：编辑框直接输入以下地址<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TI_PRODUCTS_DIR/controlSUITE/device_support/f2802x/v230/f2802x_common/source</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><ol start="5">
-<li><ol start="2">
-<li>方法二：Variables -&gt; TI_PRODUCTS_DIR -&gt; Extend -&gt; controlSUITE -&gt; device_support -&gt; f2802x -&gt; v230 -&gt; f2802x_common -&gt; source -&gt; OK</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>Finish</li>
-</ol>
 </li>
 </ul>
-<hr>
-<h4 id="2-以同样方法添加其余目录下的源文件："><a href="#2-以同样方法添加其余目录下的源文件：" class="headerlink" title="2. 以同样方法添加其余目录下的源文件："></a>2. 以同样方法添加其余目录下的源文件：</h4>  <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TI_PRODUCTS_DIR/controlSUITE/device_support/f2802x/v230/f2802x_headers/source</span><br></pre></td></tr></table></figure>
+<h5 id="1-具体步骤"><a href="#1-具体步骤" class="headerlink" title="1. 具体步骤"></a>1. 具体步骤</h5><p>右键单击工程名 -&gt; New -&gt; Folder：</p>
+<ol>
+<li><p>选择本工程: A_F28027_TestCase</p>
 </li>
-<li><h3 id="添加-controlSUITE-库头文件-h"><a href="#添加-controlSUITE-库头文件-h" class="headerlink" title="添加 controlSUITE 库头文件(*.h)"></a>添加 controlSUITE 库头文件(*.h)</h3><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</p>
+<li><p>Folder name: F2802x_Common</p>
+</li>
+<li><p>单击 Advanced</p>
+</li>
+<li><p>选择 Link to alternate location (Linked Folder)</p>
+</li>
+<li><ul>
+<li><p>方法一：编辑框直接输入以下地址</p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TI_PRODUCTS_DIR/controlSUITE/device_support/f2802x/v230/f2802x_common/source</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>方法二：Variables -&gt; TI_PRODUCTS_DIR -&gt; Extend -&gt; controlSUITE -&gt; device_support -&gt; f2802x -&gt; v230 -&gt; f2802x_common -&gt; source -&gt; OK</li>
+</ul>
+</li>
+<li><p>Finish</p>
+</li>
+</ol>
+<h5 id="2-以同样方法添加其余目录下的源文件"><a href="#2-以同样方法添加其余目录下的源文件" class="headerlink" title="2. 以同样方法添加其余目录下的源文件"></a>2. 以同样方法添加其余目录下的源文件</h5><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TI_PRODUCTS_DIR/controlSUITE/device_support/f2802x/v230/f2802x_headers/source</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h4 id="添加-controlSUITE-库头文件-h"><a href="#添加-controlSUITE-库头文件-h" class="headerlink" title="添加 controlSUITE 库头文件(*.h)"></a>添加 controlSUITE 库头文件(*.h)</h4><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</p>
   <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$&#123;PROJECT_ROOT&#125;</span><br><span class="line">$&#123;CG_TOOL_ROOT&#125;/include</span><br><span class="line">$&#123;TI_PRODUCTS_DIR&#125;/controlSUITE/device_support/f2802x/v230/f2802x_common/include</span><br><span class="line">$&#123;TI_PRODUCTS_DIR&#125;/controlSUITE/device_support/f2802x/v230/f2802x_headers/include</span><br></pre></td></tr></table></figure>
 </li>
-<li><h3 id="添加全局宏"><a href="#添加全局宏" class="headerlink" title="添加全局宏"></a>添加全局宏</h3><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Predefined Symbols -&gt; Pre-define NAME(–define, -D)</p>
+<li><h4 id="添加全局宏"><a href="#添加全局宏" class="headerlink" title="添加全局宏"></a>添加全局宏</h4><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Predefined Symbols -&gt;  Pre-define NAME(–define, -D)</p>
 <ul>
 <li>_DEBUG</li>
 <li>LARGE_MODEL</li>
@@ -295,57 +281,54 @@
 <li>DEBUG</li>
 </ul>
 </li>
-<li><h3 id="编译后的错误-Error-解决"><a href="#编译后的错误-Error-解决" class="headerlink" title="编译后的错误(Error)解决"></a>编译后的错误(Error)解决</h3><h4 id="1-编译后报很多重名错误，类似如下："><a href="#1-编译后报很多重名错误，类似如下：" class="headerlink" title="1. 编译后报很多重名错误，类似如下："></a>1. 编译后报很多重名错误，类似如下：</h4><p>  symbol “_DSP28x_DisableInt” redefined: first defined in “./F2802x_Common/f2802x_asmfuncs.obj”; redefined in “./F2802x_Common/f2802x_disint.obj”</p>
+<li><h4 id="编译后的错误-Error-解决"><a href="#编译后的错误-Error-解决" class="headerlink" title="编译后的错误(Error)解决"></a>编译后的错误(Error)解决</h4><h5 id="1-编译后报很多重名错误，类似如下"><a href="#1-编译后报很多重名错误，类似如下" class="headerlink" title="1. 编译后报很多重名错误，类似如下"></a>1. 编译后报很多重名错误，类似如下</h5><p>  <code>symbol &quot;_DSP28x_DisableInt&quot; redefined: first defined in &quot;./F2802x_Common/f2802x_asmfuncs.obj&quot;; redefined in &quot;./F2802x_Common/f2802x_disint.obj&quot;</code></p>
 <ul>
-<li><p>解决方法：        </p>
-<p>  右键单击对应源文件 -&gt; Exclude from Build</p>
-  <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* A. 如下源文件二组择一组排除编译 */</span></span><br><span class="line"><span class="hljs-comment">/* Exclude 如下2个文件 */</span></span><br><span class="line">f2802x_swprioritizeddefaultisr.c</span><br><span class="line">f2802x_swprioritizedpievect.c</span><br><span class="line"><span class="hljs-comment">/* 或如下2个文件 */</span></span><br><span class="line">f2802x_defaultisr.c</span><br><span class="line">f2802x_pievect.c</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* B. 如下源文件二组择一组排除编译 */</span></span><br><span class="line"><span class="hljs-comment">/* Exclude 如下1个文件 */</span></span><br><span class="line">f2802x_asmfuncs.<span class="hljs-keyword">asm</span></span><br><span class="line"><span class="hljs-comment">/* 或如下3个文件 */</span></span><br><span class="line">f2802x_usdelay.<span class="hljs-keyword">asm</span></span><br><span class="line">f2802x_dbgier.<span class="hljs-keyword">asm</span></span><br><span class="line">f2802x_disint.<span class="hljs-keyword">asm</span></span><br></pre></td></tr></table></figure>
+<li><p>解决方法：</p>
+<p>右键单击对应源文件 -&gt; Exclude from Build</p>
+<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* A. 如下源文件二组择一组排除编译 */</span></span><br><span class="line"><span class="hljs-comment">/* Exclude 如下2个文件 */</span></span><br><span class="line">f2802x_swprioritizeddefaultisr.c</span><br><span class="line">f2802x_swprioritizedpievect.c</span><br><span class="line"><span class="hljs-comment">/* 或如下2个文件 */</span></span><br><span class="line">f2802x_defaultisr.c</span><br><span class="line">f2802x_pievect.c</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* B. 如下源文件二组择一组排除编译 */</span></span><br><span class="line"><span class="hljs-comment">/* Exclude 如下1个文件 */</span></span><br><span class="line">f2802x_asmfuncs.<span class="hljs-keyword">asm</span></span><br><span class="line"><span class="hljs-comment">/* 或如下3个文件 */</span></span><br><span class="line">f2802x_usdelay.<span class="hljs-keyword">asm</span></span><br><span class="line">f2802x_dbgier.<span class="hljs-keyword">asm</span></span><br><span class="line">f2802x_disint.<span class="hljs-keyword">asm</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><h3 id="编译后的报警-Warning-解决"><a href="#编译后的报警-Warning-解决" class="headerlink" title="编译后的报警(Warning)解决"></a>编译后的报警(Warning)解决</h3><h4 id="1-10210-D-null-creating-“-esysmem”-section-with-default-size-of-0x400-use-the-heap-option-to-change-the-default-size"><a href="#1-10210-D-null-creating-“-esysmem”-section-with-default-size-of-0x400-use-the-heap-option-to-change-the-default-size" class="headerlink" title="1. #10210-D null: creating “.esysmem” section with default size of 0x400; use the -heap option to change the default size."></a>1. #10210-D null: creating “.esysmem” section with default size of 0x400; use the -heap option to change the default size.</h4><ul>
+<li><h4 id="编译后的报警-Warning-解决"><a href="#编译后的报警-Warning-解决" class="headerlink" title="编译后的报警(Warning)解决"></a>编译后的报警(Warning)解决</h4><h5 id="1-10210-D-null-creating-“-esysmem”-section-with-default-size-of-0x400-use-the-heap-option-to-change-the-default-size"><a href="#1-10210-D-null-creating-“-esysmem”-section-with-default-size-of-0x400-use-the-heap-option-to-change-the-default-size" class="headerlink" title="1. #10210-D null: creating “.esysmem” section with default size of 0x400; use the -heap option to change the default size"></a>1. #10210-D null: creating “.esysmem” section with default size of 0x400; use the -heap option to change the default size</h5><ul>
 <li><p>解决方法：</p>
-<p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Linker -&gt; Basic Options:</p>
-<p>  Heap size for C/C++ dynamic memory allocation (–heap_size, -heap) = 0x400</p>
+<p>Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Linker -&gt; Basic Options:</p>
+<p>Heap size for C/C++ dynamic memory allocation (–heap_size, -heap) = 0x400</p>
 </li>
 </ul>
 </li>
 </ul>
 <hr>
-<h1 id="3-创建源文件"><a href="#3-创建源文件" class="headerlink" title="3. 创建源文件"></a>3. 创建源文件</h1><p><code>通过 New -&gt; Header File 或 Source File 分别创建头文件和源文件</code></p>
-<h2 id="Step-1-工程2-静态库工程"><a href="#Step-1-工程2-静态库工程" class="headerlink" title="Step 1. 工程2 - 静态库工程"></a>Step 1. 工程2 - 静态库工程</h2><ul>
-<li><h3 id="创建-LIB-MathFuncs-h-和-LIB-MathFuncs-c"><a href="#创建-LIB-MathFuncs-h-和-LIB-MathFuncs-c" class="headerlink" title="创建 LIB_MathFuncs.h 和 LIB_MathFuncs.c"></a>创建 <code>LIB_MathFuncs.h</code> 和 <code>LIB_MathFuncs.c</code></h3>  <figure class="highlight c hljs"><figcaption><span>LIB_MathFuncs.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> LIB_MATHFUNCS_H_</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIB_MATHFUNCS_H_</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> LIB_Math_Add(<span class="hljs-keyword">uint32_t</span> x, <span class="hljs-keyword">uint32_t</span> y);</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* LIB_MATHFUNCS_H_ */</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="3-创建源文件"><a href="#3-创建源文件" class="headerlink" title="3. 创建源文件"></a>3. 创建源文件</h2><p><code>通过 New -&gt; Header File 或 Source File 分别创建头文件和源文件</code></p>
+<h3 id="Step-1-工程2-静态库工程"><a href="#Step-1-工程2-静态库工程" class="headerlink" title="Step 1. 工程2 - 静态库工程"></a>Step 1. 工程2 - 静态库工程</h3><ul>
+<li><h4 id="创建-LIB-MathFuncs-h-和-LIB-MathFuncs-c"><a href="#创建-LIB-MathFuncs-h-和-LIB-MathFuncs-c" class="headerlink" title="创建 LIB_MathFuncs.h 和 LIB_MathFuncs.c"></a>创建 <code>LIB_MathFuncs.h</code> 和 <code>LIB_MathFuncs.c</code></h4>  <figure class="highlight c hljs"><figcaption><span>LIB_MathFuncs.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> LIB_MATHFUNCS_H_</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIB_MATHFUNCS_H_</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> LIB_Math_Add(<span class="hljs-keyword">uint32_t</span> x, <span class="hljs-keyword">uint32_t</span> y);</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* LIB_MATHFUNCS_H_ */</span></span></span><br></pre></td></tr></table></figure>
 
   <figure class="highlight c hljs"><figcaption><span>LIB_MathFuncs.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"LIB_MathFuncs.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*******************************************************************************</span></span><br><span class="line"><span class="hljs-comment">* @name   : LIB_Math_Add</span></span><br><span class="line"><span class="hljs-comment">* @brief  : 创建一个加法函数，仅做演示。</span></span><br><span class="line"><span class="hljs-comment">* @param  : uint32_t x, uint32_t y</span></span><br><span class="line"><span class="hljs-comment">* @retval : uint32_t</span></span><br><span class="line"><span class="hljs-comment">*******************************************************************************/</span></span><br><span class="line"><span class="hljs-keyword">uint32_t</span> LIB_Math_Add(<span class="hljs-keyword">uint32_t</span> x, <span class="hljs-keyword">uint32_t</span> y)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> (x + y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><h3 id="编译静态库工程"><a href="#编译静态库工程" class="headerlink" title="编译静态库工程"></a>编译静态库工程</h3><p>  编译之后即可发现本工程的 <code>Debug</code> 目录下生成了 <code>A_F28027_TestCase_Lib.lib</code> 库文件。</p>
+<li><h4 id="编译静态库工程"><a href="#编译静态库工程" class="headerlink" title="编译静态库工程"></a>编译静态库工程</h4><p>  编译之后即可发现本工程的 <code>Debug</code> 目录下生成了 <code>A_F28027_TestCase_Lib.lib</code> 库文件。</p>
 </li>
 </ul>
-<h2 id="Step-2-工程1-应用工程"><a href="#Step-2-工程1-应用工程" class="headerlink" title="Step 2. 工程1 - 应用工程"></a>Step 2. 工程1 - 应用工程</h2><ul>
-<li><h3 id="复制库文件"><a href="#复制库文件" class="headerlink" title="复制库文件"></a>复制库文件</h3><p>  将 <code>A_F28027_TestCase_Lib.lib</code> 和 <code>LIB_MathFuncs.h</code> 复制到应用工程下，如图：</p>
+<h3 id="Step-2-工程1-应用工程"><a href="#Step-2-工程1-应用工程" class="headerlink" title="Step 2. 工程1 - 应用工程"></a>Step 2. 工程1 - 应用工程</h3><ul>
+<li><h4 id="复制库文件"><a href="#复制库文件" class="headerlink" title="复制库文件"></a>复制库文件</h4><p>  将 <code>A_F28027_TestCase_Lib.lib</code> 和 <code>LIB_MathFuncs.h</code> 复制到应用工程下，如图：</p>
   <div align="center">
 
 <p>  <img src="../images/BlogPics/01CCS-02.jpg" alt="复制库文件"></p>
   </div>
 </li>
-<li><h3 id="添加-A-F28027-TestCase-Lib-库头文件-h"><a href="#添加-A-F28027-TestCase-Lib-库头文件-h" class="headerlink" title="添加 A_F28027_TestCase_Lib 库头文件(*.h)"></a>添加 A_F28027_TestCase_Lib 库头文件(*.h)</h3><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</p>
+<li><h4 id="添加-A-F28027-TestCase-Lib-库头文件-h"><a href="#添加-A-F28027-TestCase-Lib-库头文件-h" class="headerlink" title="添加 A_F28027_TestCase_Lib 库头文件(*.h)"></a>添加 A_F28027_TestCase_Lib 库头文件(*.h)</h4><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</p>
   <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;PROJECT_ROOT&#125;/DTek_LIB</span><br></pre></td></tr></table></figure>
-
-
 </li>
-</ul>
-<ul>
-<li><h3 id="添加-A-F28027-TestCase-Lib-库引用-lib"><a href="#添加-A-F28027-TestCase-Lib-库引用-lib" class="headerlink" title="添加 A_F28027_TestCase_Lib 库引用(*.lib)"></a>添加 A_F28027_TestCase_Lib 库引用(*.lib)</h3><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Linker -&gt; File Search Path -&gt; Include library file or command file as input (–library, -l)</p>
+<li><h4 id="添加-A-F28027-TestCase-Lib-库引用-lib"><a href="#添加-A-F28027-TestCase-Lib-库引用-lib" class="headerlink" title="添加 A_F28027_TestCase_Lib 库引用(*.lib)"></a>添加 A_F28027_TestCase_Lib 库引用(*.lib)</h4><p>  Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Linker -&gt; File Search Path -&gt; Include library file or command file as input (–library, -l)</p>
   <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;PROJECT_ROOT&#125;/DTek_LIB/A_F28027_TestCase_Lib.lib</span><br></pre></td></tr></table></figure>
 </li>
-<li><h3 id="创建-main-h-和-main-c"><a href="#创建-main-h-和-main-c" class="headerlink" title="创建 main.h 和 main.c"></a>创建 <code>main.h</code> 和 <code>main.c</code></h3>  <figure class="highlight c hljs"><figcaption><span>main.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> MAIN_H_</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAIN_H_</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* MAIN_H_ */</span></span></span><br></pre></td></tr></table></figure>
+<li><h4 id="创建-main-h-和-main-c"><a href="#创建-main-h-和-main-c" class="headerlink" title="创建 main.h 和 main.c"></a>创建 <code>main.h</code> 和 <code>main.c</code></h4>  <figure class="highlight c hljs"><figcaption><span>main.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> MAIN_H_</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAIN_H_</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* MAIN_H_ */</span></span></span><br></pre></td></tr></table></figure>
 
-  <figure class="highlight c hljs"><figcaption><span>main.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"main.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"DSP28x_Project.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"LIB_MathFuncs.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">volatile</span> <span class="hljs-keyword">uint32_t</span> resultVal = <span class="hljs-number">0U</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*******************************************************************************</span></span><br><span class="line"><span class="hljs-comment">* @name   : main</span></span><br><span class="line"><span class="hljs-comment">* @brief  : </span></span><br><span class="line"><span class="hljs-comment">* @param  : void</span></span><br><span class="line"><span class="hljs-comment">* @retval : int</span></span><br><span class="line"><span class="hljs-comment">*******************************************************************************/</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    resultVal = LIB_Math_Add(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> (resultVal)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-comment">/* <span class="hljs-doctag">TODO:</span> Do something here... */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight c hljs"><figcaption><span>main.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"main.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"DSP28x_Project.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"LIB_MathFuncs.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">volatile</span> <span class="hljs-keyword">uint32_t</span> resultVal = <span class="hljs-number">0U</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*******************************************************************************</span></span><br><span class="line"><span class="hljs-comment">* @name   : main</span></span><br><span class="line"><span class="hljs-comment">* @brief  :</span></span><br><span class="line"><span class="hljs-comment">* @param  : void</span></span><br><span class="line"><span class="hljs-comment">* @retval : int</span></span><br><span class="line"><span class="hljs-comment">*******************************************************************************/</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    resultVal = LIB_Math_Add(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> (resultVal)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="hljs-comment">/* <span class="hljs-doctag">TODO:</span> Do something here... */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <hr>
-<h1 id="4-调试"><a href="#4-调试" class="headerlink" title="4. 调试"></a>4. 调试</h1><h4 id="进入调试模式验证-静态库-函数是否能够被正常调用并执行"><a href="#进入调试模式验证-静态库-函数是否能够被正常调用并执行" class="headerlink" title="进入调试模式验证 静态库 函数是否能够被正常调用并执行"></a>进入调试模式验证 <code>静态库</code> 函数是否能够被正常调用并执行</h4><p><img src="../images/BlogPics/01CCS-03.jpg" alt="调试验证"></p>
+<h2 id="4-调试"><a href="#4-调试" class="headerlink" title="4. 调试"></a>4. 调试</h2><p>进入调试模式验证 <code>静态库</code> 函数是否能够被正常调用并执行</p>
+<p><img src="../images/BlogPics/01CCS-03.jpg" alt="调试验证"></p>
 
         </div>
         

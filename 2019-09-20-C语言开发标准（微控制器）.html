@@ -10,19 +10,19 @@
 <title>C语言开发标准（微控制器） - Tomy Stark&#39;s Blog</title>
 
 
-    <meta name="description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善    嵌入式开发中，务必注意不同硬件体系架构之间数据类型的差异：  123456789101112131415161">
+    <meta name="description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善">
 <meta name="keywords" content="C,Standard,Coding Style">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言开发标准（微控制器）">
 <meta property="og:url" content="https://apex.linn.top/2019-09-20-C语言开发标准（微控制器）.html">
 <meta property="og:site_name" content="Tomy Stark&#39;s Blog">
-<meta property="og:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善    嵌入式开发中，务必注意不同硬件体系架构之间数据类型的差异：  123456789101112131415161">
+<meta property="og:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/Car.jpg">
-<meta property="og:updated_time" content="2019-09-23T06:52:19.531Z">
+<meta property="og:updated_time" content="2019-09-27T07:53:15.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言开发标准（微控制器）">
-<meta name="twitter:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善    嵌入式开发中，务必注意不同硬件体系架构之间数据类型的差异：  123456789101112131415161">
+<meta name="twitter:description" content="C语言开发标准（微控制器）Ver 1.0.0  Written By Tomy Stark.E-mail: ro7enkranz@qq.com Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。 本标准会不定期迭代完善">
 <meta name="twitter:image" content="https://apex.linn.top/images/Car.jpg">
 
 
@@ -162,7 +162,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3159 个字)
+                    21 分钟 读完 (大约 3160 个字)
                 </span>
                 
                 
@@ -188,95 +188,82 @@
 <p><strong>本标准会不定期迭代完善</strong></p>
 </blockquote>
 </blockquote>
-<ol>
-<li>嵌入式开发中，<strong>务必注意不同硬件体系架构之间数据类型的差异</strong>：</li>
-</ol>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* 为保证健壮性和可移植性，一般情况下，一律使用以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">uint8_t</span></span><br><span class="line"><span class="hljs-keyword">uint16_t</span></span><br><span class="line"><span class="hljs-keyword">uint32_t</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">int8_t</span></span><br><span class="line"><span class="hljs-keyword">int16_t</span></span><br><span class="line"><span class="hljs-keyword">int32_t</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 而不使用（尽量少用）以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span></span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
 
-<hr>
-<ol start="2">
-<li>关于注释：</li>
-</ol>
+<ol>
+<li><p>嵌入式开发中，<strong>务必注意不同硬件体系架构之间数据类型的差异</strong>：</p>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* 为保证健壮性和可移植性，一般情况下，一律使用以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">uint8_t</span></span><br><span class="line"><span class="hljs-keyword">uint16_t</span></span><br><span class="line"><span class="hljs-keyword">uint32_t</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">int8_t</span></span><br><span class="line"><span class="hljs-keyword">int16_t</span></span><br><span class="line"><span class="hljs-keyword">int32_t</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 而不使用（尽量少用）以下类型来定义变量 */</span></span><br><span class="line"><span class="hljs-comment">/* 无符号型 */</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span></span><br><span class="line"><span class="hljs-comment">/* 有符号型 */</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">char</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">short</span></span><br><span class="line"><span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于注释：</p>
 <blockquote>
 <p>针对代码的注释，采用单行注释：</p>
 </blockquote>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>或多行注释（当需要注释的代码量较多时）：</p>
 </blockquote>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>针对对某些功能、注意事项、函数等的描述性文字，采用多行注释：</p>
 </blockquote>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* comment */</span></span><br><span class="line"></span><br><span class="line">或在内容较多需要换行时：</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">当前时钟频率: SYSCLK = HCLK = PCLK2(APB2) = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">因为 TIM_ClockDivision = TIM_CKD_DIV1，所以 CLK_Freq 为 PCLK2 的一分频，所以 CLK_Freq = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* comment */</span></span><br><span class="line"></span><br><span class="line">或在内容较多需要换行时：</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment">当前时钟频率: SYSCLK = HCLK = PCLK2(APB2) = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">因为 TIM_ClockDivision = TIM_CKD_DIV1，所以 CLK_Freq 为 PCLK2 的一分频，所以 CLK_Freq = 96 MHz</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于缩进：一律采用“<strong>空格</strong>”缩进，缩进 <strong>4</strong> 个空格。</p>
+</li>
+<li><p>宏函数和内联函数，一般情况下不建议使用宏函数，而更建议使用内联函数，易于调试同时兼具性能。同时，在使用内联函数时需要注意函数体不能太过庞大复杂，否则仍旧会被编译器作为普通函数处理，例如，当对另一个函数进行别名封装时，可以使用内联函数：</p>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">inline</span> status_t <span class="hljs-title">PINS_DRV_Deinit</span><span class="hljs-params">(<span class="hljs-keyword">uint32_t</span> pinCount, <span class="hljs-keyword">const</span> <span class="hljs-keyword">pin_settings_config_t</span> config[])</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> PINS_DRV_Init(pinCount, config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>针对“<strong>宏</strong>”的一些操作需要确保正确，因为宏不易调试，正常情况下，应以让代码更易于阅读和维护，同时又兼顾性能的原则来使用宏，因为花了很多时间想出来的“高效又高深的宏”同样可能需要让别人甚至自己花很多时间去理解，这样无形之中就增加了软件维护成本，特别在项目交接或者不同项目之间代码复用时，矛盾尤为突出，故编程时应在高大上和可维护性之间找到一个平衡点，做出合适的取舍。</p>
+</li>
+<li><p>对于规律性的常量型定义，例如有相关性的从n开始递增的多个常量数据定义，建议使用enum枚举型而尽量不用宏定义，因为宏定义不易于调试，而枚举类型易于调试。</p>
+</li>
+<li><p>尽量不要在条件判断语句中使用赋值语句，例如</p>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (a = b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>3.关于缩进：一律采用“<strong>空格</strong>”缩进，缩进 <strong>4</strong> 个空格。</p>
-<hr>
-<p>4.宏函数和内联函数，一般情况下不建议使用宏函数，而更建议使用内联函数，易于调试同时兼具性能。同时，在使用内联函数时需要注意函数体不能太过庞大复杂，否则仍旧会被编译器作为普通函数处理，例如，当对另一个函数进行别名封装时，可以使用内联函数：</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">inline</span> status_t <span class="hljs-title">PINS_DRV_Deinit</span><span class="hljs-params">(<span class="hljs-keyword">uint32_t</span> pinCount, <span class="hljs-keyword">const</span> <span class="hljs-keyword">pin_settings_config_t</span> config[])</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> PINS_DRV_Init(pinCount, config);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 如果有意为之，务必加上注释进行必要说明，明确此写法用意。</p>
+</li>
+<li><p>合理结合使用“联合体 union”和“结构体 struct”和“位域”，对于特定情形下，可以精简代码量，减少内存占用，提高代码可重用性。例如基于某个通讯外设（I2C、SPI……）上发送的数据帧，包含不同类型的数据情况下，可用此法，<strong>但是必须注意字节对齐问题</strong>。</p>
+</li>
+<li><p>同样是 <strong>字节对齐问题</strong>，为了保证字节对齐，同时更节省内存空间，提高MCU执行效率（缩短程序执行时间），结构体中的数据类型请按从小到大的顺序依次排列 (8位-&gt;16位-&gt;32位-&gt;单精度浮点-&gt;双精度浮点)。例如以下代码片段：</p>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  DMA_TC_Flag;                        <span class="hljs-comment">/* DMA 传输完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  FilterComplete_Flag;                <span class="hljs-comment">/* ADC 滤波完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> SamplingValue[ADC1_DMA_ARRAY_SIZE]; <span class="hljs-comment">/* ADC 转换值 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> FilterValue;                        <span class="hljs-comment">/* ADC 二阶滤波值 */</span></span><br><span class="line">    <span class="hljs-keyword">float</span>    Voltage;                            <span class="hljs-comment">/* ADC 电压值 */</span></span><br><span class="line">&#125; ADC1_VarGroup_TypeDef;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>5.针对“<strong>宏</strong>”的一些骚操作需要确保正确，因为宏不易调试，正常情况下，应以让代码更易于阅读和维护，同时又兼顾性能的原则来使用宏，因为花了很多时间想出来的“高效又高深的宏”同样可能需要让别人甚至自己花很多时间去理解，这样无形之中就增加了软件维护成本，特别在项目交接或者不同项目之间代码复用时，矛盾尤为突出，故编程时应在高大上和可维护性之间找到一个平衡点，做出合适的取舍。</p>
-<hr>
-<p>6.对于规律性的常量型定义，例如有相关性的从n开始递增的多个常量数据定义，建议使用enum枚举型而尽量不用宏定义，因为宏定义不易于调试，而枚举类型易于调试。</p>
-<hr>
-<p>7.尽量不要在条件判断语句中使用赋值语句，例如</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">if</span> (a = b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果有意为之，务必加上注释进行必要说明，明确此写法用意。</p>
-<hr>
-<p>8.合理结合使用“联合体 union”和“结构体 struct”和“位域”，对于特定情形下，可以精简代码量，减少内存占用，提高代码可重用性。例如基于某个通讯外设（I2C、SPI……）上发送的数据帧，包含不同类型的数据情况下，可用此法，<strong>但是必须注意字节对齐问题</strong>。</p>
-<hr>
-<p>9.同样是 <strong>字节对齐问题</strong>，为了保证字节对齐，同时更节省内存空间，提高MCU执行效率（缩短程序执行时间），结构体中的数据类型请按从小到大的顺序依次排列 (8位-&gt;16位-&gt;32位-&gt;单精度浮点-&gt;双精度浮点)。例如以下代码片段：</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  DMA_TC_Flag;                        <span class="hljs-comment">/* DMA 传输完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  FilterComplete_Flag;                <span class="hljs-comment">/* ADC 滤波完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> SamplingValue[ADC1_DMA_ARRAY_SIZE]; <span class="hljs-comment">/* ADC 转换值 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> FilterValue;                        <span class="hljs-comment">/* ADC 二阶滤波值 */</span></span><br><span class="line">    <span class="hljs-keyword">float</span>    Voltage;                            <span class="hljs-comment">/* ADC 电压值 */</span></span><br><span class="line">&#125; ADC1_VarGroup_TypeDef;</span><br></pre></td></tr></table></figure>
-
-<p>另外，如若要通过指针访问结构体，则需要注意字节对齐，可用以下方法自定义对齐：</p>
-<figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> pack (push, 1) <span class="hljs-comment">/* 作用：是指把原来对齐方式设置压栈，并设新的对齐方式设置为1个字节对齐 */</span></span></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  DMA_TC_Flag;                        <span class="hljs-comment">/* DMA 传输完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  FilterComplete_Flag;                <span class="hljs-comment">/* ADC 滤波完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> SamplingValue[ADC1_DMA_ARRAY_SIZE]; <span class="hljs-comment">/* ADC 转换值 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> FilterValue;                        <span class="hljs-comment">/* ADC 二阶滤波值 */</span></span><br><span class="line">    <span class="hljs-keyword">float</span>    Voltage;                            <span class="hljs-comment">/* ADC 电压值 */</span></span><br><span class="line">&#125; ADC1_VarGroup_TypeDef;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> pack(pop) <span class="hljs-comment">/* 作用：恢复对齐状态 */</span></span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ol start="10">
-<li>函数、变量、宏、结构体、联合体等的命名注意规范，缩写采用公认缩写，使名称易于阅读，不使用自造的冷门缩写。命名标准如下示例：</li>
-</ol>
+<p> 另外，如若要通过指针访问结构体，则需要注意字节对齐，可用以下方法自定义对齐：</p>
+ <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> pack (push, 1) <span class="hljs-comment">/* 作用：是指把原来对齐方式设置压栈，并设新的对齐方式设置为1个字节对齐 */</span></span></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  DMA_TC_Flag;                        <span class="hljs-comment">/* DMA 传输完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span>  FilterComplete_Flag;                <span class="hljs-comment">/* ADC 滤波完成标志 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> SamplingValue[ADC1_DMA_ARRAY_SIZE]; <span class="hljs-comment">/* ADC 转换值 */</span></span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> FilterValue;                        <span class="hljs-comment">/* ADC 二阶滤波值 */</span></span><br><span class="line">    <span class="hljs-keyword">float</span>    Voltage;                            <span class="hljs-comment">/* ADC 电压值 */</span></span><br><span class="line">&#125; ADC1_VarGroup_TypeDef;</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> pack(pop) <span class="hljs-comment">/* 作用：恢复对齐状态 */</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数、变量、宏、结构体、联合体等的命名注意规范，缩写采用公认缩写，使名称易于阅读，不使用自造的冷门缩写。命名标准如下示例：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">I2C_DataTransmit</span><span class="hljs-params">(<span class="hljs-keyword">uint8_t</span> *pBuffer, <span class="hljs-keyword">uint8_t</span> NumOfBytes)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span> &#123;</span><br><span class="line">    LEVEL_LOW  = <span class="hljs-number">0</span>,</span><br><span class="line">    LEVEL_HIGH = <span class="hljs-number">1</span>,</span><br><span class="line">&#125; GPIO_LevelState_TypeDef;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">status_t</span> PINS_DRV_Config(GPIO_TypeDef* GPIOx, <span class="hljs-keyword">uint16_t</span> GPIO_Pin, GPIO_LevelState_TypeDef GPIO_State);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">uint8_t</span> *g_pBuffer = <span class="hljs-literal">NULL</span>; <span class="hljs-comment">/* 定义一个全局指针 */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FPGA_PWR_EN 1U</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> Hall_W;     <span class="hljs-comment">/* 霍尔 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> Hall_V;     <span class="hljs-comment">/* 霍尔 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> Hall_U;     <span class="hljs-comment">/* 霍尔 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> Break_In;   <span class="hljs-comment">/* 刹车输入 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> FR_In;      <span class="hljs-comment">/* 正反转 */</span></span><br><span class="line">    <span class="hljs-keyword">uint8_t</span> EN_In;      <span class="hljs-comment">/* 电机使能 */</span></span><br><span class="line">&#125; GPIO_PinLevel_TypeDef;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ol start="11">
-<li>注意某些标准库函数以及其它自己编写的不可重入函数的使用，例如 printf(); 函数，开发调试时可适当于中断程序中使用，但在项目的Release阶段，务必检查中断中有无使用类似<strong>不可重入</strong>的不安全函数。</li>
-</ol>
-<hr>
-<ol start="12">
-<li>对于<strong>编译器优化，务必慎重使用</strong>。若不清楚编译器会对哪些函数进行优化，尽量不要使用，以避免优化过后的代码的实际执行情况与自己的真实想法背道而驰，另外，优化级别越高，越不利于调试。</li>
-</ol>
-<hr>
-<ol start="13">
-<li>对于一些全局变量，若只于单个c文件内使用，则使用static关键字修饰。</li>
-</ol>
-<hr>
-<ol start="14">
-<li>对于全局变量，一般情况下只允许一个修改者，可依据实际情况存在多个读取者。若有多个修改者，则务必给全局变量加上 <strong>互斥信号量（互斥锁）</strong> 进行保护。</li>
-</ol>
-<hr>
-<ol start="15">
-<li>对寄存器的操作，<strong>写操作</strong>尽量附带掩码（Mask）进行操作。在同一个函数中，对寄存器进行<strong>读操作</strong>时，先赋值给中间变量，再由中间变量进行之后的条件判断、赋值等操作，切忌直接使用寄存器进行复杂操作，特别是对于输入模式的引脚所对应的一系列寄存器，因为这些寄存器的值可能随时会因为外部电路上电平的变化而发生跳变，如果跳变时正好在使用该寄存器进行一系列连续的操作，则最终可能会出现意想不到的问题，与真实想法背道而驰，严重时会导致崩溃，进入HardFault等错误中断。</li>
-</ol>
-<hr>
-<ol start="16">
-<li>慎用递归，特别针对资源紧缺的平台。</li>
-<li>慎用goto。</li>
-<li>对于频繁变化的变量，尤其是在中断中变化的变量，在定义时务必加上<strong>volatile关键字</strong>修饰。</li>
-<li>在没有硬件浮点单元（FPU）的MCU上进行开发，尽量少用或者不用浮点运算。</li>
-<li>在中断中不要进行<strong>浮点运算</strong>（特别是触发频率较高的中断中），会导致效率低下！</li>
-<li>注意<strong>字节对齐</strong>，例如4字节对齐、8字节对齐。</li>
-<li>尽量不要使用除法运算，使用<strong>乘法、位移</strong>来替代除法运算。</li>
-<li>定义位域时，注意不同硬件平台的<strong>大小端</strong>问题。</li>
-<li><strong>定义结构体时，注意字节对齐！</strong>按数据类型从小到大的顺序依次排列，可使<strong>内存占用更少</strong>，同时字节对齐，降低指针操作结构体成员时指向非法地址的可能性。</li>
-<li>对于变量、函数、宏、枚举等的命名，若存在多个针对某一特定实例对象的定义，可把不同的文字置于名称末尾，方便IDE中编辑时的 <strong>自动联想</strong> 功能（Eclipse系的IDE使用 <strong>Alt + /</strong> 进行联想），例如：</li>
-</ol>
+</li>
+<li><p>注意某些标准库函数以及其它自己编写的不可重入函数的使用，例如 printf(); 函数，开发调试时可适当于中断程序中使用，但在项目的Release阶段，务必检查中断中有无使用类似<strong>不可重入</strong>的不安全函数。</p>
+</li>
+<li><p>对于<strong>编译器优化，务必慎重使用</strong>。若不清楚编译器会对哪些函数进行优化，尽量不要使用，以避免优化过后的代码的实际执行情况与自己的真实想法背道而驰，另外，优化级别越高，越不利于调试。</p>
+</li>
+<li><p>对于一些全局变量，若只于单个c文件内使用，则使用static关键字修饰。</p>
+</li>
+<li><p>对于全局变量，一般情况下只允许一个修改者，可依据实际情况存在多个读取者。若有多个修改者，则务必给全局变量加上 <strong>互斥信号量（互斥锁）</strong> 进行保护。</p>
+</li>
+<li><p>对寄存器的操作，<strong>写操作</strong>尽量附带掩码（Mask）进行操作。在同一个函数中，对寄存器进行<strong>读操作</strong>时，先赋值给中间变量，再由中间变量进行之后的条件判断、赋值等操作，切忌直接使用寄存器进行复杂操作，特别是对于输入模式的引脚所对应的一系列寄存器，因为这些寄存器的值可能随时会因为外部电路上电平的变化而发生跳变，如果跳变时正好在使用该寄存器进行一系列连续的操作，则最终可能会出现意想不到的问题，与真实想法背道而驰，严重时会导致崩溃，进入HardFault等错误中断。</p>
+</li>
+<li><p>慎用递归，特别针对资源紧缺的平台。</p>
+</li>
+<li><p>慎用goto。</p>
+</li>
+<li><p>对于频繁变化的变量，尤其是在中断中变化的变量，在定义时务必加上<strong>volatile关键字</strong>修饰。</p>
+</li>
+<li><p>在没有硬件浮点单元（FPU）的MCU上进行开发，尽量少用或者不用浮点运算。</p>
+</li>
+<li><p>在中断中不要进行<strong>浮点运算</strong>（特别是触发频率较高的中断中），会导致效率低下！</p>
+</li>
+<li><p>注意<strong>字节对齐</strong>，例如4字节对齐、8字节对齐。</p>
+</li>
+<li><p>尽量不要使用除法运算，使用<strong>乘法、位移</strong>来替代除法运算。</p>
+</li>
+<li><p>定义位域时，注意不同硬件平台的<strong>大小端</strong>问题。</p>
+</li>
+<li><p><strong>定义结构体时，注意字节对齐！</strong>按数据类型从小到大的顺序依次排列，可使<strong>内存占用更少</strong>，同时字节对齐，降低指针操作结构体成员时指向非法地址的可能性。</p>
+</li>
+<li><p>对于变量、函数、宏、枚举等的命名，若存在多个针对某一特定实例对象的定义，可把不同的文字置于名称末尾，方便IDE中编辑时的 <strong>自动联想</strong> 功能（Eclipse系的IDE使用 <strong>Alt + /</strong> 进行联想），例如：</p>
 <blockquote>
 <p><strong>变量：</strong></p>
 </blockquote>
@@ -296,14 +283,10 @@
 <p><strong>枚举：</strong></p>
 </blockquote>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">enum</span> BEEP_RATE &#123;</span><br><span class="line">    BEEP_RATE_10MS = <span class="hljs-number">10U</span>,</span><br><span class="line">    BEEP_RATE_100MS = <span class="hljs-number">100U</span>,</span><br><span class="line">    BEEP_RATE_1S = <span class="hljs-number">1000U</span>,</span><br><span class="line">    BEEP_RATE_5S = <span class="hljs-number">5000U</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="26">
-<li>理解<strong>逻辑移位</strong>和<strong>算术移位</strong>的区别。</li>
-</ol>
+</li>
+<li><p>理解<strong>逻辑移位</strong>和<strong>算术移位</strong>的区别。</p>
 <blockquote>
 <p>逻辑左移 = 算数左移</p>
-</blockquote>
-<blockquote>
 <p>逻辑右移就是不考虑符号位，右移一位，左边补零即可。算术右移需要考虑符号位，右移一位，若符号位为1，就在左边补1；否则，就补0。所以算术右移也可以进行有符号位的除法，右移 N 位就等于除以2的n次方。</p>
 </blockquote>
 <p>例如，8位二进制数 11001101 分别右移一位。</p>
@@ -319,38 +302,35 @@
 <td>[1]1100110</td>
 </tr>
 </tbody></table>
-<hr>
-<ol start="27">
-<li>条件判断语句、运算表达式、宏定义中，每一小部分都用括号显式包含起来，例如宏定义：</li>
-</ol>
+</li>
+<li><p>条件判断语句、运算表达式、宏定义中，每一小部分都用括号显式包含起来，例如宏定义：</p>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PWR_CHECK_OK ((BAT_CHECK_OK) &amp;&amp; (ACC_CHECK_OK))</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ol start="28">
-<li><strong>尽量显式初始化全局变量</strong>，未初始化的全局变量是“<strong>弱符号</strong>”，有潜在风险。举例：当使用一些外部静态库或动态库时，若库中存在同名且初始化的全局变量，则自己的全局变量会被覆盖，会造成莫明其妙的问题且难以追踪。</li>
-<li>弱符号妙用之一：在项目的Release和Debug阶段，通过弱函数和强函数，可将Debug阶段的函数覆盖，以使其在Release阶段不产生效用。例如printf函数。</li>
-<li>尽量只让一个函数实现一个单独的功能，而不是一个函数实现多个功能。</li>
-<li>尽量控制单个函数的行数，一般情况下不要超过80行。</li>
-<li>考虑代码的正确性、健壮性、可靠性、效率、易用性、可读性（可理解性）、可扩展性、可复<br>用性、兼容性、可移植性</li>
-<li>编译后生成bin文件：</li>
-</ol>
+</li>
+<li><p><strong>尽量显式初始化全局变量</strong>，未初始化的全局变量是“<strong>弱符号</strong>”，有潜在风险。举例：当使用一些外部静态库或动态库时，若库中存在同名且初始化的全局变量，则自己的全局变量会被覆盖，会造成莫明其妙的问题且难以追踪。</p>
+</li>
+<li><p>弱符号妙用之一：在项目的Release和Debug阶段，通过弱函数和强函数，可将Debug阶段的函数覆盖，以使其在Release阶段不产生效用。例如printf函数。</p>
+</li>
+<li><p>尽量只让一个函数实现一个单独的功能，而不是一个函数实现多个功能。</p>
+</li>
+<li><p>尽量控制单个函数的行数，一般情况下不要超过80行。</p>
+</li>
+<li><p>考虑代码的正确性、健壮性、可靠性、效率、易用性、可读性（可理解性）、可扩展性、可复<br>用性、兼容性、可移植性</p>
+</li>
+<li><p>编译后生成bin文件：</p>
 <figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-type">C</span>:\<span class="hljs-type">Keil_v5</span>\<span class="hljs-type">ARM</span>\<span class="hljs-type">ARMCC</span>\bin\fromelf.exe <span class="hljs-comment">--bin -o .\KeilProjFile.bin .\Objects\*.axf</span></span><br></pre></td></tr></table></figure>
-
-
-
+</li>
+</ol>
 <ul>
-<li>经验：</li>
-</ul>
+<li><p>经验：</p>
 <ol>
 <li>循环体要纯粹，尽量避免循环</li>
 <li>循环嵌套时，次数多的安排在内层</li>
 <li>循环中避免使用链表</li>
 <li>循环体展开</li>
 </ol>
-<ul>
-<li>优化思路：</li>
-</ul>
-<ol start="0">
+</li>
+<li><p>优化思路：</p>
+<ol>
 <li>编译器优化开关，直接打开</li>
 <li>利用外部profile工具，查找性能瓶颈，按照28法则进行优化。同时关注如何提高系统整体命中率</li>
 <li>架构重构，使用不同的实现方法达到相同的目的 —— 优化幅度巨大</li>
@@ -358,9 +338,8 @@
 <li>源码级优化（通用手法）—— 一到两倍</li>
 <li>根据特定平台进行汇编改写，使用高级指令 —— 提升10%~30%，很少使用</li>
 </ol>
-<ul>
-<li>通用源码优化手段：</li>
-</ul>
+</li>
+<li><p>通用源码优化手段：</p>
 <ol>
 <li>避免浮点/除法运算</li>
 <li>乘法改移位</li>
@@ -371,9 +350,8 @@
 <li>减少函数调用，对于纯粹的，调用频繁的函数进行内联</li>
 <li>函数定义不能超过4个参数，如做不到请用结构体将参数打包，传入结构体指针</li>
 </ol>
-<ul>
-<li>链接：<a href="http://www.azillionmonkeys.com/qed/optimize.html" target="_blank" rel="noopener">http://www.azillionmonkeys.com/qed/optimize.html</a></li>
-</ul>
+</li>
+<li><p>链接：<a href="http://www.azillionmonkeys.com/qed/optimize.html" target="_blank" rel="noopener">azillionmonkeys.com</a></p>
 <ol>
 <li>把循环体里的判断干掉</li>
 <li>对关键的变量用register（可能没用）</li>
@@ -384,6 +362,8 @@
 <li>局部的函数定义为static</li>
 <li>……</li>
 </ol>
+</li>
+</ul>
 
         </div>
         
