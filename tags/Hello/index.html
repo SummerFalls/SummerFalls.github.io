@@ -67,8 +67,29 @@
 
     
     
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?095c2ecf4f76ce7c3e576e6ffc99edf2";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
     
     
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1505643,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
 
     
     
@@ -172,7 +193,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 137 个字)
+                    1 分钟 读完 (大约 191 个字)
                 </span>
                 
                 
@@ -185,9 +206,19 @@
             
         </h1>
         <div class="content">
-            <h2 id="技巧列表"><a href="#技巧列表" class="headerlink" title="技巧列表"></a>技巧列表</h2><h2 id="1-首页文章截断，显示-阅读更多-按钮"><a href="#1-首页文章截断，显示-阅读更多-按钮" class="headerlink" title="1. 首页文章截断，显示 阅读更多 按钮"></a>1. 首页文章截断，显示 <strong>阅读更多</strong> 按钮</h2><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+            <h2 id="1-Hexo-文章模板"><a href="#1-Hexo-文章模板" class="headerlink" title="1. Hexo 文章模板"></a>1. Hexo 文章模板</h2><blockquote>
+<p>打开并编辑 scaffolds/post.md</p>
+</blockquote>
+<figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">thumbnail: /images/flower.jpg</span><br><span class="line">toc: true</span><br><span class="line">categories:</span><br><span class="line"><span class="hljs-bullet">- </span>uncategorized</span><br><span class="line">tags:</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style = "text-align: center; margin: auto; width: 100%;"&gt;</span><br><span class="line"></span><br><span class="line">![<span class="hljs-string">Car</span>](<span class="hljs-link">../images/Car.jpg</span>)</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-标题级别"><a href="#2-标题级别" class="headerlink" title="2. 标题级别"></a>2. 标题级别</h2><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section"># 这是一级标题</span></span><br><span class="line"><span class="hljs-section">## 这是二级标题</span></span><br><span class="line"><span class="hljs-section">### 这是三级标题</span></span><br><span class="line"><span class="hljs-section">#### 这是四级标题</span></span><br><span class="line"><span class="hljs-section">##### 这是五级标题</span></span><br><span class="line"><span class="hljs-section">###### 这是六级标题</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>打开并编辑 scaffolds/page.md</p>
+</blockquote>
+<figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">thumbnail: /images/flower.jpg</span><br><span class="line">toc: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-首页文章截断，显示-阅读更多-按钮"><a href="#2-首页文章截断，显示-阅读更多-按钮" class="headerlink" title="2. 首页文章截断，显示 阅读更多 按钮"></a>2. 首页文章截断，显示 <strong>阅读更多</strong> 按钮</h2><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!--more--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-标题级别"><a href="#3-标题级别" class="headerlink" title="3. 标题级别"></a>3. 标题级别</h2><figure class="highlight md hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-section"># 这是一级标题</span></span><br><span class="line"><span class="hljs-section">## 这是二级标题</span></span><br><span class="line"><span class="hljs-section">### 这是三级标题</span></span><br><span class="line"><span class="hljs-section">#### 这是四级标题</span></span><br><span class="line"><span class="hljs-section">##### 这是五级标题</span></span><br><span class="line"><span class="hljs-section">###### 这是六级标题</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -254,7 +285,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        10
                     </p>
                 </div>
             </div>
@@ -264,7 +295,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        11
                     </p>
                 </div>
             </div>
@@ -274,7 +305,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        18
                     </p>
                 </div>
             </div>
@@ -405,6 +436,25 @@
         
         <article class="media">
             
+            <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Foliage_Dylan_Luder.jpg" alt="利用GitHub Pages搭建Hexo静态博客教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-28T07:48:09.000Z">2019-09-28</time></div>
+                    <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用GitHub Pages搭建Hexo静态博客教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Blog/">Blog</a> / <a class="has-link-grey -link" href="/categories/Blog/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/GitHub/">GitHub</a> / <a class="has-link-grey -link" href="/categories/Tutorial/">Tutorial</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019-09-24-CCS-工程配置.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/desert.jpg" alt="CCS 工程配置">
@@ -479,25 +529,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019-09-20-Astyle-参数设置.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/Match.png" alt="Astyle 参数设置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T08:59:18.000Z">2019-09-20</time></div>
-                    <a href="/2019-09-20-Astyle-参数设置.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Astyle 参数设置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -516,6 +547,22 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/C/">
             <span class="level-start">
                 <span class="level-item">C</span>
@@ -548,6 +595,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/IDE/">
             <span class="level-start">
                 <span class="level-item">IDE</span>
@@ -571,6 +626,14 @@
             <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -583,7 +646,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
     </div>
 </div>
 
@@ -602,7 +665,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -623,6 +686,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Astyle/">
                         <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -656,6 +726,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hello/">
                         <span class="tag">Hello</span>
                         <span class="tag is-grey">1</span>
@@ -665,7 +742,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -714,6 +791,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Template/">
                         <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -752,6 +836,22 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/C/">
             <span class="level-start">
                 <span class="level-item">C</span>
@@ -784,6 +884,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/IDE/">
             <span class="level-start">
                 <span class="level-item">IDE</span>
@@ -807,6 +915,14 @@
             <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li>
             </ul>
         </div>
@@ -819,7 +935,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
     </div>
 </div>
 
@@ -838,7 +954,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -859,6 +975,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Astyle/">
                         <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -892,6 +1015,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hello/">
                         <span class="tag">Hello</span>
                         <span class="tag is-grey">1</span>
@@ -901,7 +1031,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -950,6 +1080,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Template/">
                         <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

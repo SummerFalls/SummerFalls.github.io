@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>利用GitHub Pages搭建Hexo静态博客教程 - Tomy Stark&#39;s Blog</title>
+
+
+    <meta name="description" content="利用GitHub Pages搭建Hexo静态博客教程  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   什么是 Hexo Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  搭建 Hexo 博客需要什么">
+<meta name="keywords" content="Hexo,GitHub,Blog,Tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用GitHub Pages搭建Hexo静态博客教程">
+<meta property="og:url" content="https://apex.linn.top/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html">
+<meta property="og:site_name" content="Tomy Stark&#39;s Blog">
+<meta property="og:description" content="利用GitHub Pages搭建Hexo静态博客教程  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   什么是 Hexo Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  搭建 Hexo 博客需要什么">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://apex.linn.top/images/Foliage_Dylan_Luder.jpg">
+<meta property="og:updated_time" content="2019-09-29T00:00:48.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用GitHub Pages搭建Hexo静态博客教程">
+<meta name="twitter:description" content="利用GitHub Pages搭建Hexo静态博客教程  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   什么是 Hexo Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。  搭建 Hexo 博客需要什么">
+<meta name="twitter:image" content="https://apex.linn.top/images/Foliage_Dylan_Luder.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/vs2015.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?095c2ecf4f76ce7c3e576e6ffc99edf2";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1505643,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="利用GitHub Pages搭建Hexo静态博客教程" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/list">清单</a>
+                
+                <a class="navbar-item"
+                href="/links">链接</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/Foliage_Dylan_Luder.jpg" alt="利用GitHub Pages搭建Hexo静态博客教程">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-28T07:48:09.000Z">2019-09-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Blog/">Blog</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Blog/Hexo/">Hexo</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/GitHub/">GitHub</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tutorial/">Tutorial</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    29 分钟 读完 (大约 4396 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                利用GitHub Pages搭建Hexo静态博客教程
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>利用GitHub Pages搭建Hexo静态博客教程</p>
+<blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
+<p><strong>Note: 转载请注明本文出处链接、作者</strong></p>
+</blockquote>
+</blockquote>
+<h2 id="什么是-Hexo"><a href="#什么是-Hexo" class="headerlink" title="什么是 Hexo"></a>什么是 Hexo</h2><blockquote>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
+<h2 id="搭建-Hexo-博客需要什么"><a href="#搭建-Hexo-博客需要什么" class="headerlink" title="搭建 Hexo 博客需要什么"></a>搭建 Hexo 博客需要什么</h2><ul>
+<li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>（用于作为 Markdown 编辑器，由于内部集成了终端，非常方便，必备！）</li>
+<li><a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener"><strong>Node.js</strong></a>（Node.js 版本需不低于 8.6，建议使用 Node.js 10.0 及以上版本）</li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener"><strong>Git</strong></a>（用于将编译好的 Hexo 静态博客文件部署到 GitHub Pages）</li>
+<li><a href="https://github.com/" target="_blank" rel="noopener"><strong>GitHub 帐号</strong></a>（帐号注册请自行完成，注册流程本文不做叙述）</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h2><h3 id="1-安装必要软件"><a href="#1-安装必要软件" class="headerlink" title="1. 安装必要软件"></a>1. 安装必要软件</h3><ul>
+<li><p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a></p>
+<blockquote>
+<p>下载完成后安装即可，没有特别需要注意的地方（<code>安装目录可自己手动指定</code>）</p>
+<p>建议安装完成后，在 VS Code 中安装以下扩展插件：</p>
+<ul>
+<li>Chinese (Simplified) Language Pack for VS Code</li>
+<li>changeEncode</li>
+<li>GBKtoUTF8</li>
+<li>markdownlint</li>
+<li>Markdown All in One</li>
+</ul>
+</blockquote>
+</li>
+<li><p><a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a></p>
+<blockquote>
+<p>按照默认设置一直 Next 安装即可（<code>安装目录可自己手动指定</code>）</p>
+</blockquote>
+</li>
+<li><p><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></p>
+<blockquote>
+<p>注意其中一步选择 VS Code 作为 Git 的默认编辑器，其它默认（<code>安装目录可自己手动指定</code>）</p>
+</blockquote>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 100%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-01.jpg" alt="选择VS Code作为Git的默认编辑器"></p>
+</div>
+
+<h3 id="2-注册-GitHub-帐号"><a href="#2-注册-GitHub-帐号" class="headerlink" title="2. 注册 GitHub 帐号"></a>2. 注册 GitHub 帐号</h3><ul>
+<li>注册链接：<a href="https://github.com/" target="_blank" rel="noopener"><strong>GitHub 帐号注册</strong></a>（帐号注册请自行完成，注册流程本文不做叙述）<blockquote>
+<p><code>注意：请在注册完成后验证邮箱</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-在-GitHub-上新建仓库"><a href="#3-在-GitHub-上新建仓库" class="headerlink" title="3. 在 GitHub 上新建仓库"></a>3. 在 GitHub 上新建仓库</h3><ul>
+<li>登录账号后，页面右上角 <code>+</code> 号，选择 <code>New repository</code></li>
+</ul>
+<div style="text-align: center; margin: auto; width: 100%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-02.jpg" alt="New repository"></p>
+</div>
+
+<ul>
+<li>如果你希望你的站点能通过 <code>&lt;你的 GitHub 用户名&gt;.github.io</code> 域名访问，你的 repository 应该直接命名为 <code>&lt;你的 GitHub 用户名&gt;.github.io</code>。例如，我的用户名为 <code>SummerFalls</code>，那么该仓库名就应该为 <code>SummerFalls.github.io</code>，详见下图：</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-03.jpg" alt="新建 GitHub 仓库"></p>
+</div>
+
+<ul>
+<li>新建完成后出现如下图页面：</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-04.jpg" alt="仓库新建完毕"></p>
+</div>
+
+<h3 id="4-安装-Hexo"><a href="#4-安装-Hexo" class="headerlink" title="4. 安装 Hexo"></a>4. 安装 Hexo</h3><ul>
+<li>打开 <code>VS Code</code>，按下 <kbd>Ctrl</kbd> + <kbd>`</kbd> 打开内部集成的终端</li>
+<li>先测试 <code>Node.js</code> 是否被能够被 <code>VS Code</code> 的终端所调用<ul>
+<li>在 <code>VS Code</code> 的终端中输入命令 <code>npm -v</code><ul>
+<li>如果正常，则会显示其版本号，例如 <code>6.9.0</code></li>
+<li>如果异常，则会提示类似错误：<code>npm : 无法将“npm”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确， 然后再试一次。</code>这时，请关闭 <code>VS Code</code>，然后将其设置为 <code>以管理员身份运行此程序</code>，之后重新运行 <code>VS Code</code>，如图所示：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 100%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-05.jpg" alt="设置 VS Code 管理员权限"></p>
+</div>
+
+<ul>
+<li>定位到你想用于存放博客源文件夹的目录，我这里以C盘根目录为例<blockquote>
+<p>cd C:\</p>
+</blockquote>
+</li>
+<li>执行 npm 命令进行全局安装 Hexo<blockquote>
+<p>npm install hexo-cli -g</p>
+</blockquote>
+</li>
+<li>初始化 Hexo 博客（此举会在当前目录创建名为 <code>blog</code> 的文件夹）<blockquote>
+<p>hexo init blog</p>
+</blockquote>
+</li>
+<li>进入 <code>blog</code> 文件夹<blockquote>
+<p>cd blog</p>
+</blockquote>
+</li>
+<li>通过 <code>blog</code> 目录下的 <code>package.json</code> 进一步安装依赖，之后会产生一个 <code>node_modules</code> 文件夹<blockquote>
+<p>npm install</p>
+</blockquote>
+</li>
+<li>启动 Hexo 本地服务器<blockquote>
+<p>hexo s</p>
+</blockquote>
+</li>
+<li>检查 Hexo 是否安装成功，在执行上面的命令之后，终端会返回如下信息，<code>按住 Ctrl + 鼠标左键单击</code> 该链接即可打开<blockquote>
+<p>INFO  Hexo is running at <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> . Press Ctrl+C to stop.</p>
+</blockquote>
+</li>
+<li>打开后的页面如图，即说明 Hexo 安装成功</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-06.jpg" alt="Hexo 初始页面"></p>
+</div>
+
+<ul>
+<li>回到 <code>VS Code</code>，切换到终端，按下 <code>Ctrl + C</code>，之后输入 <code>Y</code> 以停止 Hexo 服务器</li>
+</ul>
+<h3 id="5-配置-Hexo"><a href="#5-配置-Hexo" class="headerlink" title="5. 配置 Hexo"></a>5. 配置 Hexo</h3><ul>
+<li><code>VS Code</code> 中按下快捷键 <code>Ctrl + K + O</code>，打开你的博客源文件夹，如图：</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-07.jpg" alt="打开博客源文件夹"></p>
+</div>
+
+<ul>
+<li><p>打开左侧 <code>侧边栏</code> 中的 <code>_config.yml</code> 文件进行修改，如下所示，<code>请认真阅读注释说明</code>：</p>
+  <figure class="highlight yml hljs"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Hexo Configuration</span></span><br><span class="line"><span class="hljs-comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="hljs-comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Site</span></span><br><span class="line"><span class="hljs-attr">title:</span> <span class="hljs-string">Tomy</span> <span class="hljs-string">Stark's</span> <span class="hljs-string">Blog</span>                <span class="hljs-comment"># 你的博客名</span></span><br><span class="line"><span class="hljs-attr">subtitle:</span> <span class="hljs-string">四海茫茫</span>                       <span class="hljs-comment"># 子标题</span></span><br><span class="line"><span class="hljs-attr">description:</span> <span class="hljs-string">STM32,</span> <span class="hljs-string">TI</span> <span class="hljs-string">C2000,</span> <span class="hljs-string">S32K</span>      <span class="hljs-comment"># 博客描述，SEO相关</span></span><br><span class="line"><span class="hljs-attr">keywords:</span> <span class="hljs-string">C,</span> <span class="hljs-string">C++</span>                        <span class="hljs-comment"># 关键词</span></span><br><span class="line"><span class="hljs-attr">author:</span> <span class="hljs-string">Tomy</span>                            <span class="hljs-comment"># 博主名字</span></span><br><span class="line"><span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span>                         <span class="hljs-comment"># 语言，**关系到主题所显示的语言**</span></span><br><span class="line"><span class="hljs-attr">timezone:</span>                               <span class="hljs-comment"># 时区，默认留空</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># URL</span></span><br><span class="line"><span class="hljs-comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="hljs-attr">url:</span> <span class="hljs-string">'https://SummerFalls.github.io'</span> <span class="hljs-comment"># 域名设置，如果没有自己的域名，则地址应为 https://&lt;你的 GitHub 用户名&gt;.github.io 例如我的为： https://SummerFalls.github.io</span></span><br><span class="line"><span class="hljs-attr">root:</span> <span class="hljs-string">/</span></span><br><span class="line"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year-:month-:day-:title.html</span> <span class="hljs-comment"># 建议将永久链接改成如此</span></span><br><span class="line"><span class="hljs-attr">permalink_defaults:</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Directory</span></span><br><span class="line"><span class="hljs-attr">source_dir:</span> <span class="hljs-string">source</span></span><br><span class="line"><span class="hljs-attr">public_dir:</span> <span class="hljs-string">public</span></span><br><span class="line"><span class="hljs-attr">tag_dir:</span> <span class="hljs-string">tags</span></span><br><span class="line"><span class="hljs-attr">archive_dir:</span> <span class="hljs-string">archives</span></span><br><span class="line"><span class="hljs-attr">category_dir:</span> <span class="hljs-string">categories</span></span><br><span class="line"><span class="hljs-attr">code_dir:</span> <span class="hljs-string">downloads/code</span></span><br><span class="line"><span class="hljs-attr">i18n_dir:</span> <span class="hljs-string">:lang</span></span><br><span class="line"><span class="hljs-attr">skip_render:</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Writing</span></span><br><span class="line"><span class="hljs-attr">new_post_name:</span> <span class="hljs-string">:title.md</span> <span class="hljs-comment"># File name of new posts</span></span><br><span class="line"><span class="hljs-attr">default_layout:</span> <span class="hljs-string">post</span></span><br><span class="line"><span class="hljs-attr">titlecase:</span> <span class="hljs-literal">false</span> <span class="hljs-comment"># Transform title into titlecase</span></span><br><span class="line"><span class="hljs-attr">external_link:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Open external links in new tab</span></span><br><span class="line"><span class="hljs-attr">filename_case:</span> <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-attr">render_drafts:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">relative_link:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">future:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">highlight:</span></span><br><span class="line"><span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-attr">auto_detect:</span> <span class="hljs-literal">false</span></span><br><span class="line"><span class="hljs-attr">tab_replace:</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Home page setting</span></span><br><span class="line"><span class="hljs-comment"># path: Root path for your blogs index page. (default = '')</span></span><br><span class="line"><span class="hljs-comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="hljs-comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="hljs-attr">index_generator:</span></span><br><span class="line"><span class="hljs-attr">path:</span> <span class="hljs-string">''</span></span><br><span class="line"><span class="hljs-attr">per_page:</span> <span class="hljs-number">5</span>                         <span class="hljs-comment"># 设置主页中每页显示几篇文章</span></span><br><span class="line"><span class="hljs-attr">order_by:</span> <span class="hljs-bullet">-date</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Category &amp; Tag</span></span><br><span class="line"><span class="hljs-attr">default_category:</span> <span class="hljs-string">uncategorized</span></span><br><span class="line"><span class="hljs-attr">category_map:</span></span><br><span class="line"><span class="hljs-attr">tag_map:</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Date / Time format</span></span><br><span class="line"><span class="hljs-comment">## Hexo uses Moment.js to parse and display date</span></span><br><span class="line"><span class="hljs-comment">## You can customize the date format as defined in</span></span><br><span class="line"><span class="hljs-comment">## http://momentjs.com/docs/#/displaying/format/</span></span><br><span class="line"><span class="hljs-attr">date_format:</span> <span class="hljs-string">YYYY-MM-DD</span></span><br><span class="line"><span class="hljs-attr">time_format:</span> <span class="hljs-attr">HH:mm:ss</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Pagination</span></span><br><span class="line"><span class="hljs-comment">## Set per_page to 0 to disable pagination</span></span><br><span class="line"><span class="hljs-attr">per_page:</span> <span class="hljs-number">10</span>                        <span class="hljs-comment"># 设置归档(archives)页面每页显示文章数</span></span><br><span class="line"><span class="hljs-attr">pagination_dir:</span> <span class="hljs-string">page</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Extensions</span></span><br><span class="line"><span class="hljs-comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="hljs-comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="hljs-attr">theme:</span> <span class="hljs-string">landscape</span>                    <span class="hljs-comment"># 设置所用的主题，默认为 landscape</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># Deployment</span></span><br><span class="line"><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="hljs-comment">## repository 之后的链接应为你之前创建的仓库的链接，后面跟上 .git 后缀，如下图，可直接复制仓库链接</span></span><br><span class="line"><span class="hljs-comment">## 类型为 git</span></span><br><span class="line"><span class="hljs-comment">## 分支为 master</span></span><br><span class="line"><span class="hljs-attr">deploy:</span></span><br><span class="line"><span class="hljs-attr">type:</span> <span class="hljs-string">git</span></span><br><span class="line"><span class="hljs-attr">repository:</span> <span class="hljs-attr">https://github.com/SummerFalls/SummerFalls.github.io.git</span></span><br><span class="line"><span class="hljs-attr">branch:</span> <span class="hljs-string">master</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-08.jpg" alt="复制 repository 链接地址"></p>
+</div>
+
+<h3 id="6-安装-Hexo-的必备扩展"><a href="#6-安装-Hexo-的必备扩展" class="headerlink" title="6. 安装 Hexo 的必备扩展"></a>6. 安装 Hexo 的必备扩展</h3><ul>
+<li>安装热更新支持包<blockquote>
+<p>npm install hexo-browsersync –save</p>
+</blockquote>
+</li>
+<li>安装 Hexo Git 支持包，以支持部署 Hexo 博客到 GitHub<blockquote>
+<p>npm install hexo-deployer-git –save</p>
+</blockquote>
+</li>
+<li>安装网站地图生成支持包（根目录生成 sitemap.xml 方便搜索引擎抓取）<blockquote>
+<p>npm install hexo-generator-sitemap –save</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="7-部署-Hexo-博客到-GitHub"><a href="#7-部署-Hexo-博客到-GitHub" class="headerlink" title="7. 部署 Hexo 博客到 GitHub"></a>7. 部署 Hexo 博客到 GitHub</h3><ul>
+<li><p>生成 Hexo 静态博客网页文件</p>
+<blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><p>部署 Hexo 博客到 GitHub</p>
+<blockquote>
+<p>hexo d</p>
+</blockquote>
+<ul>
+<li>第一次执行本命令会弹出登录框，请登录你的 <code>GitHub 帐号</code> 如图所示：</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 100%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-09.jpg" alt="登录 GitHub 帐号"></p>
+</div>
+
+<ul>
+<li>稍等片刻，待终端命令执行结束后，浏览器打开你的博客网页地址，如图：<blockquote>
+<p>注意这一次网页地址为 <code>_config.yml</code> 文件中 <code>url:</code> 字段后跟随的网页地址（实际上就是你的 GitHub Pages 仓库名），在这里，我的地址就应该为：<a href="https://SummerFalls.github.io" target="_blank" rel="noopener">https://SummerFalls.github.io</a></p>
+</blockquote>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-10.jpg" alt="部署后的博客"></p>
+</div>
+
+<h3 id="8-可选-设置-Hexo-博客域名解析"><a href="#8-可选-设置-Hexo-博客域名解析" class="headerlink" title="8. [可选] 设置 Hexo 博客域名解析"></a>8. <strong><code>[可选]</code></strong> 设置 Hexo 博客域名解析</h3><h4 id="I-设置域名解析"><a href="#I-设置域名解析" class="headerlink" title="I. 设置域名解析"></a>I. 设置域名解析</h4><blockquote>
+<p><code>在设置自定义域名之前，请自行在域名服务商购买域名</code></p>
+<p><code>这里以在阿里云购买的万网域名为例</code></p>
+</blockquote>
+<ul>
+<li>打开并登录 <a href="https://www.aliyun.com/" target="_blank" rel="noopener">阿里云</a></li>
+<li>点击网页右上角的控制台</li>
+<li>找到 <code>云解析 DNS</code>，如图所示：</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-11.jpg" alt="云解析 DNS"></p>
+</div>
+
+<ul>
+<li>点击自己购买的域名，进入 <code>解析设置</code> 页面</li>
+<li>点击 <code>添加记录</code> 按钮，设置如图所示：<ul>
+<li>记录类型：CNAME</li>
+<li>主机记录：apex<blockquote>
+<p>这里你可以改为自己喜欢的名称</p>
+</blockquote>
+</li>
+<li>解析线路：默认</li>
+<li>记录值：summerfalls.github.io<blockquote>
+<p>记录值改为你的 GitHub Pages 仓库名称</p>
+</blockquote>
+</li>
+<li>TTL：10分钟</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-12.jpg" alt="解析设置"></p>
+</div>
+
+<ul>
+<li>点击 <code>确定</code>，之后解析添加成功</li>
+</ul>
+<h4 id="II-修改-博客根目录-下的-config-yml-文件"><a href="#II-修改-博客根目录-下的-config-yml-文件" class="headerlink" title="II. 修改 博客根目录 下的 _config.yml 文件"></a>II. 修改 <code>博客根目录</code> 下的 <code>_config.yml</code> 文件</h4><figure class="highlight yml hljs"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">url:</span> <span class="hljs-string">'https://apex.linn.top'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="III-用-VS-Code-在-博客根目录-下的-source-目录下新建一个不带任何后缀名的-CNAME-文件"><a href="#III-用-VS-Code-在-博客根目录-下的-source-目录下新建一个不带任何后缀名的-CNAME-文件" class="headerlink" title="III. 用 VS Code 在 博客根目录 下的 source 目录下新建一个不带任何后缀名的 CNAME 文件"></a>III. 用 <code>VS Code</code> 在 <code>博客根目录</code> 下的 <code>source</code> 目录下新建一个不带任何后缀名的 <code>CNAME</code> 文件</h4><h4 id="IV-修改-CNAME-文件，文件内容为你的自定义博客网址"><a href="#IV-修改-CNAME-文件，文件内容为你的自定义博客网址" class="headerlink" title="IV. 修改 CNAME 文件，文件内容为你的自定义博客网址"></a>IV. 修改 <code>CNAME</code> 文件，文件内容为你的自定义博客网址</h4><figure class="highlight cpp hljs"><figcaption><span>CNAME</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apex.linn.top</span><br></pre></td></tr></table></figure>
+
+<h4 id="V-重新生成并部署-Hexo-博客"><a href="#V-重新生成并部署-Hexo-博客" class="headerlink" title="V. 重新生成并部署 Hexo 博客"></a>V. 重新生成并部署 Hexo 博客</h4><ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+<li>之后便能通过自定义域名访问博客，如图所示：</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-13.jpg" alt="自定义域名访问博客"></p>
+</div>
+
+<h3 id="9-可选-更换-Hexo-博客主题"><a href="#9-可选-更换-Hexo-博客主题" class="headerlink" title="9. [可选] 更换 Hexo 博客主题"></a>9. <strong><code>[可选]</code></strong> 更换 Hexo 博客主题</h3><blockquote>
+<p>这里推荐 <code>Icarus</code> 主题</p>
+<p>GitHub 地址：<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">https://github.com/ppoffice/hexo-theme-icarus</a></p>
+<p>效果如图：</p>
+</blockquote>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-14.png" alt="Icarus 主题效果"></p>
+</div>
+
+<h4 id="I-更换步骤"><a href="#I-更换步骤" class="headerlink" title="I. 更换步骤"></a>I. 更换步骤</h4><ul>
+<li><p>在终端中，确保为 <code>博客根目录</code> 的情况下，输入以下 <code>git</code> 命令，回车后等待安装完毕</p>
+<blockquote>
+<p>git clone <a href="https://github.com/ppoffice/hexo-theme-icarus.git" target="_blank" rel="noopener">https://github.com/ppoffice/hexo-theme-icarus.git</a> themes/icarus</p>
+</blockquote>
+</li>
+<li><p>修改 <code>博客根目录</code> 下的 <code>_config.yml</code> 文件</p>
+  <figure class="highlight yml hljs"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attr">theme:</span> <span class="hljs-string">icarus</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清理之后重新生成并部署 Hexo 博客</p>
+<ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>部署完毕后再刷新博客页面，发现主题更换成功，如图所示：</p>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-15.jpg" alt="主题更换后的效果"></p>
+</div>
+
+<h4 id="II-修改主题的-config-yml-文件"><a href="#II-修改主题的-config-yml-文件" class="headerlink" title="II. 修改主题的 _config.yml 文件"></a>II. 修改主题的 <code>_config.yml</code> 文件</h4><blockquote>
+<p>在 <code>Icarus</code> 主题的根目录下，找到 <code>_config.yml</code> 文件，用 <code>VS Code</code> 修改</p>
+<p>注意：关于文章末尾的打赏，也在本文件设置，同时需要指定<code>支付宝</code>和<code>微信</code>的<code>收款码</code>所处的地址，可以在 <code>source</code> 目录下新建一个 <code>images</code> 文件夹，在其中存放<code>收款码</code>图片，引用图片的方法如下所示：</p>
+</blockquote>
+<figure class="highlight yml hljs"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Version of the Icarus theme that is currently used</span></span><br><span class="line"><span class="hljs-attr">version:</span> <span class="hljs-number">2.6</span><span class="hljs-number">.0</span></span><br><span class="line"><span class="hljs-comment"># Path or URL to the website's icon</span></span><br><span class="line"><span class="hljs-attr">favicon:</span> <span class="hljs-string">/images/favicon.svg</span></span><br><span class="line"><span class="hljs-comment"># Additional HTML meta tags in an array.</span></span><br><span class="line"><span class="hljs-attr">meta:</span> </span><br><span class="line"><span class="hljs-comment"># Path or URL to RSS atom.xml</span></span><br><span class="line"><span class="hljs-attr">rss:</span> </span><br><span class="line"><span class="hljs-comment"># Path or URL to the website's logo to be shown on the left of the navigation bar or footer</span></span><br><span class="line"><span class="hljs-attr">logo:</span> <span class="hljs-string">/images/logo.svg</span></span><br><span class="line"><span class="hljs-comment"># Open Graph metadata</span></span><br><span class="line"><span class="hljs-comment"># https://hexo.io/docs/helpers.html#open-graph</span></span><br><span class="line"><span class="hljs-attr">open_graph:</span></span><br><span class="line">    <span class="hljs-comment"># Facebook App ID</span></span><br><span class="line"><span class="hljs-attr">    fb_app_id:</span> </span><br><span class="line">    <span class="hljs-comment"># Facebook Admin ID</span></span><br><span class="line"><span class="hljs-attr">    fb_admins:</span> </span><br><span class="line">    <span class="hljs-comment"># Twitter ID</span></span><br><span class="line"><span class="hljs-attr">    twitter_id:</span> </span><br><span class="line">    <span class="hljs-comment"># Twitter site</span></span><br><span class="line"><span class="hljs-attr">    twitter_site:</span> </span><br><span class="line">    <span class="hljs-comment"># Google+ profile link</span></span><br><span class="line"><span class="hljs-attr">    google_plus:</span> </span><br><span class="line"><span class="hljs-comment"># Navigation bar link settings</span></span><br><span class="line"><span class="hljs-attr">navbar:</span></span><br><span class="line">    <span class="hljs-comment"># Navigation bar menu links</span></span><br><span class="line"><span class="hljs-attr">    menu:</span></span><br><span class="line">        <span class="hljs-string">主页:</span> <span class="hljs-string">/</span></span><br><span class="line">        <span class="hljs-string">归档:</span> <span class="hljs-string">/archives</span></span><br><span class="line">        <span class="hljs-string">分类:</span> <span class="hljs-string">/categories</span></span><br><span class="line">        <span class="hljs-string">标签:</span> <span class="hljs-string">/tags</span></span><br><span class="line">        <span class="hljs-string">关于:</span> <span class="hljs-string">/about</span></span><br><span class="line">    <span class="hljs-comment"># Navigation bar links to be shown on the right</span></span><br><span class="line"><span class="hljs-attr">    links:</span></span><br><span class="line">        <span class="hljs-comment"># GitHub:</span></span><br><span class="line">        <span class="hljs-comment">#     icon: fab fa-github</span></span><br><span class="line">        <span class="hljs-comment">#     url: 'https://github.com/SummerFalls'</span></span><br><span class="line"><span class="hljs-comment"># Footer section link settings</span></span><br><span class="line"><span class="hljs-attr">footer:</span></span><br><span class="line">    <span class="hljs-comment"># Links to be shown on the right of the footer section</span></span><br><span class="line"><span class="hljs-attr">    links:</span></span><br><span class="line">        <span class="hljs-comment"># Creative Commons:</span></span><br><span class="line">        <span class="hljs-comment">#     icon: fab fa-creative-commons</span></span><br><span class="line">        <span class="hljs-comment">#     url: 'https://creativecommons.org/'</span></span><br><span class="line">        <span class="hljs-comment"># Attribution 4.0 International:</span></span><br><span class="line">        <span class="hljs-comment">#     icon: fab fa-creative-commons-by</span></span><br><span class="line">        <span class="hljs-comment">#     url: 'https://creativecommons.org/licenses/by/4.0/'</span></span><br><span class="line">        <span class="hljs-comment"># Download on GitHub:</span></span><br><span class="line">        <span class="hljs-comment">#     icon: fab fa-github</span></span><br><span class="line">        <span class="hljs-comment">#     url: 'https://github.com/ppoffice/hexo-theme-icarus'</span></span><br><span class="line"><span class="hljs-comment"># Article display settings</span></span><br><span class="line"><span class="hljs-attr">article:</span></span><br><span class="line">    <span class="hljs-comment"># Code highlight settings</span></span><br><span class="line"><span class="hljs-attr">    highlight:</span></span><br><span class="line">        <span class="hljs-comment"># Code highlight themes</span></span><br><span class="line">        <span class="hljs-comment"># https://github.com/highlightjs/highlight.js/tree/master/src/styles</span></span><br><span class="line">        <span class="hljs-comment"># https://highlightjs.org/static/demo/</span></span><br><span class="line"><span class="hljs-attr">        theme:</span> <span class="hljs-string">vs2015</span></span><br><span class="line">        <span class="hljs-comment"># Show code copying button</span></span><br><span class="line"><span class="hljs-attr">        clipboard:</span> <span class="hljs-literal">true</span></span><br><span class="line">        <span class="hljs-comment"># Default folding status of the code blocks. Can be "", "folded", "unfolded"</span></span><br><span class="line"><span class="hljs-attr">        fold:</span> <span class="hljs-string">unfolded</span></span><br><span class="line">    <span class="hljs-comment"># Whether to show article thumbnail images</span></span><br><span class="line"><span class="hljs-attr">    thumbnail:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># Whether to show estimate article reading time</span></span><br><span class="line"><span class="hljs-attr">    readtime:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-comment"># Search plugin settings</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Search</span></span><br><span class="line"><span class="hljs-attr">search:</span></span><br><span class="line">    <span class="hljs-comment"># Name of the search plugin</span></span><br><span class="line"><span class="hljs-attr">    type:</span> <span class="hljs-string">insight</span></span><br><span class="line"><span class="hljs-comment"># Comment plugin settings</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment</span></span><br><span class="line"><span class="hljs-attr">comment:</span></span><br><span class="line">    <span class="hljs-comment"># Name of the comment plugin</span></span><br><span class="line"><span class="hljs-attr">    type:</span> </span><br><span class="line"><span class="hljs-comment"># Donation entries</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/</span></span><br><span class="line"><span class="hljs-attr">donate:</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Donation entry name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">alipay</span></span><br><span class="line">        <span class="hljs-comment"># Qrcode image URL</span></span><br><span class="line"><span class="hljs-attr">        qrcode:</span> <span class="hljs-string">/images/Alipay.jpg</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Donation entry name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">wechat</span></span><br><span class="line">        <span class="hljs-comment"># Qrcode image URL</span></span><br><span class="line"><span class="hljs-attr">        qrcode:</span> <span class="hljs-string">/images/Wechat.jpg</span></span><br><span class="line"><span class="hljs-comment"># Share plugin settings</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Share</span></span><br><span class="line"><span class="hljs-attr">share:</span></span><br><span class="line">    <span class="hljs-comment"># Share plugin name</span></span><br><span class="line"><span class="hljs-attr">    type:</span></span><br><span class="line"><span class="hljs-comment"># Sidebar settings.</span></span><br><span class="line"><span class="hljs-comment"># Please be noted that a sidebar is only visible when it has at least one widget</span></span><br><span class="line"><span class="hljs-attr">sidebar:</span></span><br><span class="line">    <span class="hljs-comment"># left sidebar settings</span></span><br><span class="line"><span class="hljs-attr">    left:</span></span><br><span class="line">        <span class="hljs-comment"># Whether the left sidebar is sticky when page scrolls</span></span><br><span class="line">        <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/</span></span><br><span class="line"><span class="hljs-attr">        sticky:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># right sidebar settings</span></span><br><span class="line"><span class="hljs-attr">    right:</span></span><br><span class="line">        <span class="hljs-comment"># Whether the right sidebar is sticky when page scrolls</span></span><br><span class="line">        <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/make-a-sidebar-sticky-when-page-scrolls/</span></span><br><span class="line"><span class="hljs-attr">        sticky:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-comment"># Sidebar widget settings</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/categories/Widgets/</span></span><br><span class="line"><span class="hljs-attr">widgets:</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">profile</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">left</span></span><br><span class="line">        <span class="hljs-comment"># Author name to be shown in the profile widget</span></span><br><span class="line"><span class="hljs-attr">        author:</span> <span class="hljs-string">Tomy</span> <span class="hljs-string">Stark</span></span><br><span class="line">        <span class="hljs-comment"># Title of the author to be shown in the profile widget</span></span><br><span class="line"><span class="hljs-attr">        author_title:</span> <span class="hljs-string">四海茫茫</span></span><br><span class="line">        <span class="hljs-comment"># Author's current location to be shown in the profile widget</span></span><br><span class="line"><span class="hljs-attr">        location:</span> <span class="hljs-string">Earth,</span> <span class="hljs-string">Solar</span> <span class="hljs-string">System.</span></span><br><span class="line">        <span class="hljs-comment"># Path or URL to the avatar to be shown in the profile widget</span></span><br><span class="line"><span class="hljs-attr">        avatar:</span> <span class="hljs-string">/images/avatar.jpg</span></span><br><span class="line">        <span class="hljs-comment"># Email address for the Gravatar to be shown in the profile widget</span></span><br><span class="line"><span class="hljs-attr">        gravatar:</span></span><br><span class="line">        <span class="hljs-comment"># Whether to show avatar image rounded or square</span></span><br><span class="line"><span class="hljs-attr">        avatar_rounded:</span> <span class="hljs-literal">true</span></span><br><span class="line">        <span class="hljs-comment"># Path or URL for the follow button</span></span><br><span class="line"><span class="hljs-attr">        follow_link:</span> <span class="hljs-string">'https://github.com/SummerFalls'</span></span><br><span class="line">        <span class="hljs-comment"># Links to be shown on the bottom of the profile widget</span></span><br><span class="line"><span class="hljs-attr">        social_links:</span></span><br><span class="line"><span class="hljs-attr">            Github:</span></span><br><span class="line"><span class="hljs-attr">                icon:</span> <span class="hljs-string">fab</span> <span class="hljs-string">fa-github</span></span><br><span class="line"><span class="hljs-attr">                url:</span> <span class="hljs-string">'https://github.com/SummerFalls'</span></span><br><span class="line">            <span class="hljs-string">知乎:</span></span><br><span class="line"><span class="hljs-attr">                icon:</span> <span class="hljs-string">fab</span> <span class="hljs-string">fa-zhihu</span></span><br><span class="line"><span class="hljs-attr">                url:</span> <span class="hljs-string">'https://www.zhihu.com/people/TomyStark'</span></span><br><span class="line">            <span class="hljs-string">微博:</span></span><br><span class="line"><span class="hljs-attr">                icon:</span> <span class="hljs-string">fab</span> <span class="hljs-string">fa-weibo</span></span><br><span class="line"><span class="hljs-attr">                url:</span> <span class="hljs-string">'https://weibo.com/tomystark'</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">toc</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">links</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">left</span></span><br><span class="line">        <span class="hljs-comment"># Links to be shown in the links widget</span></span><br><span class="line"><span class="hljs-attr">        links:</span></span><br><span class="line">            <span class="hljs-string">博客</span> <span class="hljs-bullet">-</span> <span class="hljs-string">吴川斌:</span> <span class="hljs-string">'https://www.mr-wu.cn/'</span></span><br><span class="line">            <span class="hljs-string">博客</span> <span class="hljs-bullet">-</span> <span class="hljs-string">芯跳不止:</span> <span class="hljs-string">'http://www.mazirong.com/'</span></span><br><span class="line">            <span class="hljs-string">工作室</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Muse</span> <span class="hljs-attr">Lab:</span> <span class="hljs-string">'https://www.muselab-tech.com/'</span></span><br><span class="line">            <span class="hljs-string">工作室</span> <span class="hljs-bullet">-</span> <span class="hljs-string">屋脊雀:</span> <span class="hljs-string">'http://www.wujique.com/'</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">category</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">tagcloud</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">recent_posts</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">left</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">archive</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line"><span class="hljs-bullet">    -</span></span><br><span class="line">        <span class="hljs-comment"># Widget name</span></span><br><span class="line"><span class="hljs-attr">        type:</span> <span class="hljs-string">tag</span></span><br><span class="line">        <span class="hljs-comment"># Where should the widget be placed, left or right</span></span><br><span class="line"><span class="hljs-attr">        position:</span> <span class="hljs-string">right</span></span><br><span class="line"><span class="hljs-comment"># Other plugin settings</span></span><br><span class="line"><span class="hljs-attr">plugins:</span></span><br><span class="line">    <span class="hljs-comment"># Enable page animations</span></span><br><span class="line"><span class="hljs-attr">    animejs:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># Enable the lightGallery and Justified Gallery plugins</span></span><br><span class="line">    <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/gallery-plugin/</span></span><br><span class="line"><span class="hljs-attr">    gallery:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># Enable the Outdated Browser plugin</span></span><br><span class="line">    <span class="hljs-comment"># http://outdatedbrowser.com/</span></span><br><span class="line"><span class="hljs-attr">    outdated-browser:</span> <span class="hljs-literal">false</span></span><br><span class="line">    <span class="hljs-comment"># Enable the MathJax plugin</span></span><br><span class="line">    <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/mathjax-plugin/</span></span><br><span class="line"><span class="hljs-attr">    mathjax:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># Show the back to top button on mobile devices</span></span><br><span class="line"><span class="hljs-attr">    back-to-top:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># Google Analytics plugin settings</span></span><br><span class="line">    <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Google-Analytics</span></span><br><span class="line"><span class="hljs-attr">    google-analytics:</span></span><br><span class="line">        <span class="hljs-comment"># Google Analytics tracking id</span></span><br><span class="line"><span class="hljs-attr">        tracking_id:</span> </span><br><span class="line">    <span class="hljs-comment"># Baidu Analytics plugin settings</span></span><br><span class="line">    <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Baidu-Analytics</span></span><br><span class="line"><span class="hljs-attr">    baidu-analytics:</span></span><br><span class="line">        <span class="hljs-comment"># Baidu Analytics tracking id</span></span><br><span class="line"><span class="hljs-attr">        tracking_id:</span> </span><br><span class="line">    <span class="hljs-comment"># Hotjar user feedback plugin</span></span><br><span class="line">    <span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Plugins/General/site-analytics-plugin/#Hotjar</span></span><br><span class="line"><span class="hljs-attr">    hotjar:</span></span><br><span class="line">        <span class="hljs-comment"># Hotjar site id</span></span><br><span class="line"><span class="hljs-attr">        site_id:</span> </span><br><span class="line">    <span class="hljs-comment"># Show a loading progress bar at top of the page</span></span><br><span class="line"><span class="hljs-attr">    progressbar:</span> <span class="hljs-literal">true</span></span><br><span class="line">    <span class="hljs-comment"># BuSuanZi site/page view counter</span></span><br><span class="line">    <span class="hljs-comment"># https://busuanzi.ibruce.info</span></span><br><span class="line"><span class="hljs-attr">    busuanzi:</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-comment"># CDN provider settings</span></span><br><span class="line"><span class="hljs-comment"># https://ppoffice.github.io/hexo-theme-icarus/Configuration/Theme/speed-up-your-site-with-custom-cdn/</span></span><br><span class="line"><span class="hljs-attr">providers:</span></span><br><span class="line">    <span class="hljs-comment"># Name or URL of the JavaScript and/or stylesheet CDN provider</span></span><br><span class="line"><span class="hljs-attr">    cdn:</span> <span class="hljs-string">jsdelivr</span></span><br><span class="line">    <span class="hljs-comment"># Name or URL of the webfont CDN provider</span></span><br><span class="line"><span class="hljs-attr">    fontcdn:</span> <span class="hljs-string">google</span></span><br><span class="line">    <span class="hljs-comment"># Name or URL of the webfont Icon CDN provider</span></span><br><span class="line"><span class="hljs-attr">    iconcdn:</span> <span class="hljs-string">fontawesome</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清理之后重新生成并部署 Hexo 博客<ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="III-添加自定义-404-Not-Found-页面"><a href="#III-添加自定义-404-Not-Found-页面" class="headerlink" title="III. 添加自定义 404 Not Found 页面"></a>III. 添加自定义 404 Not Found 页面</h4><ul>
+<li><p>在终端中执行以下命令，创建一个 <code>404</code> 的 <code>page</code> 页面</p>
+<blockquote>
+<p>hexo new page “404”</p>
+</blockquote>
+</li>
+<li><p>用 <code>VS Code</code> 编辑 <code>\source\404\</code> 目录下的 <code>index.md</code> 文件</p>
+<ul>
+<li><p>其中字段 <code>&quot;thumbnail: &quot;</code> 后的图片需要自行存放在对应目录并改为对应名称，<code>后缀名称大小写敏感</code></p>
+</li>
+<li><p>文件内容如下所示（可自定义添加更丰富的内容）</p>
+<figure class="highlight md hljs"><figcaption><span>index.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 404 Not Found 该页面不存在</span><br><span class="line">date: 2019-09-23 15:40:38</span><br><span class="line">thumbnail: /images/IMG_6274.JPG</span><br><span class="line">toc: false</span><br><span class="line">permalink: /404</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span> = <span class="hljs-string">"text-align: center; margin: auto; width: 100%;"</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-section">## **很抱歉，您所访问的地址并不存在。**</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>清理之后重新生成并部署 Hexo 博客</p>
+<ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>部署完毕后再次访问博客，地址后跟上不存在的文章，会自动跳转到刚刚自定义的 404 页面，如图：</p>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-16.jpg" alt="404 页面"></p>
+</div>
+
+<h4 id="IV-添加关于页面"><a href="#IV-添加关于页面" class="headerlink" title="IV. 添加关于页面"></a>IV. 添加关于页面</h4><ul>
+<li><p>在终端中执行以下命令，创建一个 <code>about</code> 的 <code>page</code> 页面</p>
+<blockquote>
+<p>hexo new page “about”</p>
+</blockquote>
+</li>
+<li><p>用 <code>VS Code</code> 编辑 <code>\source\about\</code> 目录下的 <code>index.md</code> 文件</p>
+<ul>
+<li><p>其中字段 <code>&quot;thumbnail: &quot;</code> 后的图片需要自行存放在对应目录并改为对应名称，<code>后缀名称大小写敏感</code></p>
+</li>
+<li><p>文件内容如下所示（可自定义添加更丰富的内容）</p>
+<figure class="highlight md hljs"><figcaption><span>index.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 关于我 About Me</span><br><span class="line">date: 2019-09-19 15:59:10</span><br><span class="line">thumbnail: /images/Car.jpg</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="hljs-bullet">- </span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fab fa-fort-awesome-alt"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> 职业: 复制粘贴工程师</span><br><span class="line"><span class="hljs-bullet">- </span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fas fa-at"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> 邮箱: xxxxx@qq.com</span><br><span class="line"><span class="hljs-bullet">- </span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fab fa-qq"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> QQ: 123456789</span><br><span class="line"><span class="hljs-bullet">- </span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fab fa-weixin"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> WeChat: XXXXXX</span><br><span class="line"><span class="hljs-bullet">- </span><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fab fa-playstation"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> PSN ID: XXXXXX</span><br><span class="line"><span class="hljs-bullet">- </span>星座: 天蝎座</span><br><span class="line"><span class="hljs-bullet">- </span>语言: C/C++/Java/HTML/CSS</span><br><span class="line"><span class="hljs-bullet">- </span>IDE: [<span class="hljs-string">VS Code</span>](<span class="hljs-link">https://code.visualstudio.com/</span>), [<span class="hljs-string">Vivado Design Suite HLx</span>](<span class="hljs-link">https://china.xilinx.com/products/design-tools/vivado.html</span>)</span><br><span class="line"><span class="hljs-bullet">- </span>EDA: [<span class="hljs-string">Altium Designer</span>](<span class="hljs-link">https://www.altium.com.cn/</span>), [<span class="hljs-string">EasyEDA</span>](<span class="hljs-link">https://lceda.cn/</span>)</span><br><span class="line"><span class="hljs-bullet">- </span>兴趣: 开源硬件, 开源软件, HiFi, 美食, 音乐</span><br><span class="line"><span class="hljs-bullet">- </span>游戏平台: <span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fab fa-playstation"</span>&gt;</span></span><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></span> Play Station 4, Nintendo Switch</span><br><span class="line"><span class="hljs-bullet">- </span>运动: 游泳, 骑行</span><br><span class="line"><span class="hljs-bullet">- </span>正在学习中的: Altium Designer, TouchGFX</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>清理之后重新生成并部署 Hexo 博客</p>
+<ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>部署完毕后再次访问博客，<code>关于</code> 页面已经可以正常访问，如图：</p>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-17.jpg" alt="关于页面"></p>
+</div>
+
+<h4 id="V-Icarus-主题小问题修改"><a href="#V-Icarus-主题小问题修改" class="headerlink" title="V. Icarus 主题小问题修改"></a>V. <code>Icarus</code> 主题小问题修改</h4><ul>
+<li><p>footer 页脚高度过高的问题</p>
+<blockquote>
+<p>用 <code>VS Code</code> 编辑主题目录下的 <code>style.styl</code> 文件</p>
+<p>路径：<code>\themes\icarus\source\css\style.styl</code></p>
+<p>为文件中的 <code>.footer</code> 类添加一行属性，如下所示：</p>
+</blockquote>
+<figure class="highlight styl hljs"><figcaption><span>style.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">3rem</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>添加属性后的 <code>.footer</code> 类如下所示：</p>
+</blockquote>
+<figure class="highlight styl hljs"><figcaption><span>style.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.footer</span><br><span class="line">    <span class="hljs-attribute">background</span>: white</span><br><span class="line">    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">3rem</span></span><br><span class="line">    .field</span><br><span class="line">        .button</span><br><span class="line">            <span class="hljs-attribute">background</span>: transparent</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="10-Hexo-模板"><a href="#10-Hexo-模板" class="headerlink" title="10. Hexo 模板"></a>10. Hexo 模板</h3><blockquote>
+<p><code>\scaffolds</code> 目录下的 3 个文件分别为<code>草稿模板</code>、<code>页面模板</code>、<code>文章模板</code>，修改其内容以在每次新建文章或页面时，能够自动添加部分模板内容。</p>
+</blockquote>
+<ul>
+<li><p><code>page.md</code></p>
+<figure class="highlight md hljs"><figcaption><span>page.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">thumbnail: /images/flower.jpg</span><br><span class="line">toc: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>post.md</code></p>
+<figure class="highlight md hljs"><figcaption><span>post.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">thumbnail: /images/flower.jpg</span><br><span class="line">toc: true</span><br><span class="line">categories:</span><br><span class="line"><span class="hljs-bullet">- </span>uncategorized</span><br><span class="line">tags:</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-comment">&lt;!--more--&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span> = <span class="hljs-string">"text-align: center; margin: auto; width: 100%;"</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">![<span class="hljs-string">Car</span>](<span class="hljs-link">../images/Car.jpg</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="11-写文章"><a href="#11-写文章" class="headerlink" title="11. 写文章"></a>11. 写文章</h3><blockquote>
+<p>注意：关于文章图片，若还没有创建 <code>images</code> 文件夹，可以在 <code>source</code> 目录下新建一个 <code>images</code> 文件夹，在其中存放图片文件。</p>
+<p>这里以创建一篇标题名称为 <code>Hello Hexo</code> 的文章为例：</p>
+</blockquote>
+<ul>
+<li><p>在终端中执行以下命令，创建一篇文章</p>
+<blockquote>
+<p>hexo new “Hello Hexo”</p>
+</blockquote>
+</li>
+<li><p>用 <code>VS Code</code> 编辑 <code>\source\_posts</code> 目录下的 <code>Hello-Hexo.md</code> 文件</p>
+<ul>
+<li><p>其中字段 <code>&quot;thumbnail: &quot;</code> 后的图片需要自行存放在对应目录并改为对应名称，<code>后缀名称大小写敏感</code></p>
+</li>
+<li><p>文件内容如下所示：</p>
+<figure class="highlight md hljs"><figcaption><span>Hello-Hexo.md</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello-Hexo</span><br><span class="line">date: 2019-09-19 15:59:10</span><br><span class="line">thumbnail: /images/flower.jpg</span><br><span class="line">toc: true</span><br><span class="line">categories:</span><br><span class="line"><span class="hljs-bullet">- </span>Blog</span><br><span class="line"><span class="hljs-bullet">- </span>Hexo</span><br><span class="line">tags:</span><br><span class="line"><span class="hljs-bullet">- </span>Hexo</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="hljs-section">## &lt;i class="fab fa-fort-awesome-alt"&gt;&lt;/i&gt; 你好 Hexo</span></span><br><span class="line"></span><br><span class="line">正文...</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-comment">&lt;!--more--&gt;</span></span></span><br><span class="line"></span><br><span class="line">这里是在主页被隐藏的内容...</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span> = <span class="hljs-string">"text-align: center; margin: auto; width: 100%;"</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">![<span class="hljs-string">Car</span>](<span class="hljs-link">../images/Car.jpg</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>清理之后重新生成并部署 Hexo 博客</p>
+<ul>
+<li><blockquote>
+<p>hexo clean</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo g</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>hexo d</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>部署完毕后再次访问博客，刚刚发布的文章已经出现在主页上，如图：</p>
+</li>
+</ul>
+<div style="text-align: center; margin: auto; width: 90%;">
+
+<p><img src="../images/BlogPics/02HexoBlog-18.jpg" alt="添加新文章"></p>
+</div>
+
+<h3 id="12-至此所有步骤已完成"><a href="#12-至此所有步骤已完成" class="headerlink" title="12.  至此所有步骤已完成"></a>12. <i class="fab fa-reddit"></i> 至此所有步骤已完成</h3>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Blog/">Blog</a>, <a class="has-link-grey -link" href="/tags/GitHub/">GitHub</a>, <a class="has-link-grey -link" href="/tags/Hexo/">Hexo</a>, <a class="has-link-grey -link" href="/tags/Tutorial/">Tutorial</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/Wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-09-24-CCS-工程配置.html">
+                <span class="level-item">CCS 工程配置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'mNs1xyerDNrr62umEcRrOW36-gzGzoHsz',
+        app_key: 'R8mlRSdsFLY32DqTySDkfbea',
+        placeholder: '来点鲱鱼罐头~'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/avatar.jpg" alt="Tomy Stark">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Tomy Stark
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        四海茫茫
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System.</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        10
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        11
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/SummerFalls" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/SummerFalls">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/TomyStark">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="微博" href="https://weibo.com/tomystark">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.mr-wu.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 吴川斌</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mr-wu.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.mazirong.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 芯跳不止</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mazirong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.strongerhuang.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - strongerHuang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.strongerhuang.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://jiaodi.tech/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客 - 焦迪 Nemo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">jiaodi.tech</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.muselab-tech.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">工作室 - Muse Lab</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.muselab-tech.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.wujique.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">工作室 - 屋脊雀</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.wujique.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Foliage_Dylan_Luder.jpg" alt="利用GitHub Pages搭建Hexo静态博客教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-28T07:48:09.000Z">2019-09-28</time></div>
+                    <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用GitHub Pages搭建Hexo静态博客教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Blog/">Blog</a> / <a class="has-link-grey -link" href="/categories/Blog/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/GitHub/">GitHub</a> / <a class="has-link-grey -link" href="/categories/Tutorial/">Tutorial</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-24-CCS-工程配置.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/desert.jpg" alt="CCS 工程配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-24T13:20:33.000Z">2019-09-24</time></div>
+                    <a href="/2019-09-24-CCS-工程配置.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">CCS 工程配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/IDE/">IDE</a> / <a class="has-link-grey -link" href="/categories/IDE/Code-Composer-Studio/">Code Composer Studio</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-24-CCSv9-Static-Lib-静态库封装及使用.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/flower.jpg" alt="CCSv9 Static Lib 静态库封装及使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-24T07:05:11.000Z">2019-09-24</time></div>
+                    <a href="/2019-09-24-CCSv9-Static-Lib-静态库封装及使用.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">CCSv9 Static Lib 静态库封装及使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/IDE/">IDE</a> / <a class="has-link-grey -link" href="/categories/IDE/Code-Composer-Studio/">Code Composer Studio</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-20-C-源文件模板.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/IMG_0703.JPG" alt="C 源文件模板">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:29:55.000Z">2019-09-20</time></div>
+                    <a href="/2019-09-20-C-源文件模板.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">C 源文件模板</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/C/">C</a> / <a class="has-link-grey -link" href="/categories/C/Standard/">Standard</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-20-printf-函数重定向到UART串口输出.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/flower.jpg" alt="printf 函数重定向到UART串口输出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-20T09:22:02.000Z">2019-09-20</time></div>
+                    <a href="/2019-09-20-printf-函数重定向到UART串口输出.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">printf 函数重定向到UART串口输出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Debug/">Debug</a> / <a class="has-link-grey -link" href="/categories/Debug/STM32/">STM32</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是-Hexo">
+        <span class="has-mr-6">1</span>
+        <span>什么是 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#搭建-Hexo-博客需要什么">
+        <span class="has-mr-6">2</span>
+        <span>搭建 Hexo 博客需要什么</span>
+        </a></li><li>
+        <a class="is-flex" href="#详细步骤">
+        <span class="has-mr-6">3</span>
+        <span>详细步骤</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-安装必要软件">
+        <span class="has-mr-6">3.1</span>
+        <span>1. 安装必要软件</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-注册-GitHub-帐号">
+        <span class="has-mr-6">3.2</span>
+        <span>2. 注册 GitHub 帐号</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-在-GitHub-上新建仓库">
+        <span class="has-mr-6">3.3</span>
+        <span>3. 在 GitHub 上新建仓库</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-安装-Hexo">
+        <span class="has-mr-6">3.4</span>
+        <span>4. 安装 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-配置-Hexo">
+        <span class="has-mr-6">3.5</span>
+        <span>5. 配置 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-安装-Hexo-的必备扩展">
+        <span class="has-mr-6">3.6</span>
+        <span>6. 安装 Hexo 的必备扩展</span>
+        </a></li><li>
+        <a class="is-flex" href="#7-部署-Hexo-博客到-GitHub">
+        <span class="has-mr-6">3.7</span>
+        <span>7. 部署 Hexo 博客到 GitHub</span>
+        </a></li><li>
+        <a class="is-flex" href="#8-可选-设置-Hexo-博客域名解析">
+        <span class="has-mr-6">3.8</span>
+        <span>8. [可选] 设置 Hexo 博客域名解析</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#I-设置域名解析">
+        <span class="has-mr-6">3.8.1</span>
+        <span>I. 设置域名解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#II-修改-博客根目录-下的-config-yml-文件">
+        <span class="has-mr-6">3.8.2</span>
+        <span>II. 修改 博客根目录 下的 _config.yml 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#III-用-VS-Code-在-博客根目录-下的-source-目录下新建一个不带任何后缀名的-CNAME-文件">
+        <span class="has-mr-6">3.8.3</span>
+        <span>III. 用 VS Code 在 博客根目录 下的 source 目录下新建一个不带任何后缀名的 CNAME 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#IV-修改-CNAME-文件，文件内容为你的自定义博客网址">
+        <span class="has-mr-6">3.8.4</span>
+        <span>IV. 修改 CNAME 文件，文件内容为你的自定义博客网址</span>
+        </a></li><li>
+        <a class="is-flex" href="#V-重新生成并部署-Hexo-博客">
+        <span class="has-mr-6">3.8.5</span>
+        <span>V. 重新生成并部署 Hexo 博客</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#9-可选-更换-Hexo-博客主题">
+        <span class="has-mr-6">3.9</span>
+        <span>9. [可选] 更换 Hexo 博客主题</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#I-更换步骤">
+        <span class="has-mr-6">3.9.1</span>
+        <span>I. 更换步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#II-修改主题的-config-yml-文件">
+        <span class="has-mr-6">3.9.2</span>
+        <span>II. 修改主题的 _config.yml 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#III-添加自定义-404-Not-Found-页面">
+        <span class="has-mr-6">3.9.3</span>
+        <span>III. 添加自定义 404 Not Found 页面</span>
+        </a></li><li>
+        <a class="is-flex" href="#IV-添加关于页面">
+        <span class="has-mr-6">3.9.4</span>
+        <span>IV. 添加关于页面</span>
+        </a></li><li>
+        <a class="is-flex" href="#V-Icarus-主题小问题修改">
+        <span class="has-mr-6">3.9.5</span>
+        <span>V. Icarus 主题小问题修改</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#10-Hexo-模板">
+        <span class="has-mr-6">3.10</span>
+        <span>10. Hexo 模板</span>
+        </a></li><li>
+        <a class="is-flex" href="#11-写文章">
+        <span class="has-mr-6">3.11</span>
+        <span>11. 写文章</span>
+        </a></li><li>
+        <a class="is-flex" href="#12-至此所有步骤已完成">
+        <span class="has-mr-6">3.12</span>
+        <span>12.  至此所有步骤已完成</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Debug/">
+            <span class="level-start">
+                <span class="level-item">Debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Debug/STM32/">
+            <span class="level-start">
+                <span class="level-item">STM32</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/IDE/">
+            <span class="level-start">
+                <span class="level-item">IDE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/IDE/Code-Composer-Studio/">
+            <span class="level-start">
+                <span class="level-item">Code Composer Studio</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Code-Composer-Studio/">
+                        <span class="tag">Code Composer Studio</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debug/">
+                        <span class="tag">Debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDE/">
+                        <span class="tag">IDE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Static-Lib/">
+                        <span class="tag">Static Lib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是-Hexo">
+        <span class="has-mr-6">1</span>
+        <span>什么是 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#搭建-Hexo-博客需要什么">
+        <span class="has-mr-6">2</span>
+        <span>搭建 Hexo 博客需要什么</span>
+        </a></li><li>
+        <a class="is-flex" href="#详细步骤">
+        <span class="has-mr-6">3</span>
+        <span>详细步骤</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-安装必要软件">
+        <span class="has-mr-6">3.1</span>
+        <span>1. 安装必要软件</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-注册-GitHub-帐号">
+        <span class="has-mr-6">3.2</span>
+        <span>2. 注册 GitHub 帐号</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-在-GitHub-上新建仓库">
+        <span class="has-mr-6">3.3</span>
+        <span>3. 在 GitHub 上新建仓库</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-安装-Hexo">
+        <span class="has-mr-6">3.4</span>
+        <span>4. 安装 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-配置-Hexo">
+        <span class="has-mr-6">3.5</span>
+        <span>5. 配置 Hexo</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-安装-Hexo-的必备扩展">
+        <span class="has-mr-6">3.6</span>
+        <span>6. 安装 Hexo 的必备扩展</span>
+        </a></li><li>
+        <a class="is-flex" href="#7-部署-Hexo-博客到-GitHub">
+        <span class="has-mr-6">3.7</span>
+        <span>7. 部署 Hexo 博客到 GitHub</span>
+        </a></li><li>
+        <a class="is-flex" href="#8-可选-设置-Hexo-博客域名解析">
+        <span class="has-mr-6">3.8</span>
+        <span>8. [可选] 设置 Hexo 博客域名解析</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#I-设置域名解析">
+        <span class="has-mr-6">3.8.1</span>
+        <span>I. 设置域名解析</span>
+        </a></li><li>
+        <a class="is-flex" href="#II-修改-博客根目录-下的-config-yml-文件">
+        <span class="has-mr-6">3.8.2</span>
+        <span>II. 修改 博客根目录 下的 _config.yml 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#III-用-VS-Code-在-博客根目录-下的-source-目录下新建一个不带任何后缀名的-CNAME-文件">
+        <span class="has-mr-6">3.8.3</span>
+        <span>III. 用 VS Code 在 博客根目录 下的 source 目录下新建一个不带任何后缀名的 CNAME 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#IV-修改-CNAME-文件，文件内容为你的自定义博客网址">
+        <span class="has-mr-6">3.8.4</span>
+        <span>IV. 修改 CNAME 文件，文件内容为你的自定义博客网址</span>
+        </a></li><li>
+        <a class="is-flex" href="#V-重新生成并部署-Hexo-博客">
+        <span class="has-mr-6">3.8.5</span>
+        <span>V. 重新生成并部署 Hexo 博客</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#9-可选-更换-Hexo-博客主题">
+        <span class="has-mr-6">3.9</span>
+        <span>9. [可选] 更换 Hexo 博客主题</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#I-更换步骤">
+        <span class="has-mr-6">3.9.1</span>
+        <span>I. 更换步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#II-修改主题的-config-yml-文件">
+        <span class="has-mr-6">3.9.2</span>
+        <span>II. 修改主题的 _config.yml 文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#III-添加自定义-404-Not-Found-页面">
+        <span class="has-mr-6">3.9.3</span>
+        <span>III. 添加自定义 404 Not Found 页面</span>
+        </a></li><li>
+        <a class="is-flex" href="#IV-添加关于页面">
+        <span class="has-mr-6">3.9.4</span>
+        <span>IV. 添加关于页面</span>
+        </a></li><li>
+        <a class="is-flex" href="#V-Icarus-主题小问题修改">
+        <span class="has-mr-6">3.9.5</span>
+        <span>V. Icarus 主题小问题修改</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#10-Hexo-模板">
+        <span class="has-mr-6">3.10</span>
+        <span>10. Hexo 模板</span>
+        </a></li><li>
+        <a class="is-flex" href="#11-写文章">
+        <span class="has-mr-6">3.11</span>
+        <span>11. 写文章</span>
+        </a></li><li>
+        <a class="is-flex" href="#12-至此所有步骤已完成">
+        <span class="has-mr-6">3.12</span>
+        <span>12.  至此所有步骤已完成</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Debug/">
+            <span class="level-start">
+                <span class="level-item">Debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Debug/STM32/">
+            <span class="level-start">
+                <span class="level-item">STM32</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/IDE/">
+            <span class="level-start">
+                <span class="level-item">IDE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/IDE/Code-Composer-Studio/">
+            <span class="level-start">
+                <span class="level-item">Code Composer Studio</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 13.33px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/STM32/" style="font-size: 10px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Code-Composer-Studio/">
+                        <span class="tag">Code Composer Studio</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debug/">
+                        <span class="tag">Debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDE/">
+                        <span class="tag">IDE</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Static-Lib/">
+                        <span class="tag">Static Lib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="利用GitHub Pages搭建Hexo静态博客教程" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Tomy&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
