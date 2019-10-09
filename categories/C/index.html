@@ -194,7 +194,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 188 个字)
+                    1 分钟 读完 (大约 214 个字)
                 </span>
                 
                 
@@ -207,7 +207,14 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h2 id="Eclipse-系-IDE-自动化"><a href="#Eclipse-系-IDE-自动化" class="headerlink" title="Eclipse 系 IDE 自动化"></a>Eclipse 系 IDE 自动化</h2><h3 id="1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments"><a href="#1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments" class="headerlink" title="1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments"></a>1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments</h3><ul>
+            <blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li><strong>转载请注明本文出处链接、作者</strong></li>
+</ul>
+</blockquote>
+<h2 id="Eclipse-系-IDE-自动化"><a href="#Eclipse-系-IDE-自动化" class="headerlink" title="Eclipse 系 IDE 自动化"></a>Eclipse 系 IDE 自动化</h2><h3 id="1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments"><a href="#1-Eclipse-系-IDE-新建-c文件和-h文件时自动添加头部Comments" class="headerlink" title="1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments"></a>1. Eclipse 系 IDE 新建.c文件和.h文件时自动添加头部Comments</h3><ul>
 <li>Window -&gt; Preference -&gt; C/C++ -&gt; Code Style -&gt; Code Templates -&gt; Comments -&gt; Files</li>
 </ul>
 <figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"> *         _____          ___           ___           ___           ___                       ___           ___</span></span><br><span class="line"><span class="hljs-comment"> *        /  /::\        /  /\         /  /\         /  /\         /__/\          ___        /  /\         /__/|</span></span><br><span class="line"><span class="hljs-comment"> *       /  /:/\:\      /  /::\       /  /:/_       /  /::\        \  \:\        /  /\      /  /:/_       |  |:|</span></span><br><span class="line"><span class="hljs-comment"> *      /  /:/  \:\    /  /:/\:\     /  /:/ /\     /  /:/\:\        \  \:\      /  /:/     /  /:/ /\      |  |:|</span></span><br><span class="line"><span class="hljs-comment"> *     /__/:/ \__\:|  /  /:/  \:\   /  /:/ /::\   /  /:/  \:\   _____\__\:\    /  /:/     /  /:/ /:/_   __|  |:|</span></span><br><span class="line"><span class="hljs-comment"> *     \  \:\ /  /:/ /__/:/ \__\:\ /__/:/ /:/\:\ /__/:/ \__\:\ /__/::::::::\  /  /::\    /__/:/ /:/ /\ /__/\_|:|____</span></span><br><span class="line"><span class="hljs-comment"> *      \  \:\  /:/  \  \:\ /  /:/ \  \:\/:/~/:/ \  \:\ /  /:/ \  \:\~~\~~\/ /__/:/\:\   \  \:\/:/ /:/ \  \:\/:::::/</span></span><br><span class="line"><span class="hljs-comment"> *       \  \:\/:/    \  \:\  /:/   \  \::/ /:/   \  \:\  /:/   \  \:\  ~~~  \__\/  \:\   \  \::/ /:/   \  \::/~~~~</span></span><br><span class="line"><span class="hljs-comment"> *        \  \::/      \  \:\/:/     \__\/ /:/     \  \:\/:/     \  \:\           \  \:\   \  \:\/:/     \  \:\</span></span><br><span class="line"><span class="hljs-comment"> *         \__\/        \  \::/        /__/:/       \  \::/       \  \:\           \__\/    \  \::/       \  \:\</span></span><br><span class="line"><span class="hljs-comment"> *                       \__\/         \__\/         \__\/         \__\/                     \__\/         \__\/</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * @ 名称: $&#123;file_name&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 描述:</span></span><br><span class="line"><span class="hljs-comment"> * @ 作者: $&#123;user&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 日期: $&#123;date&#125;</span></span><br><span class="line"><span class="hljs-comment"> * @ 版本: V1.0</span></span><br><span class="line"><span class="hljs-comment"> * @ 历史: V1.0 $&#123;date&#125; Summary</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * Copyright (c) 2019 DosonTek Electronics Co., Ltd. All rights reserved.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br></pre></td></tr></table></figure>
@@ -255,7 +262,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 637 个字)
+                    4 分钟 读完 (大约 663 个字)
                 </span>
                 
                 
@@ -268,7 +275,14 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h2 id="A-bat批处理文件调用Astyle进行代码格式化-KR风格"><a href="#A-bat批处理文件调用Astyle进行代码格式化-KR风格" class="headerlink" title="A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]"></a>A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]</h2><h3 id="1-一键格式化所有代码-包括子目录-完整参数版"><a href="#1-一键格式化所有代码-包括子目录-完整参数版" class="headerlink" title="1. 一键格式化所有代码(包括子目录)_完整参数版"></a>1. <strong>一键格式化所有代码(包括子目录)_完整参数版</strong></h3><figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-title">for</span> /<span class="hljs-type">R</span> %%f <span class="hljs-keyword">in</span> (*.c;*.h) <span class="hljs-keyword">do</span> <span class="hljs-type">AStyle</span>.exe <span class="hljs-comment">--style=kr --indent=spaces=4 --attach-closing-while --indent-switches --indent-preproc-define --indent-col1-comments --max-continuation-indent=60 --break-blocks --pad-oper --pad-comma --pad-header --align-pointer=name --align-reference=name --break-one-line-headers --add-braces --attach-return-type --attach-return-type-decl --convert-tabs --max-code-length=200 --suffix=none --verbose %%f</span></span><br><span class="line"><span class="hljs-title">pause</span></span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li><strong>转载请注明本文出处链接、作者</strong></li>
+</ul>
+</blockquote>
+<h2 id="A-bat批处理文件调用Astyle进行代码格式化-KR风格"><a href="#A-bat批处理文件调用Astyle进行代码格式化-KR风格" class="headerlink" title="A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]"></a>A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]</h2><h3 id="1-一键格式化所有代码-包括子目录-完整参数版"><a href="#1-一键格式化所有代码-包括子目录-完整参数版" class="headerlink" title="1. 一键格式化所有代码(包括子目录)_完整参数版"></a>1. <strong>一键格式化所有代码(包括子目录)_完整参数版</strong></h3><figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-title">for</span> /<span class="hljs-type">R</span> %%f <span class="hljs-keyword">in</span> (*.c;*.h) <span class="hljs-keyword">do</span> <span class="hljs-type">AStyle</span>.exe <span class="hljs-comment">--style=kr --indent=spaces=4 --attach-closing-while --indent-switches --indent-preproc-define --indent-col1-comments --max-continuation-indent=60 --break-blocks --pad-oper --pad-comma --pad-header --align-pointer=name --align-reference=name --break-one-line-headers --add-braces --attach-return-type --attach-return-type-decl --convert-tabs --max-code-length=200 --suffix=none --verbose %%f</span></span><br><span class="line"><span class="hljs-title">pause</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -313,7 +327,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    1 小时 读完 (大约 7741 个字)
+                    1 小时 读完 (大约 7746 个字)
                 </span>
                 
                 
@@ -327,11 +341,12 @@ var _hmt = _hmt || [];
         </h1>
         <div class="content">
             <blockquote>
-<p>MISRA-C 2004 规则解读 Ver 1.0.0</p>
-<blockquote>
-<p>Collected By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
-<p>Note: <strong>本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！</strong></p>
-</blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li><strong>本标准会不定期迭代完善</strong></li>
+<li><strong>本文档由我从互联网整理收集而来，尚需完善，文中可能还存在诸多谬误，若发现有误可邮件联系以修正问题，在此感谢！</strong></li>
+</ul>
 </blockquote>
 <h2 id="1-S-20-S"><a href="#1-S-20-S" class="headerlink" title="1 S ~ 20 S"></a>1 S ~ 20 S</h2><p>1 S：Procedure name reused.函数名与变量名称重复。</p>
 <p>2 S：Label name reused.局部变量重命名。虽然作用域不同能编译通过，但是容易造成混淆。</p>
@@ -383,7 +398,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    21 分钟 读完 (大约 3160 个字)
+                    21 分钟 读完 (大约 3161 个字)
                 </span>
                 
                 
@@ -397,12 +412,13 @@ var _hmt = _hmt || [];
         </h1>
         <div class="content">
             <blockquote>
-<p>C语言开发标准（微控制器）Ver 1.0.0</p>
-<blockquote>
-<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
-<p>Note: 该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。</p>
-<p><strong>本标准会不定期迭代完善</strong></p>
-</blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li>该标准仅限微控制器平台（RTOS or Bare Metal），不完全适合Linux程序的开发标准。</li>
+<li><strong>本标准会不定期迭代完善</strong></li>
+<li><strong>转载请注明本文出处链接、作者</strong></li>
+</ul>
 </blockquote>
         </div>
         

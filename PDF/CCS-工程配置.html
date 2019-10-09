@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签 - Tomy Stark&#39;s Blog</title>
+<title>Tomy Stark&#39;s Blog</title>
 
 
-    <meta name="description" content="STM32, TI C2000, S32K">
-<meta name="keywords" content="C,Standard,Astyle,IDE,Code Composer Studio,Coding Style,Template,Static Lib,Hello,Hexo,Markdown,Markdown Plus,Debug,STM32,UART,GitHub,Blog,Tutorial">
+    <meta name="description" content="CCS 工程配置 Written By Tomy Stark.E-mail: ro7enkranz@qq.comVer 1.0.0 Note:  自 controlSUITE v200 之后的库版本，库文件名称、目录结构有所变化。   1. 链接文件 Linker Command Files(*.cmd)1234567/* controlSUITE 旧版本库 v125 */C:\ti\contro">
+<meta name="keywords" content="C, C++">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tomy Stark&#39;s Blog">
-<meta property="og:url" content="https://apex.linn.top/tags/index.html">
+<meta property="og:url" content="https://apex.linn.top/PDF/CCS-工程配置.html">
 <meta property="og:site_name" content="Tomy Stark&#39;s Blog">
-<meta property="og:description" content="STM32, TI C2000, S32K">
+<meta property="og:description" content="CCS 工程配置 Written By Tomy Stark.E-mail: ro7enkranz@qq.comVer 1.0.0 Note:  自 controlSUITE v200 之后的库版本，库文件名称、目录结构有所变化。   1. 链接文件 Linker Command Files(*.cmd)1234567/* controlSUITE 旧版本库 v125 */C:\ti\contro">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/og_image.png">
+<meta property="og:updated_time" content="2019-10-09T10:16:01.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomy Stark&#39;s Blog">
-<meta name="twitter:description" content="STM32, TI C2000, S32K">
+<meta name="twitter:description" content="CCS 工程配置 Written By Tomy Stark.E-mail: ro7enkranz@qq.comVer 1.0.0 Note:  自 controlSUITE v200 之后的库版本，库文件名称、目录结构有所变化。   1. 链接文件 Linker Command Files(*.cmd)1234567/* controlSUITE 旧版本库 v125 */C:\ti\contro">
 <meta name="twitter:image" content="https://apex.linn.top/images/og_image.png">
 
 
@@ -113,7 +114,7 @@ var _hmt = _hmt || [];
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Tomy Stark&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="" height="28">
             
             </a>
         </div>
@@ -130,7 +131,7 @@ var _hmt = _hmt || [];
                 <a class="navbar-item"
                 href="/categories">分类</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/tags">标签</a>
                 
                 <a class="navbar-item"
@@ -160,144 +161,105 @@ var _hmt = _hmt || [];
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-content article ">
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                
+            
+        </h1>
+        <div class="content">
+            <h1 id="CCS-工程配置"><a href="#CCS-工程配置" class="headerlink" title="CCS 工程配置"></a>CCS 工程配置</h1><blockquote>
+<p>Written By Tomy Stark.<br>E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li><code>自 controlSUITE v200 之后的库版本，库文件名称、目录结构有所变化。</code></li>
+</ul>
+</blockquote>
+<h2 id="1-链接文件-Linker-Command-Files-cmd"><a href="#1-链接文件-Linker-Command-Files-cmd" class="headerlink" title="1. 链接文件 Linker Command Files(*.cmd)"></a>1. 链接文件 Linker Command Files(*.cmd)</h2><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* controlSUITE 旧版本库 v125 */</span></span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v125\DSP2802x_common\cmd\F28027.cmd</span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v125\DSP2802x_headers\cmd\DSP2802x_Headers_nonBIOS.cmd</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* controlSUITE 新版本库 v230 */</span></span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_common\cmd\F28027.cmd</span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_headers\cmd\F2802x_Headers_nonBIOS.cmd</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-源文件-C-Files-asm-c"><a href="#2-源文件-C-Files-asm-c" class="headerlink" title="2. 源文件 C Files(*.asm, *.c)"></a>2. 源文件 C Files(*.asm, *.c)</h2><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* controlSUITE 旧版本库 v125 */</span></span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v125\DSP2802x_common\source\</span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v125\DSP2802x_headers\source\DSP2802x_GlobalVariableDefs.c</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* controlSUITE 新版本库 v230 */</span></span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_common\source\</span><br><span class="line">C:\ti\controlSUITE\device_support\f2802x\v230\f2802x_headers\source\F2802x_GlobalVariableDefs.c</span><br></pre></td></tr></table></figure>
+
+<div class="page">
+
+<h2 id="3-头文件-Include-Options-h"><a href="#3-头文件-Include-Options-h" class="headerlink" title="3. 头文件 Include Options(*.h)"></a>3. 头文件 Include Options(*.h)</h2><ul>
+<li>Project -&gt; Properties -&gt; CCS Build -&gt; C2000 Compiler -&gt; Include Options -&gt; Add dir to #include search path(–include_path, -I)</li>
+</ul>
+<h3 id="controlSUITE-旧版本库-v125-相对路径"><a href="#controlSUITE-旧版本库-v125-相对路径" class="headerlink" title="controlSUITE 旧版本库 v125 - 相对路径"></a>controlSUITE 旧版本库 v125 - 相对路径</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">$&#123;PROJECT_ROOT&#125;</span></span><br><span class="line"><span class="hljs-variable">$&#123;CG_TOOL_ROOT&#125;</span>/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/device_support/f2802x/v125/DSP2802x_common/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/device_support/f2802x/v125/DSP2802x_headers/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/app_libs/motor_control/drivers/f2803x_v2.0</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/app_libs/motor_control/math_blocks/v4.0</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/math/IQmath/v15c/include</span><br></pre></td></tr></table></figure>
+
+<h3 id="controlSUITE-新版本库-v230-相对路径"><a href="#controlSUITE-新版本库-v230-相对路径" class="headerlink" title="controlSUITE 新版本库 v230 - 相对路径"></a>controlSUITE 新版本库 v230 - 相对路径</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-variable">$&#123;PROJECT_ROOT&#125;</span></span><br><span class="line"><span class="hljs-variable">$&#123;CG_TOOL_ROOT&#125;</span>/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/device_support/f2802x/v230/f2802x_common/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/device_support/f2802x/v230/f2802x_headers/include</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/app_libs/motor_control/drivers/f2803x_v2.1</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/app_libs/motor_control/math_blocks/v4.3</span><br><span class="line"><span class="hljs-variable">$&#123;TI_PRODUCTS_DIR&#125;</span>/controlSUITE/libs/math/IQmath/v160/include</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-预定义宏-Predefined-Symbols"><a href="#4-预定义宏-Predefined-Symbols" class="headerlink" title="4. 预定义宏 Predefined Symbols"></a>4. 预定义宏 Predefined Symbols</h2><figure class="highlight c hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_DEBUG</span><br><span class="line">LARGE_MODEL</span><br><span class="line">FLASH</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Runtime-Model-Options"><a href="#5-Runtime-Model-Options" class="headerlink" title="5. Runtime Model Options"></a>5. Runtime Model Options</h2><ul>
+<li>Place each function in a separate subsection - on</li>
+</ul>
+</div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Astyle/">
-                        <span class="tag">Astyle</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/Alipay.jpg" alt="支付宝"></div>
+</a>
+
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Blog/">
-                        <span class="tag">Blog</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/C/">
-                        <span class="tag">C</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/Wechat.jpg" alt="微信"></div>
+</a>
+
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Code-Composer-Studio/">
-                        <span class="tag">Code Composer Studio</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Coding-Style/">
-                        <span class="tag">Coding Style</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Debug/">
-                        <span class="tag">Debug</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/GitHub/">
-                        <span class="tag">GitHub</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hello/">
-                        <span class="tag">Hello</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hexo/">
-                        <span class="tag">Hexo</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IDE/">
-                        <span class="tag">IDE</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Markdown/">
-                        <span class="tag">Markdown</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
-                        <span class="tag">Markdown Plus</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/STM32/">
-                        <span class="tag">STM32</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Standard/">
-                        <span class="tag">Standard</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Static-Lib/">
-                        <span class="tag">Static Lib</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Template/">
-                        <span class="tag">Template</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tutorial/">
-                        <span class="tag">Tutorial</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/UART/">
-                        <span class="tag">UART</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
         </div>
     </div>
-</div></div>
+</div>
+
+
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'mNs1xyerDNrr62umEcRrOW36-gzGzoHsz',
+        app_key: 'R8mlRSdsFLY32DqTySDkfbea',
+        placeholder: '来点鲱鱼罐头~'
+    });
+</script>
+
+    </div>
+</div>
+</div>
                 
 
 
@@ -1171,7 +1133,7 @@ var _hmt = _hmt || [];
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Tomy Stark&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">

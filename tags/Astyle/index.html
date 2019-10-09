@@ -193,7 +193,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 637 个字)
+                    4 分钟 读完 (大约 663 个字)
                 </span>
                 
                 
@@ -206,7 +206,14 @@ var _hmt = _hmt || [];
             
         </h1>
         <div class="content">
-            <h2 id="A-bat批处理文件调用Astyle进行代码格式化-KR风格"><a href="#A-bat批处理文件调用Astyle进行代码格式化-KR风格" class="headerlink" title="A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]"></a>A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]</h2><h3 id="1-一键格式化所有代码-包括子目录-完整参数版"><a href="#1-一键格式化所有代码-包括子目录-完整参数版" class="headerlink" title="1. 一键格式化所有代码(包括子目录)_完整参数版"></a>1. <strong>一键格式化所有代码(包括子目录)_完整参数版</strong></h3><figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-title">for</span> /<span class="hljs-type">R</span> %%f <span class="hljs-keyword">in</span> (*.c;*.h) <span class="hljs-keyword">do</span> <span class="hljs-type">AStyle</span>.exe <span class="hljs-comment">--style=kr --indent=spaces=4 --attach-closing-while --indent-switches --indent-preproc-define --indent-col1-comments --max-continuation-indent=60 --break-blocks --pad-oper --pad-comma --pad-header --align-pointer=name --align-reference=name --break-one-line-headers --add-braces --attach-return-type --attach-return-type-decl --convert-tabs --max-code-length=200 --suffix=none --verbose %%f</span></span><br><span class="line"><span class="hljs-title">pause</span></span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a><br>Ver 1.0.0</p>
+<p>Note:</p>
+<ul>
+<li><strong>转载请注明本文出处链接、作者</strong></li>
+</ul>
+</blockquote>
+<h2 id="A-bat批处理文件调用Astyle进行代码格式化-KR风格"><a href="#A-bat批处理文件调用Astyle进行代码格式化-KR风格" class="headerlink" title="A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]"></a>A. *.bat批处理文件调用Astyle进行代码格式化[KR风格]</h2><h3 id="1-一键格式化所有代码-包括子目录-完整参数版"><a href="#1-一键格式化所有代码-包括子目录-完整参数版" class="headerlink" title="1. 一键格式化所有代码(包括子目录)_完整参数版"></a>1. <strong>一键格式化所有代码(包括子目录)_完整参数版</strong></h3><figure class="highlight haskell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-title">for</span> /<span class="hljs-type">R</span> %%f <span class="hljs-keyword">in</span> (*.c;*.h) <span class="hljs-keyword">do</span> <span class="hljs-type">AStyle</span>.exe <span class="hljs-comment">--style=kr --indent=spaces=4 --attach-closing-while --indent-switches --indent-preproc-define --indent-col1-comments --max-continuation-indent=60 --break-blocks --pad-oper --pad-comma --pad-header --align-pointer=name --align-reference=name --break-one-line-headers --add-braces --attach-return-type --attach-return-type-decl --convert-tabs --max-code-length=200 --suffix=none --verbose %%f</span></span><br><span class="line"><span class="hljs-title">pause</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
