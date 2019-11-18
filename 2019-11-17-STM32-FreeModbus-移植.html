@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>STM32-FreeModbus 移植 - Tomy Stark&#39;s Blog</title>
+
+
+    <meta name="description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+<meta name="keywords" content="Bus,STM32,RS485,FreeModbus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32-FreeModbus 移植">
+<meta property="og:url" content="https://apex.linn.top/2019-11-17-STM32-FreeModbus-移植.html">
+<meta property="og:site_name" content="Tomy Stark&#39;s Blog">
+<meta property="og:description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://apex.linn.top/images/flower.jpg">
+<meta property="og:updated_time" content="2019-11-17T15:20:12.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STM32-FreeModbus 移植">
+<meta name="twitter:description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+<meta name="twitter:image" content="https://apex.linn.top/images/flower.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/vs2015.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?095c2ecf4f76ce7c3e576e6ffc99edf2";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1505643,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="STM32-FreeModbus 移植" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/list">清单</a>
+                
+                <a class="navbar-item"
+                href="/links">链接</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/flower.jpg" alt="STM32-FreeModbus 移植">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-17T08:57:05.000Z">2019-11-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Bus/">Bus</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Bus/FreeModbus/">FreeModbus</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2420 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                STM32-FreeModbus 移植
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>STM32-FreeModbus 移植</p>
+<blockquote>
+<p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
+<p><strong>Note: 转载请注明本文出处链接、作者</strong></p>
+</blockquote>
+</blockquote>
+<h2 id="一、工具准备清单"><a href="#一、工具准备清单" class="headerlink" title="一、工具准备清单"></a>一、工具准备清单</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><ul>
+<li>一块带有 RS485 通信接口的 STM32 开发板</li>
+<li>USB 转 485 通讯转换器（推荐带 <code>FT232</code> 芯片的转换器，更加稳定， <code>CH340</code> 稳定性欠佳。）</li>
+</ul>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
+<li><a href="https://www.embedded-solutions.at/en/freemodbus-downloads/" title="去下载 FreeMODBUS" target="_blank" rel="noopener">FreeMODBUS</a>（Modbus 协议栈）</li>
+<li><a href="https://www.modbustools.com/" title="去下载 Modbus Poll" target="_blank" rel="noopener">Modbus Poll</a>（Modbus RTU 上位机调试软件）</li>
+<li>MODBUS调试助手（来自安富莱论坛，简单易用，可替代 <code>Modbus Poll</code> 部分功能）</li>
+<li><a href="https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html" title="去下载 STM32CubeMX" target="_blank" rel="noopener">STM32CubeMX</a>（ST 官方的 MCU 配置工具）</li>
+<li><a href="https://atollic.com/resources/download/" title="去下载 TrueStudio IDE for STM32" target="_blank" rel="noopener">TrueStudio</a>（这里我以 <code>TrueStudio</code> 这个 IDE 为例，其它 IDE 例如 <code>Keil MDK</code> 也可）</li>
+</ul>
+<blockquote>
+<p>以上部分软件也可从我的微云网盘下载：<a href="https://share.weiyun.com/5ec0Utd" target="_blank" rel="noopener">https://share.weiyun.com/5ec0Utd</a></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="二、提取移植文件"><a href="#二、提取移植文件" class="headerlink" title="二、提取移植文件"></a>二、提取移植文件</h2><p>将从 <a href="https://www.embedded-solutions.at/en/freemodbus-downloads/" title="去下载 FreeMODBUS" target="_blank" rel="noopener">FreeMODBUS</a> 官网下载的 <code>freemodbus-v1.6.zip</code> 解压后，将其中的 <code>modbus</code> 目录和 <code>demo\BARE</code> 目录下的 <code>port</code> 目录完整复制到自己的工程目录下。</p>
+<blockquote>
+<p>为方便管理，在这里我将 <code>modbus</code> 目录重命名为 <code>FreeModbus_Core</code> ，将 <code>port</code> 目录重命名为 <code>FreeModbus_Port</code> 。</p>
+</blockquote>
+<h2 id="三、STM32CubeMX-设置串口"><a href="#三、STM32CubeMX-设置串口" class="headerlink" title="三、STM32CubeMX - 设置串口"></a>三、STM32CubeMX - 设置串口</h2><p>注意这里的串口设置：</p>
+<ul>
+<li>波特率：9600 Bits/s</li>
+<li>字长：8 Bits</li>
+<li>校验：None</li>
+<li>停止位：2</li>
+</ul>
+<blockquote>
+<p>根据 <code>Modbus RTU</code> 的标准，在没有校验的情况下，需要 <code>2</code> 个停止位。</p>
+</blockquote>
+<p><img src="../images/BlogPics/04RS485-01.jpg" alt="串口设置"><br><img src="../images/BlogPics/04RS485-02.jpg" alt="串口中断使能"></p>
+<h2 id="四、STM32CubeMX-设置定时器"><a href="#四、STM32CubeMX-设置定时器" class="headerlink" title="四、STM32CubeMX - 设置定时器"></a>四、STM32CubeMX - 设置定时器</h2><p><img src="../images/BlogPics/04RS485-03.jpg" alt="时钟树设置"></p>
+<p>由时钟树的设置图可知当前 MCU 运行时提供给定时器的时钟为 <code>48 MHz</code> ，我们需要设置定时器，以最终能为 <code>FreeModbus 协议栈</code> 提供一个 <code>50 us</code> 的时钟信号基准，该设置会对 <code>Modbus RTU</code> 协议中的 <code>T3.5</code> （3.5个字符时间）产生影响。</p>
+<p><img src="../images/BlogPics/04RS485-04.jpg" alt="定时器设置"></p>
+<p>定时器选择了 <code>TIM16</code> ，原因很简单，因为只需要提供一个 <code>50 us</code> 的时基，所以使用通用定时器即可。 <code>T3.5</code> 的计算公式如下：</p>
+<p><img src="../images/BlogPics/04RS485-07.jpg" alt="T3_5计算公式"></p>
+<!-- $$
+一位传输时间 = \frac{1\ Bit}{9600\ Bits/s} = \frac{1}{9600}\ s
+\\\ \\
+一字节（11位）传输时间 = \frac{11}{9600}\ s
+\\\ \\
+定时器溢出时间 = 3.5\times\frac{11}{9600} = \frac{77}{19200}\ s \approx 4010\ us
+\\\ \\
+50\ us\ 的基准频率为\ 20\ KHz
+\\\ \\
+\frac{48\ MHz}{Presc + 1} = 20\ KHz
+\\\ \\
+预分频系数\ Presc = 2399
+\\\ \\
+50\ us \times Counter\ Period = 4010\ us
+\\\ \\
+Counter\ Period \approx 80\ 次
+\\\ \\
+$$ -->
+
+<p><img src="../images/BlogPics/04RS485-05.jpg" alt="定时器中断使能"></p>
+<h2 id="五、STM32CubeMX-库选择"><a href="#五、STM32CubeMX-库选择" class="headerlink" title="五、STM32CubeMX - 库选择"></a>五、STM32CubeMX - 库选择</h2><p><img src="../images/BlogPics/04RS485-06.jpg" alt="库选择"></p>
+<h2 id="六、搞定串口"><a href="#六、搞定串口" class="headerlink" title="六、搞定串口"></a>六、搞定串口</h2><figure class="highlight c hljs"><figcaption><span>portserial.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"port.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"usart.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* ----------------------- Modbus includes ----------------------------------*/</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mb.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mbport.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* ----------------------- static functions ---------------------------------*/</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTTxReadyISR</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTRxISR</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* ----------------------- Start implementation -----------------------------*/</span></span><br><span class="line"><span class="hljs-keyword">void</span></span><br><span class="line">vMBPortSerialEnable(BOOL xRxEnable, BOOL xTxEnable)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* If xRXEnable enable serial receive interrupts. If xTxENable enable</span></span><br><span class="line"><span class="hljs-comment">     * transmitter empty interrupts.</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (xRxEnable) &#123;</span><br><span class="line">        <span class="hljs-comment">/* Enable the UART Data Register not empty Interrupt */</span></span><br><span class="line">        LL_USART_EnableIT_RXNE(USART1);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-comment">/* Disable the UART Data Register not empty Interrupt */</span></span><br><span class="line">        LL_USART_DisableIT_RXNE(USART1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (xTxEnable) &#123;</span><br><span class="line">        <span class="hljs-comment">/* Enable the UART Transmit data register empty Interrupt */</span></span><br><span class="line">        LL_USART_EnableIT_TXE(USART1);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-comment">/* Disable the UART Transmit data register empty Interrupt */</span></span><br><span class="line">        LL_USART_DisableIT_TXE(USART1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BOOL</span><br><span class="line">xMBPortSerialInit( UCHAR ucPORT, ULONG ulBaudRate, UCHAR ucDataBits, eMBParity eParity )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* 由于已经在系统初始化中已经完成串口初始化，故在此不需要再一次进行初始化 */</span></span><br><span class="line">    <span class="hljs-keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BOOL</span><br><span class="line">xMBPortSerialPutByte( CHAR ucByte )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* Put a byte in the UARTs transmit buffer. This function is called</span></span><br><span class="line"><span class="hljs-comment">     * by the protocol stack if pxMBFrameCBTransmitterEmpty( ) has been</span></span><br><span class="line"><span class="hljs-comment">     * called. */</span></span><br><span class="line">    LL_USART_TransmitData8(USART1, (<span class="hljs-keyword">uint8_t</span>)ucByte);</span><br><span class="line">    <span class="hljs-keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BOOL</span><br><span class="line">xMBPortSerialGetByte( CHAR * pucByte )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* Return the byte in the UARTs receive buffer. This function is called</span></span><br><span class="line"><span class="hljs-comment">     * by the protocol stack after pxMBFrameCBByteReceived( ) has been called.</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    *pucByte = LL_USART_ReceiveData8(USART1);</span><br><span class="line">    <span class="hljs-keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* Create an interrupt handler for the transmit buffer empty interrupt</span></span><br><span class="line"><span class="hljs-comment"> * (or an equivalent) for your target processor. This function should then</span></span><br><span class="line"><span class="hljs-comment"> * call pxMBFrameCBTransmitterEmpty( ) which tells the protocol stack that</span></span><br><span class="line"><span class="hljs-comment"> * a new character can be sent. The protocol stack will then call</span></span><br><span class="line"><span class="hljs-comment"> * xMBPortSerialPutByte( ) to send the character.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTTxReadyISR</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    pxMBFrameCBTransmitterEmpty(  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* Create an interrupt handler for the receive interrupt for your target</span></span><br><span class="line"><span class="hljs-comment"> * processor. This function should then call pxMBFrameCBByteReceived( ). The</span></span><br><span class="line"><span class="hljs-comment"> * protocol stack will then call xMBPortSerialGetByte( ) to retrieve the</span></span><br><span class="line"><span class="hljs-comment"> * character.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTRxISR</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    pxMBFrameCBByteReceived(  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、搞定定时器"><a href="#七、搞定定时器" class="headerlink" title="七、搞定定时器"></a>七、搞定定时器</h2><figure class="highlight c hljs"><figcaption><span>porttimer.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/* ----------------------- Platform includes --------------------------------*/</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"port.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"tim.h"</span></span></span><br><span class="line"><span class="hljs-comment">/* ----------------------- Modbus includes ----------------------------------*/</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mb.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mbport.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* ----------------------- static functions ---------------------------------*/</span></span><br><span class="line"><span class="hljs-comment">//static void prvvTIMERExpiredISR( void );</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* ----------------------- Start implementation -----------------------------*/</span></span><br><span class="line">BOOL</span><br><span class="line">xMBPortTimersInit( USHORT usTim1Timerout50us )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* 系统初始化已经完成定时器的初始化，故在此不在进行初始化 */</span></span><br><span class="line">    <span class="hljs-keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span></span><br><span class="line">vMBPortTimersEnable( <span class="hljs-keyword">void</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* Enable the timer with the timeout passed to xMBPortTimersInit( ) */</span></span><br><span class="line">    LL_TIM_ClearFlag_UPDATE(TIM16);</span><br><span class="line">    LL_TIM_EnableIT_UPDATE(TIM16);</span><br><span class="line">    LL_TIM_SetCounter(TIM16, <span class="hljs-number">0</span>);</span><br><span class="line">    LL_TIM_EnableCounter(TIM16);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span></span><br><span class="line">vMBPortTimersDisable( <span class="hljs-keyword">void</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="hljs-comment">/* Disable any pending timers. */</span></span><br><span class="line">    LL_TIM_DisableCounter(TIM16);</span><br><span class="line">    LL_TIM_SetCounter(TIM16, <span class="hljs-number">0</span>);</span><br><span class="line">    LL_TIM_DisableIT_UPDATE(TIM16);</span><br><span class="line">    LL_TIM_ClearFlag_UPDATE(TIM16);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* Create an ISR which is called whenever the timer has expired. This function</span></span><br><span class="line"><span class="hljs-comment"> * must then call pxMBPortCBTimerExpired( ) to notify the protocol stack that</span></span><br><span class="line"><span class="hljs-comment"> * the timer has expired.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">prvvTIMERExpiredISR</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    ( <span class="hljs-keyword">void</span> )pxMBPortCBTimerExpired(  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、搞定中断服务程序"><a href="#八、搞定中断服务程序" class="headerlink" title="八、搞定中断服务程序"></a>八、搞定中断服务程序</h2><figure class="highlight c hljs"><figcaption><span>APP_IRQ.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> APP_IRQ_H_</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> APP_IRQ_H_</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mb.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REG_HOLDING_START 0x0000</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> REG_HOLDING_NREGS 1</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">uint16_t</span> usRegHoldingStart;</span><br><span class="line"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">uint16_t</span> usRegHoldingBuf[REG_HOLDING_NREGS];</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prvvTIMERExpiredISR</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTTxReadyISR</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prvvUARTRxISR</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">/* APP_IRQ_H_ */</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c hljs"><figcaption><span>APP_IRQ.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"APP_IRQ.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/* 定义保持寄存器的地址起始值和存储数组 */</span></span><br><span class="line"><span class="hljs-keyword">uint16_t</span> usRegHoldingStart = REG_HOLDING_START;</span><br><span class="line"><span class="hljs-keyword">uint16_t</span> usRegHoldingBuf[REG_HOLDING_NREGS] = &#123; <span class="hljs-number">0x1234</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*******************************************************************************</span></span><br><span class="line"><span class="hljs-comment"> * @name   : eMBRegHoldingCB</span></span><br><span class="line"><span class="hljs-comment"> * @brief  : 保持寄存器处理函数，保持寄存器可读，可读可写</span></span><br><span class="line"><span class="hljs-comment"> * @param  : pucRegBuffer 读操作时--返回数据指针，写操作时--输入数据指针</span></span><br><span class="line"><span class="hljs-comment"> *           usAddress 寄存器起始地址</span></span><br><span class="line"><span class="hljs-comment"> *           usNRegs 寄存器长度</span></span><br><span class="line"><span class="hljs-comment"> *           eMode 操作方式，读或者写</span></span><br><span class="line"><span class="hljs-comment"> * @retval : eStatus 寄存器状态</span></span><br><span class="line"><span class="hljs-comment"> *******************************************************************************/</span></span><br><span class="line"><span class="hljs-function">eMBErrorCode <span class="hljs-title">eMBRegHoldingCB</span><span class="hljs-params">(UCHAR *pucRegBuffer, USHORT usAddress, USHORT usNRegs, eMBRegisterMode eMode)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    eMBErrorCode eStatus = MB_ENOERR;</span><br><span class="line">    <span class="hljs-comment">/* 偏移量 */</span></span><br><span class="line">    <span class="hljs-keyword">int16_t</span> iRegIndex;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* 判断寄存器是不是在范围内 */</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (((<span class="hljs-keyword">int16_t</span>) usAddress &gt;= REG_HOLDING_START) &amp;&amp; (usAddress + usNRegs &lt;= REG_HOLDING_START + REG_HOLDING_NREGS)) &#123;</span><br><span class="line">        <span class="hljs-comment">/* 计算偏移量 */</span></span><br><span class="line">        iRegIndex = (<span class="hljs-keyword">int16_t</span>) (usAddress - REG_HOLDING_START);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">switch</span> (eMode)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="hljs-keyword">case</span> MB_REG_READ: <span class="hljs-comment">/* 读处理函数 */</span></span><br><span class="line">                <span class="hljs-keyword">while</span> (usNRegs &gt; <span class="hljs-number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    *pucRegBuffer++ = (<span class="hljs-keyword">uint8_t</span>)(usRegHoldingBuf[iRegIndex] &gt;&gt; <span class="hljs-number">8U</span>);</span><br><span class="line">                    *pucRegBuffer++ = (<span class="hljs-keyword">uint8_t</span>)(usRegHoldingBuf[iRegIndex] &amp; <span class="hljs-number">0xFF</span>);</span><br><span class="line">                    iRegIndex++;</span><br><span class="line">                    usNRegs--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">case</span> MB_REG_WRITE: <span class="hljs-comment">/* 写处理函数 */</span></span><br><span class="line">                <span class="hljs-keyword">while</span> (usNRegs &gt; <span class="hljs-number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    usRegHoldingBuf[iRegIndex] = *pucRegBuffer++ &lt;&lt; <span class="hljs-number">8U</span>;</span><br><span class="line">                    usRegHoldingBuf[iRegIndex] |= *pucRegBuffer++;</span><br><span class="line">                    iRegIndex++;</span><br><span class="line">                    usNRegs--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        eStatus = MB_ENOREG;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> eStatus;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TIM16_IRQHandler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> ((LL_TIM_IsActiveFlag_UPDATE(TIM16) != RESET) &amp;&amp; (LL_TIM_IsEnabledIT_UPDATE(TIM16) != RESET)) &#123;</span><br><span class="line">        LL_TIM_ClearFlag_UPDATE(TIM16);</span><br><span class="line"></span><br><span class="line">        prvvTIMERExpiredISR();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">USART1_IRQHandler</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> ((LL_USART_IsActiveFlag_RXNE(USART1) != RESET) &amp;&amp; (LL_USART_IsEnabledIT_RXNE(USART1) != RESET)) &#123;</span><br><span class="line">        prvvUARTRxISR();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> ((LL_USART_IsActiveFlag_TXE(USART1) != RESET) &amp;&amp; (LL_USART_IsEnabledIT_TXE(USART1) != RESET)) &#123;</span><br><span class="line">        prvvUARTTxReadyISR();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="九、搞定开关中断配置"><a href="#九、搞定开关中断配置" class="headerlink" title="九、搞定开关中断配置"></a>九、搞定开关中断配置</h2><figure class="highlight c hljs"><figcaption><span>port.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _PORT_H</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _PORT_H</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;inttypes.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stm32f0xx.h"</span> <span class="hljs-comment">/* 头文件对应 MCU 系列 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>	INLINE                      inline</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PR_BEGIN_EXTERN_C           extern <span class="hljs-meta-string">"C"</span> &#123;</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span>	PR_END_EXTERN_C             &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> ENTER_CRITICAL_SECTION()  __disable_irq() <span class="hljs-comment">/* 进入临界区，关闭中断 */</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> EXIT_CRITICAL_SECTION()   __enable_irq()  <span class="hljs-comment">/* 退出临界区，开启中断 */</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">uint8_t</span> BOOL;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> UCHAR;</span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">char</span> CHAR;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">uint16_t</span> USHORT;</span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int16_t</span> SHORT;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">uint32_t</span> ULONG;</span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int32_t</span> LONG;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> TRUE</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> TRUE            1</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> FALSE</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FALSE           0</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十、搞定-FreeModbus-函数裁剪"><a href="#十、搞定-FreeModbus-函数裁剪" class="headerlink" title="十、搞定 FreeModbus 函数裁剪"></a>十、搞定 FreeModbus 函数裁剪</h2><blockquote>
+<p>在这里可以选择 <code>FreeModbus</code> 的工作模式：<code>ASCII</code>、<code>RTU</code>、<code>TCP</code></p>
+<p>同时也可对 <code>FreeModbus</code> 协议栈进行函数裁剪，对于不需要的功能，通过宏开关关闭即可</p>
+</blockquote>
+<figure class="highlight c hljs"><figcaption><span>mbconfig.h</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _MB_CONFIG_H</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _MB_CONFIG_H</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">PR_BEGIN_EXTERN_C</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"><span class="hljs-comment">/* ----------------------- Defines ------------------------------------------*/</span></span><br><span class="line"><span class="hljs-comment">/*! \defgroup modbus_cfg Modbus Configuration</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * Most modules in the protocol stack are completly optional and can be</span></span><br><span class="line"><span class="hljs-comment"> * excluded. This is specially important if target resources are very small</span></span><br><span class="line"><span class="hljs-comment"> * and program memory space should be saved.&lt;br&gt;</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * All of these settings are available in the file &lt;code&gt;mbconfig.h&lt;/code&gt;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-comment">/*! \addtogroup modbus_cfg</span></span><br><span class="line"><span class="hljs-comment"> *  @&#123;</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-comment">/*! \brief If Modbus ASCII support is enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_ASCII_ENABLED                        (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If Modbus RTU support is enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_RTU_ENABLED                          (  1 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If Modbus TCP support is enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_TCP_ENABLED                          (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief The character timeout value for Modbus ASCII.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * The character timeout value is not fixed for Modbus ASCII and is therefore</span></span><br><span class="line"><span class="hljs-comment"> * a configuration option. It should be set to the maximum expected delay</span></span><br><span class="line"><span class="hljs-comment"> * time of the network.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_ASCII_TIMEOUT_SEC                    (  1 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief Timeout to wait in ASCII prior to enabling transmitter.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * If defined the function calls vMBPortSerialDelay with the argument</span></span><br><span class="line"><span class="hljs-comment"> * MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS to allow for a delay before</span></span><br><span class="line"><span class="hljs-comment"> * the serial transmitter is enabled. This is required because some</span></span><br><span class="line"><span class="hljs-comment"> * targets are so fast that there is no time between receiving and</span></span><br><span class="line"><span class="hljs-comment"> * transmitting the frame. If the master is to slow with enabling its</span></span><br><span class="line"><span class="hljs-comment"> * receiver then he will not receive the response correctly.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS    ( 0 )</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief Maximum number of Modbus functions codes the protocol stack</span></span><br><span class="line"><span class="hljs-comment"> *    should support.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * The maximum number of supported Modbus functions must be greater than</span></span><br><span class="line"><span class="hljs-comment"> * the sum of all enabled functions in this file and custom function</span></span><br><span class="line"><span class="hljs-comment"> * handlers. If set to small adding more functions will fail.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_HANDLERS_MAX                    ( 16 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief Number of bytes which should be allocated for the &lt;em&gt;Report Slave ID</span></span><br><span class="line"><span class="hljs-comment"> *    &lt;/em&gt;command.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * This number limits the maximum size of the additional segment in the</span></span><br><span class="line"><span class="hljs-comment"> * report slave id function. See eMBSetSlaveID(  ) for more information on</span></span><br><span class="line"><span class="hljs-comment"> * how to set this value. It is only used if MB_FUNC_OTHER_REP_SLAVEID_ENABLED</span></span><br><span class="line"><span class="hljs-comment"> * is set to &lt;code&gt;1&lt;/code&gt;.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_OTHER_REP_SLAVEID_BUF           ( 32 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Report Slave ID&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_OTHER_REP_SLAVEID_ENABLED       (  1 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Read Input Registers&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_READ_INPUT_ENABLED              (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Read Holding Registers&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_READ_HOLDING_ENABLED            (  1 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Write Single Register&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_WRITE_HOLDING_ENABLED           (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Write Multiple registers&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_WRITE_MULTIPLE_HOLDING_ENABLED  (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Read Coils&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_READ_COILS_ENABLED              (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Write Coils&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_WRITE_COIL_ENABLED              (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Write Multiple Coils&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_WRITE_MULTIPLE_COILS_ENABLED    (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Read Discrete Inputs&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_READ_DISCRETE_INPUTS_ENABLED    (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/*! \brief If the &lt;em&gt;Read/Write Multiple Registers&lt;/em&gt; function should be enabled. */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MB_FUNC_READWRITE_HOLDING_ENABLED       (  0 )</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">    PR_END_EXTERN_C</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十一、搞定寄存器地址差一的问题"><a href="#十一、搞定寄存器地址差一的问题" class="headerlink" title="十一、搞定寄存器地址差一的问题"></a>十一、搞定寄存器地址差一的问题</h2><p>将 <code>FreeModbus</code> 协议栈中所有的 <code>usRegAddress++;</code> 注释掉即可。</p>
+<h2 id="十二、搞定主函数"><a href="#十二、搞定主函数" class="headerlink" title="十二、搞定主函数"></a>十二、搞定主函数</h2><blockquote>
+<p><strong>因为篇幅有限，部分由 <a href="https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html" title="去下载 STM32CubeMX" target="_blank" rel="noopener">STM32CubeMX</a> 生成的代码已被我略去，请注意。</strong></p>
+</blockquote>
+<figure class="highlight c hljs"><figcaption><span>main.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"APP_IRQ.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mb.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">uint16_t</span> cnt = <span class="hljs-number">0U</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* 初始化串口和定时器 */</span></span><br><span class="line">    MX_USART1_UART_Init();</span><br><span class="line">    MX_TIM16_Init();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* Init the Modbus Protocol Stack. */</span></span><br><span class="line">    (<span class="hljs-keyword">void</span>)eMBInit(MB_RTU, <span class="hljs-number">0x64</span>, <span class="hljs-number">0</span>, <span class="hljs-number">9600</span>, MB_PAR_NONE);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/* Enable the Modbus Protocol Stack. */</span></span><br><span class="line">    (<span class="hljs-keyword">void</span>)eMBEnable();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;</span><br><span class="line">        <span class="hljs-comment">/* 将 cnt 赋值给保持寄存器缓冲区 */</span></span><br><span class="line">        usRegHoldingBuf[<span class="hljs-number">0</span>] = cnt;</span><br><span class="line"></span><br><span class="line">        (<span class="hljs-keyword">void</span>)eMBPoll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<!-- 链接管理区 -->
+<!-- 图片管理区 -->
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Bus/">Bus</a>, <a class="has-link-grey -link" href="/tags/FreeModbus/">FreeModbus</a>, <a class="has-link-grey -link" href="/tags/RS485/">RS485</a>, <a class="has-link-grey -link" href="/tags/STM32/">STM32</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/Wechat.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019-10-13-Eclipse系IDE集成UML图教程.html">
+                <span class="level-item">Eclipse系IDE集成UML图教程</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: true,
+        verify: true,
+        app_id: 'mNs1xyerDNrr62umEcRrOW36-gzGzoHsz',
+        app_key: 'R8mlRSdsFLY32DqTySDkfbea',
+        placeholder: '来点鲱鱼罐头~'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/avatar.jpg" alt="Tomy Stark">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Tomy Stark
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        四海茫茫
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Earth, Solar System.</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        15
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        23
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/SummerFalls" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="GitHub" href="https://github.com/SummerFalls">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="GitLab" href="https://gitlab.com/EyuJi">
+                
+                <i class="fab fa-gitlab"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/TomyStark">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="微博" href="https://weibo.com/tomystark">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.mr-wu.cn/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">吴川斌</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mr-wu.cn</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.mazirong.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">芯跳不止</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.mazirong.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.strongerhuang.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">strongerHuang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.strongerhuang.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://jiaodi.tech/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">焦迪 Nemo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">jiaodi.tech</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.muselab-tech.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Muse Lab</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.muselab-tech.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://www.wujique.com/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">屋脊雀</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.wujique.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019-11-17-STM32-FreeModbus-移植.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/flower.jpg" alt="STM32-FreeModbus 移植">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T08:57:05.000Z">2019-11-17</time></div>
+                    <a href="/2019-11-17-STM32-FreeModbus-移植.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">STM32-FreeModbus 移植</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Bus/">Bus</a> / <a class="has-link-grey -link" href="/categories/Bus/FreeModbus/">FreeModbus</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-10-13-Eclipse系IDE集成UML图教程.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/IMG_0603.JPG" alt="Eclipse系IDE集成UML图教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-13T07:17:22.000Z">2019-10-13</time></div>
+                    <a href="/2019-10-13-Eclipse系IDE集成UML图教程.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Eclipse系IDE集成UML图教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Eclipse-derived-IDEs/">Eclipse-derived IDEs</a> / <a class="has-link-grey -link" href="/categories/IDE/">IDE</a> / <a class="has-link-grey -link" href="/categories/UML/">UML</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/Foliage_Dylan_Luder.jpg" alt="利用GitHub Pages搭建Hexo静态博客教程">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-28T07:48:09.000Z">2019-09-28</time></div>
+                    <a href="/2019-09-28-利用GitHub-Pages搭建Hexo静态博客教程.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">利用GitHub Pages搭建Hexo静态博客教程</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Blog/">Blog</a> / <a class="has-link-grey -link" href="/categories/Blog/Hexo/">Hexo</a> / <a class="has-link-grey -link" href="/categories/GitHub/">GitHub</a> / <a class="has-link-grey -link" href="/categories/Tutorial/">Tutorial</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-24-CCS-工程配置.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/desert.jpg" alt="CCS 工程配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-24T13:20:33.000Z">2019-09-24</time></div>
+                    <a href="/2019-09-24-CCS-工程配置.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">CCS 工程配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/IDE/">IDE</a> / <a class="has-link-grey -link" href="/categories/IDE/Code-Composer-Studio/">Code Composer Studio</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019-09-24-CCSv9-Static-Lib-静态库封装及使用.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/flower.jpg" alt="CCSv9 Static Lib 静态库封装及使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-24T07:05:11.000Z">2019-09-24</time></div>
+                    <a href="/2019-09-24-CCSv9-Static-Lib-静态库封装及使用.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">CCSv9 Static Lib 静态库封装及使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/IDE/">IDE</a> / <a class="has-link-grey -link" href="/categories/IDE/Code-Composer-Studio/">Code Composer Studio</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#一、工具准备清单">
+        <span class="has-mr-6">1</span>
+        <span>一、工具准备清单</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#硬件">
+        <span class="has-mr-6">1.1</span>
+        <span>硬件</span>
+        </a></li><li>
+        <a class="is-flex" href="#软件">
+        <span class="has-mr-6">1.2</span>
+        <span>软件</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#二、提取移植文件">
+        <span class="has-mr-6">2</span>
+        <span>二、提取移植文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#三、STM32CubeMX-设置串口">
+        <span class="has-mr-6">3</span>
+        <span>三、STM32CubeMX - 设置串口</span>
+        </a></li><li>
+        <a class="is-flex" href="#四、STM32CubeMX-设置定时器">
+        <span class="has-mr-6">4</span>
+        <span>四、STM32CubeMX - 设置定时器</span>
+        </a></li><li>
+        <a class="is-flex" href="#五、STM32CubeMX-库选择">
+        <span class="has-mr-6">5</span>
+        <span>五、STM32CubeMX - 库选择</span>
+        </a></li><li>
+        <a class="is-flex" href="#六、搞定串口">
+        <span class="has-mr-6">6</span>
+        <span>六、搞定串口</span>
+        </a></li><li>
+        <a class="is-flex" href="#七、搞定定时器">
+        <span class="has-mr-6">7</span>
+        <span>七、搞定定时器</span>
+        </a></li><li>
+        <a class="is-flex" href="#八、搞定中断服务程序">
+        <span class="has-mr-6">8</span>
+        <span>八、搞定中断服务程序</span>
+        </a></li><li>
+        <a class="is-flex" href="#九、搞定开关中断配置">
+        <span class="has-mr-6">9</span>
+        <span>九、搞定开关中断配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#十、搞定-FreeModbus-函数裁剪">
+        <span class="has-mr-6">10</span>
+        <span>十、搞定 FreeModbus 函数裁剪</span>
+        </a></li><li>
+        <a class="is-flex" href="#十一、搞定寄存器地址差一的问题">
+        <span class="has-mr-6">11</span>
+        <span>十一、搞定寄存器地址差一的问题</span>
+        </a></li><li>
+        <a class="is-flex" href="#十二、搞定主函数">
+        <span class="has-mr-6">12</span>
+        <span>十二、搞定主函数</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Bus/">
+            <span class="level-start">
+                <span class="level-item">Bus</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Bus/FreeModbus/">
+            <span class="level-start">
+                <span class="level-item">FreeModbus</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Debug/">
+            <span class="level-start">
+                <span class="level-item">Debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Debug/STM32/">
+            <span class="level-start">
+                <span class="level-item">STM32</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Eclipse-derived-IDEs/">
+            <span class="level-start">
+                <span class="level-item">Eclipse-derived IDEs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/IDE/">
+            <span class="level-start">
+                <span class="level-item">IDE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/IDE/Code-Composer-Studio/">
+            <span class="level-start">
+                <span class="level-item">Code Composer Studio</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/UML/">
+            <span class="level-start">
+                <span class="level-item">UML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Bus/" style="font-size: 10px;">Bus</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Eclipse-derived-IDEs/" style="font-size: 10px;">Eclipse-derived IDEs</a> <a href="/tags/FreeModbus/" style="font-size: 10px;">FreeModbus</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 16.67px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/RS485/" style="font-size: 10px;">RS485</a> <a href="/tags/STM32/" style="font-size: 13.33px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/UML/" style="font-size: 10px;">UML</a>
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bus/">
+                        <span class="tag">Bus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Code-Composer-Studio/">
+                        <span class="tag">Code Composer Studio</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debug/">
+                        <span class="tag">Debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Eclipse-derived-IDEs/">
+                        <span class="tag">Eclipse-derived IDEs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeModbus/">
+                        <span class="tag">FreeModbus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDE/">
+                        <span class="tag">IDE</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RS485/">
+                        <span class="tag">RS485</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Static-Lib/">
+                        <span class="tag">Static Lib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UML/">
+                        <span class="tag">UML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#一、工具准备清单">
+        <span class="has-mr-6">1</span>
+        <span>一、工具准备清单</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#硬件">
+        <span class="has-mr-6">1.1</span>
+        <span>硬件</span>
+        </a></li><li>
+        <a class="is-flex" href="#软件">
+        <span class="has-mr-6">1.2</span>
+        <span>软件</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#二、提取移植文件">
+        <span class="has-mr-6">2</span>
+        <span>二、提取移植文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#三、STM32CubeMX-设置串口">
+        <span class="has-mr-6">3</span>
+        <span>三、STM32CubeMX - 设置串口</span>
+        </a></li><li>
+        <a class="is-flex" href="#四、STM32CubeMX-设置定时器">
+        <span class="has-mr-6">4</span>
+        <span>四、STM32CubeMX - 设置定时器</span>
+        </a></li><li>
+        <a class="is-flex" href="#五、STM32CubeMX-库选择">
+        <span class="has-mr-6">5</span>
+        <span>五、STM32CubeMX - 库选择</span>
+        </a></li><li>
+        <a class="is-flex" href="#六、搞定串口">
+        <span class="has-mr-6">6</span>
+        <span>六、搞定串口</span>
+        </a></li><li>
+        <a class="is-flex" href="#七、搞定定时器">
+        <span class="has-mr-6">7</span>
+        <span>七、搞定定时器</span>
+        </a></li><li>
+        <a class="is-flex" href="#八、搞定中断服务程序">
+        <span class="has-mr-6">8</span>
+        <span>八、搞定中断服务程序</span>
+        </a></li><li>
+        <a class="is-flex" href="#九、搞定开关中断配置">
+        <span class="has-mr-6">9</span>
+        <span>九、搞定开关中断配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#十、搞定-FreeModbus-函数裁剪">
+        <span class="has-mr-6">10</span>
+        <span>十、搞定 FreeModbus 函数裁剪</span>
+        </a></li><li>
+        <a class="is-flex" href="#十一、搞定寄存器地址差一的问题">
+        <span class="has-mr-6">11</span>
+        <span>十一、搞定寄存器地址差一的问题</span>
+        </a></li><li>
+        <a class="is-flex" href="#十二、搞定主函数">
+        <span class="has-mr-6">12</span>
+        <span>十二、搞定主函数</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Blog/">
+            <span class="level-start">
+                <span class="level-item">Blog</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Blog/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Bus/">
+            <span class="level-start">
+                <span class="level-item">Bus</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Bus/FreeModbus/">
+            <span class="level-start">
+                <span class="level-item">FreeModbus</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/C/">
+            <span class="level-start">
+                <span class="level-item">C</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/C/Standard/">
+            <span class="level-start">
+                <span class="level-item">Standard</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Debug/">
+            <span class="level-start">
+                <span class="level-item">Debug</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Debug/STM32/">
+            <span class="level-start">
+                <span class="level-item">STM32</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Eclipse-derived-IDEs/">
+            <span class="level-start">
+                <span class="level-item">Eclipse-derived IDEs</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/GitHub/">
+            <span class="level-start">
+                <span class="level-item">GitHub</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/IDE/">
+            <span class="level-start">
+                <span class="level-item">IDE</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/IDE/Code-Composer-Studio/">
+            <span class="level-start">
+                <span class="level-item">Code Composer Studio</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Markdown/">
+            <span class="level-start">
+                <span class="level-item">Markdown</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tutorial/">
+            <span class="level-start">
+                <span class="level-item">Tutorial</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/UML/">
+            <span class="level-start">
+                <span class="level-item">UML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Astyle/" style="font-size: 10px;">Astyle</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Bus/" style="font-size: 10px;">Bus</a> <a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Code-Composer-Studio/" style="font-size: 13.33px;">Code Composer Studio</a> <a href="/tags/Coding-Style/" style="font-size: 16.67px;">Coding Style</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/Eclipse-derived-IDEs/" style="font-size: 10px;">Eclipse-derived IDEs</a> <a href="/tags/FreeModbus/" style="font-size: 10px;">FreeModbus</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IDE/" style="font-size: 16.67px;">IDE</a> <a href="/tags/Markdown/" style="font-size: 13.33px;">Markdown</a> <a href="/tags/Markdown-Plus/" style="font-size: 10px;">Markdown Plus</a> <a href="/tags/RS485/" style="font-size: 10px;">RS485</a> <a href="/tags/STM32/" style="font-size: 13.33px;">STM32</a> <a href="/tags/Standard/" style="font-size: 20px;">Standard</a> <a href="/tags/Static-Lib/" style="font-size: 10px;">Static Lib</a> <a href="/tags/Template/" style="font-size: 10px;">Template</a> <a href="/tags/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tags/UART/" style="font-size: 10px;">UART</a> <a href="/tags/UML/" style="font-size: 10px;">UML</a>
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Astyle/">
+                        <span class="tag">Astyle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Blog/">
+                        <span class="tag">Blog</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bus/">
+                        <span class="tag">Bus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Code-Composer-Studio/">
+                        <span class="tag">Code Composer Studio</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Coding-Style/">
+                        <span class="tag">Coding Style</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Debug/">
+                        <span class="tag">Debug</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Eclipse-derived-IDEs/">
+                        <span class="tag">Eclipse-derived IDEs</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/FreeModbus/">
+                        <span class="tag">FreeModbus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hello/">
+                        <span class="tag">Hello</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IDE/">
+                        <span class="tag">IDE</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown/">
+                        <span class="tag">Markdown</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Markdown-Plus/">
+                        <span class="tag">Markdown Plus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RS485/">
+                        <span class="tag">RS485</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/STM32/">
+                        <span class="tag">STM32</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Standard/">
+                        <span class="tag">Standard</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Static-Lib/">
+                        <span class="tag">Static Lib</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Template/">
+                        <span class="tag">Template</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tutorial/">
+                        <span class="tag">Tutorial</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UART/">
+                        <span class="tag">UART</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UML/">
+                        <span class="tag">UML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="STM32-FreeModbus 移植" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Tomy&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
