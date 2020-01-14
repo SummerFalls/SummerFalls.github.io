@@ -10,19 +10,19 @@
 <title>STM32-FreeModbus 移植 - Tomy Stark&#39;s Blog</title>
 
 
-    <meta name="description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+    <meta name="description" content="Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者  一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（Modbus 协议栈） Modbus Pol">
 <meta name="keywords" content="Bus,STM32,RS485,FreeModbus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32-FreeModbus 移植">
 <meta property="og:url" content="https://apex.linn.top/2019-11-17-STM32-FreeModbus-移植.html">
 <meta property="og:site_name" content="Tomy Stark&#39;s Blog">
-<meta property="og:description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+<meta property="og:description" content="Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者  一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（Modbus 协议栈） Modbus Pol">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://apex.linn.top/images/flower.jpg">
-<meta property="og:updated_time" content="2019-11-17T15:20:12.396Z">
+<meta property="og:updated_time" content="2020-01-14T09:49:22.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STM32-FreeModbus 移植">
-<meta name="twitter:description" content="STM32-FreeModbus 移植  Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者   一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（">
+<meta name="twitter:description" content="Written By Tomy Stark. E-mail: ro7enkranz@qq.com Note: 转载请注明本文出处链接、作者  一、工具准备清单硬件 一块带有 RS485 通信接口的 STM32 开发板 USB 转 485 通讯转换器（推荐带 FT232 芯片的转换器，更加稳定， CH340 稳定性欠佳。）  软件 FreeMODBUS（Modbus 协议栈） Modbus Pol">
 <meta name="twitter:image" content="https://apex.linn.top/images/flower.jpg">
 
 
@@ -187,7 +187,7 @@ var _hmt = _hmt || [];
                 <span class="level-item has-text-grey">
                     
                     
-                    16 分钟 读完 (大约 2420 个字)
+                    16 分钟 读完 (大约 2416 个字)
                 </span>
                 
                 
@@ -206,11 +206,8 @@ var _hmt = _hmt || [];
         </h1>
         <div class="content">
             <blockquote>
-<p>STM32-FreeModbus 移植</p>
-<blockquote>
 <p>Written By Tomy Stark.<br><i class="fas fa-at"></i> E-mail: <a href="mailto:ro7enkranz@qq.com" target="_blank" rel="noopener">ro7enkranz@qq.com</a></p>
 <p><strong>Note: 转载请注明本文出处链接、作者</strong></p>
-</blockquote>
 </blockquote>
 <h2 id="一、工具准备清单"><a href="#一、工具准备清单" class="headerlink" title="一、工具准备清单"></a>一、工具准备清单</h2><h3 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h3><ul>
 <li>一块带有 RS485 通信接口的 STM32 开发板</li>
@@ -243,6 +240,8 @@ var _hmt = _hmt || [];
 <p>根据 <code>Modbus RTU</code> 的标准，在没有校验的情况下，需要 <code>2</code> 个停止位。</p>
 </blockquote>
 <p><img src="../images/BlogPics/04RS485-01.jpg" alt="串口设置"><br><img src="../images/BlogPics/04RS485-02.jpg" alt="串口中断使能"></p>
+<div class="page">
+
 <h2 id="四、STM32CubeMX-设置定时器"><a href="#四、STM32CubeMX-设置定时器" class="headerlink" title="四、STM32CubeMX - 设置定时器"></a>四、STM32CubeMX - 设置定时器</h2><p><img src="../images/BlogPics/04RS485-03.jpg" alt="时钟树设置"></p>
 <p>由时钟树的设置图可知当前 MCU 运行时提供给定时器的时钟为 <code>48 MHz</code> ，我们需要设置定时器，以最终能为 <code>FreeModbus 协议栈</code> 提供一个 <code>50 us</code> 的时钟信号基准，该设置会对 <code>Modbus RTU</code> 协议中的 <code>T3.5</code> （3.5个字符时间）产生影响。</p>
 <p><img src="../images/BlogPics/04RS485-04.jpg" alt="定时器设置"></p>
@@ -293,7 +292,7 @@ $$ -->
 
 <!-- 链接管理区 -->
 <!-- 图片管理区 -->
-
+</div>
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -1576,7 +1575,7 @@ $$ -->
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 Tomy&nbsp;
+                &copy; 2020 Tomy&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
